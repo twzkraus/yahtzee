@@ -83,7 +83,7 @@ let countSelected = function() {
 let rollDiceIfNotSelected = function(selection, givenHand) {
   let newDiceNeeded = 5 - countSelected();
   let newDiceRolled = rollDice(newDiceNeeded);
-  let allDiceValues = [];
+  let allDiceValues = givenHand;
 
   for (let i = 0; i < 5; i++) {
     if (!isSelected[i]) {
@@ -91,11 +91,23 @@ let rollDiceIfNotSelected = function(selection, givenHand) {
       allDiceValues[i] = thisNewDie;
     } else {
       // this is failing. can't read index X of undefined.
-      allDiceValues[i] = givenHand[i];
+      // allDiceValues[i] = givenHand[i];
     }
   }
   return allDiceValues;
 };
+
+/************************
+SET TURN STATUS
+************************/
+
+let setStatus = function(status) {
+  result = {};
+  for (el in status) {
+    result[el] = status[el];
+  }
+  return result;
+}
 
 /************************
 TAKE A TURN

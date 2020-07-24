@@ -47,22 +47,25 @@ $(document).ready(function() {
   //   }
   // });
 
-  let status = $startTurnBtn.click(function() {
-    let defaultStatus = {
-      rollsMade: 0,
-      currentHand: []
-    };
+  let status = {
+    rollsMade: 0,
+    currentHand: []
+  };
+
+  $startTurnBtn.click(function() {
 
     // remove the start turn button, replace it with continue turn button
     $startTurnBtn.remove();
     $rollBtn.appendTo($body);
 
-    let turnStatus = takeTurn(defaultStatus);
-    console.log(turnStatus);
-    return turnStatus;
+    let turnStatus = takeTurn(status);
+    status = setStatus(turnStatus);
+    return status;
   });
 
-  let newStatus = $rollBtn.click(function() {
+  $rollBtn.click(function() {
+    console.log(status);
+    console.log('status passed in is: ' + JSON.stringify(status));
     let currentStatus = takeTurn(status);
     console.log(currentStatus);
     return currentStatus;
