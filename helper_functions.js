@@ -3,33 +3,33 @@ DICE DISPLAY DEFINITIONS - just needs to be run once.
 ************************/
 var $body = $('body');
 var $diceBox = $(".diceBox");
-const $dieFace = [];
-for (let i = 1; i <=6; i++) {
+var $dieFace = [null];
+var makeFace = function(value) {
   let counter = 0;
   let stringOfSpans = '';
-  if (i > 3) {
+  if (value > 3) {
     stringOfSpans += '<div class="column">';
   }
   counter = 0;
-  while (counter < i) {
+  while (counter < value) {
     // need to add columns for dice values 4, 5,  and 6--to stack the dots
-    if (i > 3  && counter === Math.floor(i / 2)) {
+    if (value > 3  && counter === Math.floor(value / 2)) {
       stringOfSpans += '</div><div class="column">';
     }
     // dice value 5 has 3 columns
-    if (i === 5  && counter === 3) {
+    if (value === 5  && counter === 3) {
       stringOfSpans += '</div><div class="column">';
     }
     // for all dice, add dots
     stringOfSpans += '<span class="dot"></span>';
     counter++;
   }
-  if (i > 3) {
+  // close off last column if you have it
+  if (value > 3) {
     stringOfSpans += '</div>';
   }
-  $dieFace[i] = $('<div class="dice face' + i + '">' + stringOfSpans + '</div>');
+  return $('<div class="dice face' + value + '">' + stringOfSpans + '</div>');
 }
-
 
 /************************
 ROLL DICE
@@ -47,12 +47,13 @@ let rollDice = function(n) {
 
 // pick dice-jquery
 
-// display 1 die
+// display 1 die at a time
 let renderDie = function(valRolled, dieLoc) {
   // valRolled: number of dice rolled
   // dieLoc: jquery identifier of location
+
   dieLoc.empty();
-  $dieFace[valRolled].appendTo(dieLoc);
+  makeFace(valRolled).appendTo(dieLoc);
 }
 
 // display dice
