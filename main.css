@@ -1,0 +1,86 @@
+/* body {
+  font-family: sans-serif;
+  background-color: ivory;
+  text-align: center;
+}
+
+header {
+  text-align: left;
+  width: 50%;
+  min-width: 400px;
+  display: inline-block;
+}
+
+.logo {
+  font: 50px "Pacifico", "Arial";
+  color: green;
+}
+
+.logoBox {
+  color: #FFFFFF;
+  text-decoration: none;
+} */
+
+.diceBox {
+  display: flex;
+}
+
+.dice {
+  padding: 4px;
+  background-color: black;
+  width: 104px;
+  height: 104px;
+  border-radius: 10%;
+  margin: 5px;
+}
+
+.dot {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color:white;
+}
+
+.face1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.face2, .face3, .face4, .face5, .face6 {
+  display: flex;
+  justify-content : space-between;
+}
+
+.face2 .dot:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+/* .face3 {
+  display: flex;
+  justify-content : space-between;
+} */
+
+.face3 .dot:nth-of-type(2) {
+  display: flex;
+  align-self: center;
+}
+
+.face3 .dot:nth-of-type(3) {
+  align-self: flex-end;
+}
+
+.face4 .dot:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.face5 .column:nth-last-of-type(2) {
+  justify-content: center;
+}
