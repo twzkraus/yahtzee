@@ -21,8 +21,16 @@ header {
   text-decoration: none;
 } */
 
+body {
+  background-color: maroon;
+}
+
 .diceBox {
   display: flex;
+}
+
+.diceLoc {
+  border-radius: 10%;
 }
 
 .dice {
@@ -32,6 +40,10 @@ header {
   height: 104px;
   border-radius: 10%;
   margin: 5px;
+}
+
+.dice .selected {
+  background-color: red;
 }
 
 .dot {

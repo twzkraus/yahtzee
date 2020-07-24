@@ -1,9 +1,11 @@
 /************************
-DICE DISPLAY DEFINITIONS - just needs to be run once.
+DICE DISPLAY DEFINITIONS
 ************************/
 var $body = $('body');
 var $diceBox = $(".diceBox");
+var $rolledDiceLocs = [];
 var $dieFace = [null];
+let isSelected = [false, false, false, false, false];
 var makeFace = function(value) {
   let counter = 0;
   let stringOfSpans = '';
@@ -40,12 +42,9 @@ let rollDice = function(n) {
     let thisDie = Math.ceil( Math.random() * 6);
     rolledDice.push(thisDie);
   }
+  console.log(rolledDice);
   return rolledDice;
 };
-
-// roll dice-jquery button
-
-// pick dice-jquery
 
 // display 1 die at a time
 let renderDie = function(valRolled, dieLoc) {
@@ -56,7 +55,75 @@ let renderDie = function(valRolled, dieLoc) {
   makeFace(valRolled).appendTo(dieLoc);
 }
 
-// display dice
-let renderRoll = function() {
+/************************
+DE-SELECT ALL DICE
+************************/
 
+let getSelection = function() {
+  return isSelected;
+}
+
+let clearSelection = function() {
+  isSelected = [false, false, false, false, false];
+  for (let i = 0; i < 5; i++) {
+    $rolledDiceLocs[i].css("background-color", "transparent");
+  }
+};
+
+let countSelected = function() {
+  let totalSelected = 0;
+  for (let i = 0; i < 5; i++) {
+    if (isSelected[i]) {
+      totalSelected++;
+    }
+  }
+  return totalSelected;
+};
+
+let rollDiceIfNotSelected = function(selection, givenHand) {
+  let newDiceNeeded = 5 - countSelected();
+  let newDiceRolled = rollDice(newDiceNeeded);
+  let allDiceValues = [];
+
+  for (let i = 0; i < 5; i++) {
+    if (!isSelected[i]) {
+      let thisNewDie = newDiceRolled.pop();
+      allDiceValues[i] = thisNewDie;
+    } else {
+      // this is failing. can't read index X of undefined.
+      allDiceValues[i] = givenHand[i];
+    }
+  }
+  return allDiceValues;
+};
+
+/************************
+TAKE A TURN
+************************/
+
+let takeTurn = function(turnStatus) {
+  for (let i = 0; i < 5; i++) {
+    $rolledDiceLocs[i] = $('#diceLoc' + i);
+  }
+  let hand = turnStatus.currentHand;
+  let prevRolls = turnStatus.rollsMade;
+  if (prevRolls === 0) {
+    clearSelection();
+  } else {
+    isSelected = getSelection();
+  }
+
+  allDice = rollDiceIfNotSelected(isSelected, hand);
+
+  for (let i = 0; i < 5; i++) {
+    renderDie(allDice[i], $rolledDiceLocs[i]);
+  }
+
+  let turnSummary = {
+    rollsMade: prevRolls + 1,
+    currentHand: allDice,
+    currentSelection: isSelected
+  };
+
+  return turnSummary;
 };
