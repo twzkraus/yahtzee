@@ -55,6 +55,123 @@ let renderDie = function(valRolled, dieLoc) {
 }
 
 /************************
+COMPUTE SCORE
+************************/
+let countForOneNum = function(hand, num) {
+  let score = 0;
+  for (let i = 0; i < hand.length; i++) {
+    if (hand[i] === num) {
+      score += num;
+    }
+  }
+  return score;
+};
+
+let sumAll = function(hand) {
+  return hand.reduce((a,b) => a + b);
+};
+
+// helper for small straight--checks whether difference between each element is 1.
+let isSequential = function(list) {
+  for (let i = 0; i < list.length - 1; i++) {
+    if (list[i + 1] - list[i] !== 1) {
+      return false;
+    }
+  }
+  return true;
+};
+
+let includes3OfAKind = function(hand) {
+  // note: assumes hand is sorted.
+  // take difference of elements two away from each other
+  for (let i = 0; i < hand.length - 2; i++) {
+    if (hand[i + 2] - hand[i] === 0) {
+      return true;
+    }
+  }
+  return false;
+};
+
+let includesFullHouse = function(hand) {
+  // requires that 3ok is met--then first two and last two in hand must be pairs.
+  return hand[0] === hand[1] && hand[-2] === hand[-1];
+};
+
+let includes4OfAKind = function(hand) {
+  // note: assumes hand is sorted.
+  for (let i = 0; i < hand.length - 3; i++) {
+    if (hand[i + 3] - hand[i] === 0) {
+      return true;
+    }
+  }
+  return false;
+};
+
+let includesSmallStraight = function(hand) {
+  // hand is sorted
+  // difference between first and last must be at least 3
+  if (hand[-1] - hand[0] < 3) {
+    return false;
+  }
+
+  return isSequential(hand.slice(0,4)) || isSequential(hand.slice(1,5));
+};
+
+let includesYahtzee = function(hand) {
+  return hand[0] === hand[-1];
+};
+
+let scoreMe =  function(hand) {
+  let possScores = {};
+  let sortedHand = hand.sort();
+  let validHands = [];
+  let numberKeys = [null, 'ones', 'twos', 'threes', 'fours', 'fives', 'sixes'];
+
+  // 1-6:
+  for (let i = 1; i <= 6 ; i++) {
+    possScores[numberKeys[i]] = countForOneNum(sortedHand, i);
+  }
+
+  // 3 of a kind -- gatekeeper step. nests 4ok, full house, and yahtzee because somewhat inter-related.
+  if (includes3OfAKind(sortedHand)) {
+    possScores['3ok'] = sumAll(sortedHand);
+
+    // full house
+    if (includesFullHouse(sortedHand)) {
+      possScores.fullHouse = 25;
+    }
+
+    // 4 of a kind
+    if (includes4OfAKind(sortedHand)) {
+      possScores['4ok'] = sumAll(sortedHand);
+    }
+
+    // yahtzee
+    if (includesYahtzee(sortedHand)) {
+      possScores.yahtzee = 50;
+    }
+
+  }
+
+  // small straight?
+  if (includesSmallStraight(sortedHand)) {
+    possScores.smallStraight = 30;
+  }
+
+  // large straight?
+  if (sortedHand[-1] - sortedHand[0] === 4) {
+    possScores.largeStraight = 40;
+  }
+
+  // chance
+  possScores.chance = sumAll(sortedHand);
+
+  console.log(possScores);
+  return possScores
+
+};
+
+/************************
 DE-SELECT ALL DICE
 ************************/
 
@@ -88,9 +205,6 @@ let rollDiceIfNotSelected = function(selection, givenHand) {
     if (!isSelected[i]) {
       let thisNewDie = newDiceRolled.pop();
       allDiceValues[i] = thisNewDie;
-    } else {
-      // this is failing. can't read index X of undefined.
-      // allDiceValues[i] = givenHand[i];
     }
   }
   return allDiceValues;
@@ -132,7 +246,6 @@ let takeTurn = function(turnStatus) {
   }
 
   let nRollsNow = prevRolls + 1;
-  console.log(nRollsNow);
 
   let turnSummary = {
     rollsMade: nRollsNow,
@@ -153,4 +266,5 @@ SET TURN STATUS
 
 let turnOver = function() {
   console.log('your turn is over');
+  scoreMe(allDice);
 }
