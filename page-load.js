@@ -43,5 +43,6 @@ $(document).ready(function() {
 
   $rollBtn.click(function() {
     status = takeTurn(status);
+    $("#countOfRolls").text(status.rollsMade);
   });
 })
