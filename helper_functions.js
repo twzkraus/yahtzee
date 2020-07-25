@@ -73,12 +73,7 @@ let sumAll = function(hand) {
 
 // helper for small straight--checks whether difference between each element is 1.
 let isSequential = function(list) {
-  for (let i = 0; i < list.length - 1; i++) {
-    if (list[i + 1] - list[i] > 1) {
-      return false;
-    }
-  }
-  return true;
+
 };
 
 let includes3OfAKind = function(hand) {
@@ -94,7 +89,7 @@ let includes3OfAKind = function(hand) {
 
 let includesFullHouse = function(hand) {
   // requires that 3ok is met--then first two and last two in hand must be pairs.
-  return hand[0] === hand[1] && hand[-2] === hand[-1];
+  return hand[0] === hand[1] && hand[3] === hand[4];
 };
 
 let includes4OfAKind = function(hand) {
@@ -109,20 +104,38 @@ let includes4OfAKind = function(hand) {
 
 let includesSmallStraight = function(hand) {
   // hand is sorted
-  // difference between first and last must be at least 3
-  if (hand[-1] - hand[0] < 3) {
-    return false;
-  }
 
-  return isSequential(hand.slice(0,4)) || isSequential(hand.slice(1,5));
+  // possible for one number to be out of sequence-that is the allowance:
+    // 2, 3, 3, 4, 5
+    // 2, 2, 3, 4, 5
+    // 1, 3, 4, 5, 6
+  let singleAllowance = 0;
+  for (let i = 0; i < hand.length - 1; i++) {
+    if (hand[i + 1] - hand[i] !== 1) {
+      singleAllowance++;
+    }
+    if (singleAllowance > 1) {
+      return false;
+    }
+  }
+  return true;
 };
 
 let includesLargeStraight = function(hand) {
-  return hand[-1] - hand[0] === 4;
+  if (hand[4] - hand[0] !== 4) {
+    return false;
+  }
+
+  for (let i = 0; i < hand.length - 1; i++) {
+    if (hand[i + 1] - hand[i] !== 1) {
+      return false;
+    }
+  }
+  return true;
 };
 
 let includesYahtzee = function(hand) {
-  return hand[0] === hand[-1];
+  return hand[0] === hand[4];
 };
 
 let scoreMe =  function(hand) {
@@ -134,7 +147,9 @@ let scoreMe =  function(hand) {
 
   // 1-6:
   for (let i = 1; i <= 6 ; i++) {
-    possScores[numberKeys[i]] = countForOneNum(sortedHand, i);
+    if (sortedHand.includes(i)) {
+      possScores[numberKeys[i]] = countForOneNum(sortedHand, i);
+    }
   }
 
   // 3 of a kind -- gatekeeper step. nests 4ok, full house, and yahtzee because somewhat inter-related.
@@ -154,20 +169,14 @@ let scoreMe =  function(hand) {
       if (includesYahtzee(sortedHand)) {
         possScores.yahtzee = 50;
       }
-
     }
-
   }
 
-  // PROBLEM: 1, 2, 2, 3, 4 not recognized
-    // theory: issue is that it's not sequential. Similar issue with 2, 3, 3, 4, 5
   // small straight?
   if (includesSmallStraight(sortedHand)) {
     possScores.smallStraight = 30;
   }
 
-
-  // PROBLEM: 2-6 was not recognized as a large straight.
   // large straight?
   if (includesLargeStraight(sortedHand)) {
     possScores.largeStraight = 40;
@@ -176,9 +185,7 @@ let scoreMe =  function(hand) {
   // chance
   possScores.chance = sumAll(sortedHand);
 
-  console.log(possScores);
   return possScores
-
 };
 
 /************************
