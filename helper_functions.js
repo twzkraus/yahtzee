@@ -42,7 +42,6 @@ let rollDice = function(n) {
     let thisDie = Math.ceil( Math.random() * 6);
     rolledDice.push(thisDie);
   }
-  console.log(rolledDice);
   return rolledDice;
 };
 
@@ -119,6 +118,7 @@ let takeTurn = function(turnStatus) {
   }
   let hand = turnStatus.currentHand;
   let prevRolls = turnStatus.rollsMade;
+
   if (prevRolls === 0) {
     clearSelection();
   } else {
@@ -131,11 +131,26 @@ let takeTurn = function(turnStatus) {
     renderDie(allDice[i], $rolledDiceLocs[i]);
   }
 
+  let nRollsNow = prevRolls + 1;
+  console.log(nRollsNow);
+
   let turnSummary = {
-    rollsMade: prevRolls + 1,
+    rollsMade: nRollsNow,
     currentHand: allDice,
     currentSelection: isSelected
   };
 
+  if (nRollsNow === 3) {
+    turnOver();
+  }
+
   return turnSummary;
 };
+
+/************************
+SET TURN STATUS
+************************/
+
+let turnOver = function() {
+  console.log('your turn is over');
+}
