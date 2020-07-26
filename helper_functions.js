@@ -224,6 +224,7 @@ let countSelected = function() {
 
 let rollDiceIfNotSelected = function(selection, givenHand) {
   let newDiceNeeded = 5 - countSelected();
+  console.log('num dice re-rolled:' + newDiceNeeded);
   let newDiceRolled = rollDice(newDiceNeeded);
   let allDiceValues = givenHand;
 
@@ -271,9 +272,12 @@ let takeTurn = function(turnStatus) {
 
   allDice = rollDiceIfNotSelected(isSelected, hand);
 
-  for (let i = 0; i < 5; i++) {
-    renderDie(allDice[i], $rolledDiceLocs[i]);
-  }
+  // delay dice rendering a bit so it happens after rolling animation
+  setTimeout(function() {
+    for (let i = 0; i < 5; i++) {
+        renderDie(allDice[i], $rolledDiceLocs[i]);
+    }
+  }, 750);
   console.log(allDice);
 
   let nRollsNow = prevRolls + 1;
