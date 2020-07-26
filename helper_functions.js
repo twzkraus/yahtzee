@@ -55,7 +55,6 @@ let renderDie = function(valRolled, dieLoc) {
 };
 
 let animateRoll = function(dieLoc) {
-  console.log('animated loc: ' + dieLoc);
   renderDie(Math.ceil(Math.random() * 6), dieLoc);
   for (let i = 0; i < 25; i++) {
     setTimeout(function() {
@@ -226,14 +225,12 @@ let countSelected = function() {
 
 let rollDiceIfNotSelected = function(selection, givenHand) {
   let newDiceNeeded = 5 - countSelected();
-  console.log('num dice re-rolled:' + newDiceNeeded);
   let newDiceRolled = rollDice(newDiceNeeded);
   let allDiceValues = givenHand;
 
   for (let i = 0; i < 5; i++) {
     if (!isSelected[i]) {
       animateRoll($('#diceLoc' + i));
-      console.log('not selected die: ' + i);
       let thisNewDie = newDiceRolled.pop();
       allDiceValues[i] = thisNewDie;
     } else {
@@ -279,9 +276,7 @@ let takeTurn = function(turnStatus) {
     for (let i = 0; i < 5; i++) {
         renderDie(allDice[i], $rolledDiceLocs[i]);
     }
-    // console.log('this is having an issue-on third roll, dice get sorted and change their location. Could be a variable name issue.')
   }, 750);
-  console.log(allDice);
 
   let nRollsNow = prevRolls + 1;
 
@@ -303,6 +298,5 @@ SET TURN STATUS
 ************************/
 
 let turnOver = function(finalHand) {
-  console.log('your turn is over');
   scoreMe(finalHand);
 }
