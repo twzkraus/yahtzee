@@ -22,7 +22,6 @@ $(document).ready(function() {
   }
 
   var $rollBtn = $('#rollBtn');
-  // $rollBtn.appendTo($body);
 
   // jquery function for selecting dice
   for (let i = 0; i < 5; i++) {
@@ -52,25 +51,5 @@ $(document).ready(function() {
     $("#countOfRolls").text(status.rollsMade);
     turnOver(status.currentHand);
   });
-
-  // $("#selectAllBtn").click(function() {
-  //   $('#buttonBox').empty();
-  //   for (let i = 0; i < 5; i++) {
-  //     $rolledDiceLocs[i].css("background-color", "yellow");
-  //     isSelected[i] = true;
-  //   }
-  //   var $deselectAllBtn = $('<button id="deselectAllBtn">De-Select All Dice</button>');
-  //     $deselectAllBtn.appendTo($('#buttonBox'));
-  // });
-
-  // $("#deselectAllBtn").click(function() {
-  //   $('#buttonBox').empty();
-  //   for (let i = 0; i < 5; i++) {
-  //     $rolledDiceLocs[i].css("background-color", "transparent");
-  //     isSelected[i] = false;
-  //   }
-  //   var $selectAllBtn = $('<button id="selectAllBtn">Select All Dice</button>');
-  //     $selectAllBtn.appendTo($('#buttonBox'));
-  // });
 
 });

@@ -201,6 +201,21 @@ let scoreMe =  function(hand) {
 // let $scoreBox = $("#turnScoreBox");
 
 let displayScores = function(scoreOptions) {
+  let cleanTitles = {
+    ones: 'Ones',
+    twos: 'Twos',
+    threes: 'Threes',
+    fours: 'Fours',
+    fives: 'Fives',
+    sixes: 'Sixes',
+    '3ok': 'Three of a Kind',
+    '4ok': 'Four of a Kind',
+    fullHouse: 'Full House',
+    smallStraight: 'Small Straight',
+    largeStraight: 'Large Straight',
+    yahtzee: 'YAHTZEE',
+    chance: 'Chance'
+  };
   let $scoreTable = $('#scoreTable');
   let $scoreTitles = $('<div id="scoreTitles"></div>');
   let $scoreValues = $('<div id="scoreValues"></div>');
@@ -233,24 +248,18 @@ let displayScores = function(scoreOptions) {
     let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
     let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
 
-    $thisScoreTitle.text(scoreCategory + ':');
+    // use well-formatted titles:
+    $thisScoreTitle.text(cleanTitles[scoreCategory] + ':');
     $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
 
     $thisScoreTitle.appendTo($scoreTitles);
     $thisScoreValue.appendTo($scoreValues);
-    // $tableRows[i].appendTo($scoreTable);
-    // $('<br>').appendTo($scoreTable);
   }
-
-  // $scoreTitles.text(scoreTitleString);
-  // $scoreValues.text(scoreValueString);
 
   $scoreTable.empty();
   $scoreTitles.appendTo($scoreTable);
   $scoreValues.appendTo($scoreTable);
   $scoreTable.appendTo($("#turnScoreBox"));
-  // let scoreString = JSON.stringify(scoreOptions);
-  // $("#turnScoreBox").text(scoreString);
 };
 
 /************************
