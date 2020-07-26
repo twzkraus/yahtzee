@@ -52,7 +52,17 @@ let renderDie = function(valRolled, dieLoc) {
 
   dieLoc.empty();
   makeFace(valRolled).appendTo(dieLoc);
-}
+};
+
+let animateRoll = function(dieLoc) {
+  console.log('animated loc: ' + dieLoc);
+  renderDie(Math.ceil(Math.random() * 6), dieLoc);
+  for (let i = 0; i < 25; i++) {
+    setTimeout(function() {
+      renderDie(Math.ceil(Math.random() * 6), dieLoc);
+    }, Math.random() * 750);
+  }
+};
 
 /************************
 COMPUTE SCORE
@@ -220,8 +230,13 @@ let rollDiceIfNotSelected = function(selection, givenHand) {
 
   for (let i = 0; i < 5; i++) {
     if (!isSelected[i]) {
+      animateRoll($('#diceLoc' + i));
+      console.log('not selected die: ' + i);
       let thisNewDie = newDiceRolled.pop();
       allDiceValues[i] = thisNewDie;
+    } else {
+      allDiceValues = givenHand[i];
+      console.log(givenHand);
     }
   }
   return allDiceValues;
