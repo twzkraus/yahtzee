@@ -150,8 +150,9 @@ let includesYahtzee = function(hand) {
 
 let scoreMe =  function(hand) {
   let possScores = {};
-  // this line sorts "allDice," which is what get rendered. Not sure why it does that.
-  let sortedHand = hand.sort();
+  // make a copy then sort it:
+  // when I didn't slice, this line would sort allDice, which sorted the rendering.
+  let sortedHand = hand.slice(0).sort();
   let validHands = [];
   let numberKeys = [null, 'ones', 'twos', 'threes', 'fours', 'fives', 'sixes'];
 
