@@ -25,6 +25,10 @@ body {
   background-color: maroon;
 }
 
+div {
+  border-radius: 2px;
+}
+
 .diceBox {
   display: flex;
 }
@@ -99,10 +103,15 @@ body {
 
 #scoreTable {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  text-align: space-between;
 }
 
 .tableRow {
   display: flex;
   flex-direction: row;
+}
+
+#scoreValues {
+  margin-left: 30px;
 }

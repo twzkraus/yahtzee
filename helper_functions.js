@@ -210,36 +210,44 @@ let displayScores = function(scoreOptions) {
 
   let overallScoreString = '';
 
-  // sort the possibilities
-  let sortedScoreOptions = {
-    ...scoreOptions
-  };
+  // sort the items in the object-convert to array
+  let sortableScores = [];
+  for (title in scoreOptions) {
+    sortableScores.push([title, scoreOptions[title]]);
+  }
 
-  // sortedScoreOptions.sort();
+  sortableScores.sort(function(a, b) {
+    return a[1] - b[1];
+  });
+
+    // sort the possibilities
+    let sortedScoreOptions = {};
+  sortableScores.forEach( function(item) {
+    sortedScoreOptions[item[0]]=item[1]
+  })
 
   let i = 1;
   let $tableRows = [];
   for (scoreCategory in sortedScoreOptions) {
-    // scoreTitleString += scoreCategory + '\n';
-    // scoreValueString += sortedScoreOptions[scoreCategory] + '\n';
     $tableRows[i] = $('<div class="tableRow" id="tableRow' + i +'"></div>');
     let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
     let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
 
-    $thisScoreTitle.text(scoreCategory + ':    ');
+    $thisScoreTitle.text(scoreCategory + ':');
     $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
 
-    $thisScoreTitle.appendTo($tableRows[i]);
-    $thisScoreValue.appendTo($tableRows[i]);
-    $tableRows[i].appendTo($scoreTable);
+    $thisScoreTitle.appendTo($scoreTitles);
+    $thisScoreValue.appendTo($scoreValues);
+    // $tableRows[i].appendTo($scoreTable);
     // $('<br>').appendTo($scoreTable);
   }
 
   // $scoreTitles.text(scoreTitleString);
   // $scoreValues.text(scoreValueString);
 
-  // $scoreTitles.appendTo($scoreTable);
-  // $scoreValues.appendTo($scoreTable);
+  $scoreTitles.appendTo($scoreTable);
+  $scoreValues.appendTo($scoreTable);
+  $("#turnScoreBox").empty();
   $scoreTable.appendTo($("#turnScoreBox"));
   // let scoreString = JSON.stringify(scoreOptions);
   // $("#turnScoreBox").text(scoreString);
@@ -342,5 +350,7 @@ SET TURN STATUS
 
 let turnOver = function(finalHand) {
   let scorePossibilities = scoreMe(finalHand);
-  displayScores(scorePossibilities);
+  setTimeout(function() {
+    displayScores(scorePossibilities);
+  }, 750);
 }
