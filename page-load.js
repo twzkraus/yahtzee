@@ -45,13 +45,5 @@ $(document).ready(function() {
     status = takeTurn(status);
     $("#countOfRolls").text(status.rollsMade);
     turnOver(status.currentHand);
-    if (status.rollsMade === 3) {
-      // turnOver(status.currentHand);
-      console.log('your turn is over');
-    }
   });
-
-  // if (nRollsNow === 3) {
-  //   turnOver();
-  // }
 })

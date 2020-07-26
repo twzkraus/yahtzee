@@ -201,7 +201,7 @@ let scoreMe =  function(hand) {
 // let $scoreBox = $("#turnScoreBox");
 
 let displayScores = function(scoreOptions) {
-  let $scoreTable = $('<div id="scoreTable"></div>');
+  let $scoreTable = $('#scoreTable');
   let $scoreTitles = $('<div id="scoreTitles"></div>');
   let $scoreValues = $('<div id="scoreValues"></div>');
 
@@ -245,9 +245,9 @@ let displayScores = function(scoreOptions) {
   // $scoreTitles.text(scoreTitleString);
   // $scoreValues.text(scoreValueString);
 
+  $scoreTable.empty();
   $scoreTitles.appendTo($scoreTable);
   $scoreValues.appendTo($scoreTable);
-  $("#turnScoreBox").empty();
   $scoreTable.appendTo($("#turnScoreBox"));
   // let scoreString = JSON.stringify(scoreOptions);
   // $("#turnScoreBox").text(scoreString);

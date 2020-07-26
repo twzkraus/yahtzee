@@ -27,7 +27,9 @@
       <h2 id="turnScoreBox"></h2>
       <script>
         let $turnScoreBox = $("#turnScoreBox");
-        $turnScoreBox.text('your possible scores will go here');
+        $turnScoreBox.text('Your Possible Scores:');
+        let $scoreTable = $('<div id="scoreTable"><h3>Roll to see your scores!</h3></div>');
+        $scoreTable.appendTo($turnScoreBox);
       </script>
     </div>
   </body>
