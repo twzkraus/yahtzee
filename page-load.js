@@ -43,7 +43,34 @@ $(document).ready(function() {
 
   $rollBtn.click(function() {
     status = takeTurn(status);
+    // first roll: include a select all button
+    if (status.rollsMade === 1) {
+      var $selectAllBtn = $('<button id="selectAllBtn">Select All Dice</button>');
+      $selectAllBtn.appendTo($('#buttonBox'));
+      initializeSelectAll();
+    }
     $("#countOfRolls").text(status.rollsMade);
     turnOver(status.currentHand);
   });
-})
+
+  // $("#selectAllBtn").click(function() {
+  //   $('#buttonBox').empty();
+  //   for (let i = 0; i < 5; i++) {
+  //     $rolledDiceLocs[i].css("background-color", "yellow");
+  //     isSelected[i] = true;
+  //   }
+  //   var $deselectAllBtn = $('<button id="deselectAllBtn">De-Select All Dice</button>');
+  //     $deselectAllBtn.appendTo($('#buttonBox'));
+  // });
+
+  // $("#deselectAllBtn").click(function() {
+  //   $('#buttonBox').empty();
+  //   for (let i = 0; i < 5; i++) {
+  //     $rolledDiceLocs[i].css("background-color", "transparent");
+  //     isSelected[i] = false;
+  //   }
+  //   var $selectAllBtn = $('<button id="selectAllBtn">Select All Dice</button>');
+  //     $selectAllBtn.appendTo($('#buttonBox'));
+  // });
+
+});

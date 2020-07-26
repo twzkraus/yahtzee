@@ -354,3 +354,29 @@ let turnOver = function(finalHand) {
     displayScores(scorePossibilities);
   }, 750);
 }
+
+let initializeSelectAll = function() {
+  $("#selectAllBtn").click(function() {
+    $("#selectAllBtn").remove();
+    for (let i = 0; i < 5; i++) {
+      $rolledDiceLocs[i].css("background-color", "yellow");
+      isSelected[i] = true;
+    }
+    var $deselectAllBtn = $('<button id="deselectAllBtn">De-Select All Dice</button>');
+    $deselectAllBtn.appendTo($('#buttonBox'));
+    initializeDeselectAll();
+  });
+};
+
+let initializeDeselectAll = function() {
+  $("#deselectAllBtn").click(function() {
+    $("#deselectAllBtn").remove();
+    for (let i = 0; i < 5; i++) {
+      $rolledDiceLocs[i].css("background-color", "transparent");
+      isSelected[i] = false;
+    }
+    var $selectAllBtn = $('<button id="selectAllBtn">Select All Dice</button>');
+    $selectAllBtn.appendTo($('#buttonBox'));
+    initializeSelectAll();
+  });
+};
