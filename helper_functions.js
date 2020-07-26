@@ -151,7 +151,6 @@ let includesYahtzee = function(hand) {
 let scoreMe =  function(hand) {
   let possScores = {};
   let sortedHand = hand.sort();
-  console.log('sorted: ' + sortedHand);
   let validHands = [];
   let numberKeys = [null, 'ones', 'twos', 'threes', 'fours', 'fives', 'sixes'];
 
@@ -235,8 +234,7 @@ let rollDiceIfNotSelected = function(selection, givenHand) {
       let thisNewDie = newDiceRolled.pop();
       allDiceValues[i] = thisNewDie;
     } else {
-      allDiceValues = givenHand[i];
-      console.log(givenHand);
+      allDiceValues[i] = givenHand[i];
     }
   }
   return allDiceValues;
@@ -276,6 +274,7 @@ let takeTurn = function(turnStatus) {
   for (let i = 0; i < 5; i++) {
     renderDie(allDice[i], $rolledDiceLocs[i]);
   }
+  console.log(allDice);
 
   let nRollsNow = prevRolls + 1;
 
