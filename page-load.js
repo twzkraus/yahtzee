@@ -44,5 +44,12 @@ $(document).ready(function() {
   $rollBtn.click(function() {
     status = takeTurn(status);
     $("#countOfRolls").text(status.rollsMade);
+    if (status.rollsMade === 3) {
+      turnOver(status.currentHand);
+    }
   });
+
+  // if (nRollsNow === 3) {
+  //   turnOver();
+  // }
 })

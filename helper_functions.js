@@ -150,6 +150,7 @@ let includesYahtzee = function(hand) {
 
 let scoreMe =  function(hand) {
   let possScores = {};
+  // this line sorts "allDice," which is what get rendered. Not sure why it does that.
   let sortedHand = hand.sort();
   let validHands = [];
   let numberKeys = [null, 'ones', 'twos', 'threes', 'fours', 'fives', 'sixes'];
@@ -277,6 +278,7 @@ let takeTurn = function(turnStatus) {
     for (let i = 0; i < 5; i++) {
         renderDie(allDice[i], $rolledDiceLocs[i]);
     }
+    // console.log('this is having an issue-on third roll, dice get sorted and change their location. Could be a variable name issue.')
   }, 750);
   console.log(allDice);
 
@@ -288,9 +290,9 @@ let takeTurn = function(turnStatus) {
     currentSelection: isSelected
   };
 
-  if (nRollsNow === 3) {
-    turnOver();
-  }
+  // if (nRollsNow === 3) {
+  //   turnOver();
+  // }
 
   return turnSummary;
 };
@@ -299,7 +301,7 @@ let takeTurn = function(turnStatus) {
 SET TURN STATUS
 ************************/
 
-let turnOver = function() {
+let turnOver = function(finalHand) {
   console.log('your turn is over');
-  scoreMe(allDice);
+  scoreMe(finalHand);
 }
