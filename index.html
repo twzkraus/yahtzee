@@ -22,14 +22,23 @@
       <script src="page-load.js">
       </script>
     </div>
+    <button id="rollBtn">New Roll</button>
+    <div class="scoreBox">
+      <h2 id="turnScoreBox"></h2>
+      <script>
+        let $turnScoreBox = $("#turnScoreBox");
+        $turnScoreBox.text('your possible scores will go here');
+      </script>
+    </div>
   </body>
 </html>
 
 
 <!--
   To Do List
-  Refactor--status is a horrible name
+  Display possible categories & scores--continuously?
   Add a 'select all'/score me now button
+  Refactor--status is a horrible name
   Make it a legit game
   Add scorecard
  -->

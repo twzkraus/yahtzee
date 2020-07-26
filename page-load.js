@@ -21,8 +21,8 @@ $(document).ready(function() {
     $exampleDice[i].appendTo($rolledDiceLocs[i]);
   }
 
-  var $rollBtn = $('<button>New Roll</button>');
-  $rollBtn.appendTo($body);
+  var $rollBtn = $('#rollBtn');
+  // $rollBtn.appendTo($body);
 
   // jquery function for selecting dice
   for (let i = 0; i < 5; i++) {
@@ -44,8 +44,10 @@ $(document).ready(function() {
   $rollBtn.click(function() {
     status = takeTurn(status);
     $("#countOfRolls").text(status.rollsMade);
+    turnOver(status.currentHand);
     if (status.rollsMade === 3) {
-      turnOver(status.currentHand);
+      // turnOver(status.currentHand);
+      console.log('your turn is over');
     }
   });
 

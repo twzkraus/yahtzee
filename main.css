@@ -96,3 +96,13 @@ body {
 .face5 .column:nth-last-of-type(2) {
   justify-content: center;
 }
+
+#scoreTable {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableRow {
+  display: flex;
+  flex-direction: row;
+}

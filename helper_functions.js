@@ -198,6 +198,53 @@ let scoreMe =  function(hand) {
   return possScores
 };
 
+// let $scoreBox = $("#turnScoreBox");
+
+let displayScores = function(scoreOptions) {
+  let $scoreTable = $('<div id="scoreTable"></div>');
+  let $scoreTitles = $('<div id="scoreTitles"></div>');
+  let $scoreValues = $('<div id="scoreValues"></div>');
+
+  let scoreTitleString = '';
+  let scoreValueString = '';
+
+  let overallScoreString = '';
+
+  // sort the possibilities
+  let sortedScoreOptions = {
+    ...scoreOptions
+  };
+
+  // sortedScoreOptions.sort();
+
+  let i = 1;
+  let $tableRows = [];
+  for (scoreCategory in sortedScoreOptions) {
+    // scoreTitleString += scoreCategory + '\n';
+    // scoreValueString += sortedScoreOptions[scoreCategory] + '\n';
+    $tableRows[i] = $('<div class="tableRow" id="tableRow' + i +'"></div>');
+    let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
+    let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
+
+    $thisScoreTitle.text(scoreCategory + ':    ');
+    $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
+
+    $thisScoreTitle.appendTo($tableRows[i]);
+    $thisScoreValue.appendTo($tableRows[i]);
+    $tableRows[i].appendTo($scoreTable);
+    // $('<br>').appendTo($scoreTable);
+  }
+
+  // $scoreTitles.text(scoreTitleString);
+  // $scoreValues.text(scoreValueString);
+
+  // $scoreTitles.appendTo($scoreTable);
+  // $scoreValues.appendTo($scoreTable);
+  $scoreTable.appendTo($("#turnScoreBox"));
+  // let scoreString = JSON.stringify(scoreOptions);
+  // $("#turnScoreBox").text(scoreString);
+};
+
 /************************
 DE-SELECT ALL DICE
 ************************/
@@ -286,10 +333,6 @@ let takeTurn = function(turnStatus) {
     currentSelection: isSelected
   };
 
-  // if (nRollsNow === 3) {
-  //   turnOver();
-  // }
-
   return turnSummary;
 };
 
@@ -298,5 +341,6 @@ SET TURN STATUS
 ************************/
 
 let turnOver = function(finalHand) {
-  scoreMe(finalHand);
+  let scorePossibilities = scoreMe(finalHand);
+  displayScores(scorePossibilities);
 }
