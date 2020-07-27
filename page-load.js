@@ -59,4 +59,8 @@ $(document).ready(function() {
     }
   });
 
+  $("#logo").click(function() {
+    location.reload(true);
+  });
+
 });
