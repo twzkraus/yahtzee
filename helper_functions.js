@@ -34,7 +34,7 @@ var makeFace = function(value) {
 }
 
 /************************
-ROLL DICE
+ROLL, SHOW, AND ANIMATE DICE ROLLS
 ************************/
 let rollDice = function(n) {
   let rolledDice = [];
@@ -64,7 +64,7 @@ let animateRoll = function(dieLoc) {
 };
 
 /************************
-COMPUTE SCORE
+COMPUTE SCORE - Helpers for each type
 ************************/
 let countForOneNum = function(hand, num) {
   let score = 0;
@@ -147,6 +147,10 @@ let includesYahtzee = function(hand) {
   return hand[0] === hand[4];
 };
 
+/************************
+COMPUTE SCORE - Overall hand logic
+************************/
+
 let scoreMe =  function(hand) {
   let possScores = {};
   // make a copy then sort it:
@@ -198,7 +202,9 @@ let scoreMe =  function(hand) {
   return possScores
 };
 
-// let $scoreBox = $("#turnScoreBox");
+/************************
+DISPLAY SCORE - working, effective function to display only (doesn't allow clickage)
+************************/
 
 let displayScores = function(scoreOptions) {
   let cleanTitles = {
@@ -220,10 +226,66 @@ let displayScores = function(scoreOptions) {
   let $scoreTitles = $('<div id="scoreTitles"></div>');
   let $scoreValues = $('<div id="scoreValues"></div>');
 
-  let scoreTitleString = '';
-  let scoreValueString = '';
+  // sort the items in the object-convert to array
+  let sortableScores = [];
+  for (title in scoreOptions) {
+    sortableScores.push([title, scoreOptions[title]]);
+  }
 
-  let overallScoreString = '';
+  sortableScores.sort(function(a, b) {
+    return b[1] - a[1];
+  });
+
+    // sort the possibilities
+  let sortedScoreOptions = {};
+  sortableScores.forEach( function(item) {
+  sortedScoreOptions[item[0]]=item[1]
+  })
+
+  let i = 1;
+  let $tableRows = [];
+  for (scoreCategory in sortedScoreOptions) {
+    $tableRows[i] = $('<div class="tableRow" id="tableRow' + i +'"></div>');
+    let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
+    let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
+
+    // use well-formatted titles:
+    $thisScoreTitle.text(cleanTitles[scoreCategory] + ':');
+    $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
+
+    $thisScoreTitle.appendTo($scoreTitles);
+    $thisScoreValue.appendTo($scoreValues);
+  }
+
+  $scoreTable.empty();
+  $scoreTitles.appendTo($scoreTable);
+  $scoreValues.appendTo($scoreTable);
+  $scoreTable.appendTo($("#turnScoreBox"));
+};
+
+/************************
+DISPLAY SCORE FORM - new method, making a form
+************************/
+
+let displayScoreForm = function(scoreOptions) {
+  let cleanTitles = {
+    ones: 'Ones',
+    twos: 'Twos',
+    threes: 'Threes',
+    fours: 'Fours',
+    fives: 'Fives',
+    sixes: 'Sixes',
+    '3ok': 'Three of a Kind',
+    '4ok': 'Four of a Kind',
+    fullHouse: 'Full House',
+    smallStraight: 'Small Straight',
+    largeStraight: 'Large Straight',
+    yahtzee: 'YAHTZEE',
+    chance: 'Chance'
+  };
+  let $scoreTable = $('#scoreTable');
+
+  let $scoreForm = $('<form id="scoreForm"></form>');
 
   // sort the items in the object-convert to array
   let sortableScores = [];
@@ -236,9 +298,9 @@ let displayScores = function(scoreOptions) {
   });
 
     // sort the possibilities
-    let sortedScoreOptions = {};
+  let sortedScoreOptions = {};
   sortableScores.forEach( function(item) {
-    sortedScoreOptions[item[0]]=item[1]
+  sortedScoreOptions[item[0]]=item[1]
   })
 
   let i = 1;
@@ -364,6 +426,10 @@ let calcScoresFromHand = function(finalHand) {
   }, 750);
 }
 
+/************************
+QUICK FUNCTIONS DEPENDING ON BUTTON PRESSES
+************************/
+
 let initializeSelectAll = function() {
   $("#selectAllBtn").click(function() {
     $("#selectAllBtn").remove();
@@ -395,3 +461,14 @@ let initiateNoMoreRolls = function() {
   $('#rollBtn').prop('disabled', true);
   $("#selectAllBtn").remove();
 };
+
+/************************
+PLAY GAME
+************************/
+
+// figure out how many players
+// set up scorecard
+// while turncounter < nPlayers * ?13?, take turns
+// after each turn, make player select a score category
+  // ? make list of scores into a form/input list?
+// on subsequent turns, don't display score categories already filled

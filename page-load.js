@@ -42,6 +42,13 @@ $(document).ready(function() {
 
   let $selectAllBtn = $('<button id="selectAllBtn">Select All Dice</button>');
 
+  /************************
+  ACTUAL TRIGGER TO TAKE TURNS AND PLAY GAME
+  ************************/
+
+  /************************
+  CLICK FUNCTIONS
+  ************************/
   $rollBtn.click(function() {
     status = takeTurn(status);
     // first roll: include a select all button

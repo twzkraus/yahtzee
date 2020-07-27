@@ -18,8 +18,7 @@ header {
   color: white;
   font-family: "PT Sans Narrow";
   font-style: italic;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 
 #logo:hover {
