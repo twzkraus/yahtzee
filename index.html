@@ -7,32 +7,33 @@
     <script src="helper_functions.js"></script>
     <link rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <!-- <div class="turnDetails">
-      <h2>Number of Rolls:</h2>
-      <h2 id="countOfRolls"></h2>
-      <script>
-        let $nrollsDisplay = $("#countOfRolls");
-        $nrollsDisplay.text('0');
-      </script>
-    </div> -->
-    <div class="diceBox">
-      <script src="page-load.js">
-      </script>
+    <div class="mainContent">
+      <header>
+        <h1 id="logo">Yahtzee!</h1>
+      </header>
+      <div class="diceBox">
+        <script src="page-load.js">
+        </script>
+      </div>
+      <div id="buttonBox">
+        <button id="rollBtn">Start Turn</button>
+      </div>
+      <div class="scoreBox">
+        <h2 id="turnScoreBox"></h2>
+        <script>
+          let $turnScoreBox = $("#turnScoreBox");
+          $turnScoreBox.text('Your Possible Scores:');
+          let $scoreTable = $('<div id="scoreTable"><h3>Roll to see your scores!</h3></div>');
+          $scoreTable.appendTo($turnScoreBox);
+        </script>
+      </div>
     </div>
-    <div id="buttonBox">
-      <button id="rollBtn">Start Turn</button>
-    </div>
-    <div class="scoreBox">
-      <h2 id="turnScoreBox"></h2>
-      <script>
-        let $turnScoreBox = $("#turnScoreBox");
-        $turnScoreBox.text('Your Possible Scores:');
-        let $scoreTable = $('<div id="scoreTable"><h3>Roll to see your scores!</h3></div>');
-        $scoreTable.appendTo($turnScoreBox);
-      </script>
+    <div class="scoreCard">
+      <!-- insert a table and scorecard details -->
     </div>
   </body>
 </html>

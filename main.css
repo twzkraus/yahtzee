@@ -25,11 +25,22 @@ body {
   background-color: maroon;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
+  align-items: right;
 }
 
-div {
-  border-color: black;
-  border-width: 2px;
+.mainContent {
+  align-items: right;
+}
+
+header {
+  align-items: left;
+}
+
+#logo {
+  font-size: 50px;
+  font-family: "PT Sans Narrow";
+  font-style: italic;
+  font-weight: 600;
 }
 
 .diceBox {
