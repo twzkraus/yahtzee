@@ -56,6 +56,8 @@ $(document).ready(function() {
     } else {
       $rollBtn.text('No Rolls Remaining');
       $rollBtn.prop('disabled', true);
+      // task: nuke select all button on last roll.
+      $selectAllBtn.remove();
     }
   });
 
