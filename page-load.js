@@ -49,7 +49,14 @@ $(document).ready(function() {
       initializeSelectAll();
     }
     $("#countOfRolls").text(status.rollsMade);
-    turnOver(status.currentHand);
+    calcScoresFromHand(status.currentHand);
+
+    if (status.rollsMade < 3) {
+      $rollBtn.text('Take Roll #' + (status.rollsMade + 1));
+    } else {
+      $rollBtn.text('No Rolls Remaining');
+      $rollBtn.prop('disabled', true);
+    }
   });
 
 });

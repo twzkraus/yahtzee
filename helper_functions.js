@@ -45,7 +45,7 @@ let rollDice = function(n) {
   return rolledDice;
 };
 
-// display 1 die at a time
+// display 1 die
 let renderDie = function(valRolled, dieLoc) {
   // valRolled: number of dice rolled
   // dieLoc: jquery identifier of location
@@ -232,7 +232,7 @@ let displayScores = function(scoreOptions) {
   }
 
   sortableScores.sort(function(a, b) {
-    return a[1] - b[1];
+    return b[1] - a[1];
   });
 
     // sort the possibilities
@@ -357,7 +357,7 @@ let takeTurn = function(turnStatus) {
 SET TURN STATUS
 ************************/
 
-let turnOver = function(finalHand) {
+let calcScoresFromHand = function(finalHand) {
   let scorePossibilities = scoreMe(finalHand);
   setTimeout(function() {
     displayScores(scorePossibilities);
