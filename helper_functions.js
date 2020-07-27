@@ -389,3 +389,9 @@ let initializeDeselectAll = function() {
     initializeSelectAll();
   });
 };
+
+let initiateNoMoreRolls = function() {
+  $('#rollBtn').text('No Rolls Remaining');
+  $('#rollBtn').prop('disabled', true);
+  $("#selectAllBtn").remove();
+};

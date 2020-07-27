@@ -40,11 +40,12 @@ $(document).ready(function() {
     currentHand: []
   };
 
+  let $selectAllBtn = $('<button id="selectAllBtn">Select All Dice</button>');
+
   $rollBtn.click(function() {
     status = takeTurn(status);
     // first roll: include a select all button
     if (status.rollsMade === 1) {
-      var $selectAllBtn = $('<button id="selectAllBtn">Select All Dice</button>');
       $selectAllBtn.appendTo($('#buttonBox'));
       initializeSelectAll();
     }
@@ -54,10 +55,7 @@ $(document).ready(function() {
     if (status.rollsMade < 3) {
       $rollBtn.text('Take Roll #' + (status.rollsMade + 1));
     } else {
-      $rollBtn.text('No Rolls Remaining');
-      $rollBtn.prop('disabled', true);
-      // task: nuke select all button on last roll.
-      $selectAllBtn.remove();
+      initiateNoMoreRolls();
     }
   });
 
