@@ -99,7 +99,7 @@ header {
 
 #scoreTable {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   text-align: space-between;
 }
 
@@ -110,4 +110,16 @@ header {
 
 #scoreValues {
   margin-left: 30px;
+}
+
+.clickableScore {
+  /* background-color: rgb(163, 94, 94); */
+  border-radius: 5px;
+  margin: 5px;
+  width: 50%;
+}
+
+.clickableScore:hover {
+  background-color: rgb(163, 94, 94);
+  cursor: pointer;
 }
