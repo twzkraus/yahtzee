@@ -303,29 +303,42 @@ let displayScoreForm = function(scoreOptions) {
     sortedScoreOptions[item[0]]=item[1]
   });
 
-  let i = 1;
   for (scoreCategory in sortedScoreOptions) {
-    // let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
-    // let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
 
-    // let $thisScoreButton = $('<input type="radio" name="' + scoreCategory + '" id="' + scoreCategory + '"><label for="' + scoreCategory + '">' + cleanTitles[scoreCategory] + ':     ' + sortedScoreOptions[scoreCategory] + '</label><br>');
+    let thisScoreDisplay = sortedScoreOptions[scoreCategory] + ' points: ' +cleanTitles[scoreCategory];
 
-    let $thisScoreButton = $('<label><input type="radio" name="score" value="' + scoreCategory + '">' + cleanTitles[scoreCategory] + ':     ' + sortedScoreOptions[scoreCategory] + '</label><br>');
-    // use well-formatted titles:
-    // $thisScoreTitle.text(cleanTitles[scoreCategory] + ':');
-    // $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
+    let $thisScoreButton = $('<label class="clickableScore"><input type="radio" name="score" value="' + scoreCategory + '">' + thisScoreDisplay + '</label><br>');
 
-    // $thisScoreTitle.appendTo($scoreTitles);
-    // $thisScoreValue.appendTo($scoreValues);
     $thisScoreButton.appendTo($scoreForm);
   }
+  let $submitScoreBtn = $('<input type="submit" value="Accept This Score"></input>');
+  $submitScoreBtn.appendTo($scoreForm);
 
   $scoreTable.empty();
-  // $scoreTitles.appendTo($scoreTable);
-  // $scoreValues.appendTo($scoreTable);
 
   $scoreForm.appendTo($scoreTable);
   $scoreTable.appendTo($("#turnScoreBox"));
+
+  let getTitleAndValue = function(completedScoreForm) {
+    let usableFormElements = completedScoreForm[0];
+    let i = 0;
+    while (usableFormElements[i]) {
+      if (usableFormElements[i].checked) {
+        let selectedTitle = usableFormElements[i].value;
+        let selectedValue = sortedScoreOptions[selectedTitle];
+        return [selectedTitle, selectedValue];
+      }
+      i++;
+    }
+  };
+
+  $scoreForm.submit(function() {
+    event.preventDefault();
+    let selectedStuff = getTitleAndValue($scoreForm);
+
+    console.log('you accepted: ' + selectedStuff[0] + ' for ' + selectedStuff[1] + ' points.')
+
+  });
 };
 
 /************************
