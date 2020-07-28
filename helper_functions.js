@@ -284,7 +284,6 @@ let displayScoreForm = function(scoreOptions) {
     chance: 'Chance'
   };
   let $scoreTable = $('#scoreTable');
-  $scoreTable.empty();
 
   let $scoreForm = $('<form id="scoreForm"></form>');
 
@@ -304,39 +303,28 @@ let displayScoreForm = function(scoreOptions) {
     sortedScoreOptions[item[0]]=item[1]
   });
 
-  let i = 0;
-  let $thisScoreClickableBox = [];
-  let scoreCats = [];
+  let i = 1;
   for (scoreCategory in sortedScoreOptions) {
     // let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
     // let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
 
-    let thisScoreTitle = cleanTitles[scoreCategory];
-    let thisScoreValue = sortedScoreOptions[scoreCategory];
-    let thisScoreDisplay = thisScoreTitle + ':     ' + thisScoreValue;
+    // let $thisScoreButton = $('<input type="radio" name="' + scoreCategory + '" id="' + scoreCategory + '"><label for="' + scoreCategory + '">' + cleanTitles[scoreCategory] + ':     ' + sortedScoreOptions[scoreCategory] + '</label><br>');
 
-    // let $thisScoreButton = $('<label><input type="radio" name="score" value="' + scoreCategory + '">' + thisScoreDisplay + '</label><br>');
-    $thisScoreClickableBox[i] = $('<div class="clickableScore" id="' + scoreCategory + '">' + thisScoreDisplay + '</div>');
-    scoreCats[i] = scoreCategory;
-    // $thisScoreButton.appendTo($scoreForm);
+    let $thisScoreButton = $('<label><input type="radio" name="score" value="' + scoreCategory + '">' + cleanTitles[scoreCategory] + ':     ' + sortedScoreOptions[scoreCategory] + '</label><br>');
+    // use well-formatted titles:
+    // $thisScoreTitle.text(cleanTitles[scoreCategory] + ':');
+    // $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
 
-
-    // $(document).ready(function() {
-      // $thisScoreClickableBox[i].click(function() {
-      //   // this should do more later when scorecard is established:
-      //   console.log('clicked on: ' + scoreCats[i]);
-      // });
-    // });
-    $thisScoreClickableBox[i].appendTo($scoreTable);
-    i++;
+    // $thisScoreTitle.appendTo($scoreTitles);
+    // $thisScoreValue.appendTo($scoreValues);
+    $thisScoreButton.appendTo($scoreForm);
   }
 
-  // $scoreTable.empty();
-  // $thisScoreClickableBox.appendTo($scoreTable);
+  $scoreTable.empty();
   // $scoreTitles.appendTo($scoreTable);
   // $scoreValues.appendTo($scoreTable);
 
-  // $scoreForm.appendTo($scoreTable);
+  $scoreForm.appendTo($scoreTable);
   $scoreTable.appendTo($("#turnScoreBox"));
 };
 
