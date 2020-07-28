@@ -300,27 +300,31 @@ let displayScoreForm = function(scoreOptions) {
     // sort the possibilities
   let sortedScoreOptions = {};
   sortableScores.forEach( function(item) {
-  sortedScoreOptions[item[0]]=item[1]
-  })
+    sortedScoreOptions[item[0]]=item[1]
+  });
 
   let i = 1;
-  let $tableRows = [];
   for (scoreCategory in sortedScoreOptions) {
-    $tableRows[i] = $('<div class="tableRow" id="tableRow' + i +'"></div>');
-    let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
-    let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
+    // let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
+    // let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
 
+    // let $thisScoreButton = $('<input type="radio" name="' + scoreCategory + '" id="' + scoreCategory + '"><label for="' + scoreCategory + '">' + cleanTitles[scoreCategory] + ':     ' + sortedScoreOptions[scoreCategory] + '</label><br>');
+
+    let $thisScoreButton = $('<label><input type="radio" name="score" value="' + scoreCategory + '">' + cleanTitles[scoreCategory] + ':     ' + sortedScoreOptions[scoreCategory] + '</label><br>');
     // use well-formatted titles:
-    $thisScoreTitle.text(cleanTitles[scoreCategory] + ':');
-    $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
+    // $thisScoreTitle.text(cleanTitles[scoreCategory] + ':');
+    // $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
 
-    $thisScoreTitle.appendTo($scoreTitles);
-    $thisScoreValue.appendTo($scoreValues);
+    // $thisScoreTitle.appendTo($scoreTitles);
+    // $thisScoreValue.appendTo($scoreValues);
+    $thisScoreButton.appendTo($scoreForm);
   }
 
   $scoreTable.empty();
-  $scoreTitles.appendTo($scoreTable);
-  $scoreValues.appendTo($scoreTable);
+  // $scoreTitles.appendTo($scoreTable);
+  // $scoreValues.appendTo($scoreTable);
+
+  $scoreForm.appendTo($scoreTable);
   $scoreTable.appendTo($("#turnScoreBox"));
 };
 
@@ -422,7 +426,8 @@ SET TURN STATUS
 let calcScoresFromHand = function(finalHand) {
   let scorePossibilities = scoreMe(finalHand);
   setTimeout(function() {
-    displayScores(scorePossibilities);
+    // displayScores(scorePossibilities);
+    displayScoreForm(scorePossibilities);
   }, 750);
 }
 
