@@ -192,48 +192,6 @@ let scoreMe =  function(hand) {
 };
 
 /************************
-DISPLAY SCORE - working, effective function to display possible scores
-************************/
-
-// let displayScores = function(scoreOptions) {
-//   let cleanTitles = {
-//     ones: 'Ones',
-//     twos: 'Twos',
-//     threes: 'Threes',
-//     fours: 'Fours',
-//     fives: 'Fives',
-//     sixes: 'Sixes',
-//     '3ok': 'Three of a Kind',
-//     '4ok': 'Four of a Kind',
-//     fullHouse: 'Full House',
-//     smallStraight: 'Small Straight',
-//     largeStraight: 'Large Straight',
-//     yahtzee: 'YAHTZEE',
-//     chance: 'Chance'
-//   };
-//   let $scoreTable = $('#scoreTable');
-//   let $scoreTitles = $('<div id="scoreTitles"></div>');
-//   let $scoreValues = $('<div id="scoreValues"></div>');
-
-//   // sort the items in the object-convert to array
-//   let sortableScores = [];
-//   _.each(scoreOptions, function(title) {
-//     sortableScores.push([title, scoreOptions[title]]);
-//   });
-
-//   sortableScores.sort( (a, b) => b[1] - a[1] );
-
-//     // sort the possibilities
-//   let sortedScoreOptions = {};
-//   _.each(sortableScores, item => sortedScoreOptions[item[0]] = item[1]);
-
-//   $scoreTable.empty();
-//   $scoreTitles.appendTo($scoreTable);
-//   $scoreValues.appendTo($scoreTable);
-//   $scoreTable.appendTo($("#turnScoreBox"));
-// };
-
-/************************
 DISPLAY SCORE FORM - new method, making a form
 ************************/
 
@@ -313,7 +271,7 @@ DE-SELECT ALL DICE
 
 let getSelection = function() {
   return isSelected;
-}
+};
 
 let clearSelection = function() {
   isSelected = [false, false, false, false, false];
@@ -322,7 +280,7 @@ let clearSelection = function() {
   }
 };
 
-let countSelected = function() {
+let countSelectedDice = function() {
   let totalSelected = 0;
   for (let i = 0; i < 5; i++) {
     if (isSelected[i]) {
@@ -333,7 +291,7 @@ let countSelected = function() {
 };
 
 let rollDiceIfNotSelected = function(selection, givenHand) {
-  let newDiceNeeded = 5 - countSelected();
+  let newDiceNeeded = 5 - countSelectedDice();
   let newDiceRolled = rollDice(newDiceNeeded);
   let allDiceValues = givenHand;
 
@@ -355,9 +313,9 @@ SET TURN STATUS
 
 let setStatus = function(status) {
   result = {};
-  for (el in status) {
-    result[el] = status[el];
-  }
+  _.each(status, function(key) {
+    result[key] = status[key];
+  });
   return result;
 }
 
@@ -369,6 +327,7 @@ let takeTurn = function(turnStatus) {
   for (let i = 0; i < 5; i++) {
     $rolledDiceLocs[i] = $('#diceLoc' + i);
   }
+
   let hand = turnStatus.currentHand;
   let prevRolls = turnStatus.rollsMade;
 
@@ -405,10 +364,9 @@ SET TURN STATUS
 let calcScoresFromHand = function(finalHand) {
   let scorePossibilities = scoreMe(finalHand);
   setTimeout(function() {
-    // displayScores(scorePossibilities);
     displayScoreForm(scorePossibilities);
   }, 750);
-}
+};
 
 /************************
 QUICK FUNCTIONS DEPENDING ON BUTTON PRESSES
