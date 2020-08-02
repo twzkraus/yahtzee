@@ -227,22 +227,6 @@ let displayScores = function(scoreOptions) {
   let sortedScoreOptions = {};
   sortableScores.forEach( item => sortedScoreOptions[item[0]] = item[1] );
 
-  // let i = 1;
-  // let $tableRows = [];
-  // for (scoreCategory in sortedScoreOptions) {
-  //   $tableRows[i] = $('<div class="tableRow" id="tableRow' + i +'"></div>');
-  //   let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
-  //   let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
-  //   console.log(i);
-
-  //   // use well-formatted titles:
-  //   $thisScoreTitle.text(cleanTitles[scoreCategory] + ':');
-  //   $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
-
-  //   $thisScoreTitle.appendTo($scoreTitles);
-  //   $thisScoreValue.appendTo($scoreValues);
-  // }
-
   $scoreTable.empty();
   $scoreTitles.appendTo($scoreTable);
   $scoreValues.appendTo($scoreTable);
