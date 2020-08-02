@@ -195,43 +195,43 @@ let scoreMe =  function(hand) {
 DISPLAY SCORE - working, effective function to display possible scores
 ************************/
 
-let displayScores = function(scoreOptions) {
-  let cleanTitles = {
-    ones: 'Ones',
-    twos: 'Twos',
-    threes: 'Threes',
-    fours: 'Fours',
-    fives: 'Fives',
-    sixes: 'Sixes',
-    '3ok': 'Three of a Kind',
-    '4ok': 'Four of a Kind',
-    fullHouse: 'Full House',
-    smallStraight: 'Small Straight',
-    largeStraight: 'Large Straight',
-    yahtzee: 'YAHTZEE',
-    chance: 'Chance'
-  };
-  let $scoreTable = $('#scoreTable');
-  let $scoreTitles = $('<div id="scoreTitles"></div>');
-  let $scoreValues = $('<div id="scoreValues"></div>');
+// let displayScores = function(scoreOptions) {
+//   let cleanTitles = {
+//     ones: 'Ones',
+//     twos: 'Twos',
+//     threes: 'Threes',
+//     fours: 'Fours',
+//     fives: 'Fives',
+//     sixes: 'Sixes',
+//     '3ok': 'Three of a Kind',
+//     '4ok': 'Four of a Kind',
+//     fullHouse: 'Full House',
+//     smallStraight: 'Small Straight',
+//     largeStraight: 'Large Straight',
+//     yahtzee: 'YAHTZEE',
+//     chance: 'Chance'
+//   };
+//   let $scoreTable = $('#scoreTable');
+//   let $scoreTitles = $('<div id="scoreTitles"></div>');
+//   let $scoreValues = $('<div id="scoreValues"></div>');
 
-  // sort the items in the object-convert to array
-  let sortableScores = [];
-  _.each(scoreOptions, function(title) {
-    sortableScores.push([title, scoreOptions[title]]);
-  });
+//   // sort the items in the object-convert to array
+//   let sortableScores = [];
+//   _.each(scoreOptions, function(title) {
+//     sortableScores.push([title, scoreOptions[title]]);
+//   });
 
-  sortableScores.sort( (a, b) => b[1] - a[1] );
+//   sortableScores.sort( (a, b) => b[1] - a[1] );
 
-    // sort the possibilities
-  let sortedScoreOptions = {};
-  sortableScores.forEach( item => sortedScoreOptions[item[0]] = item[1] );
+//     // sort the possibilities
+//   let sortedScoreOptions = {};
+//   _.each(sortableScores, item => sortedScoreOptions[item[0]] = item[1]);
 
-  $scoreTable.empty();
-  $scoreTitles.appendTo($scoreTable);
-  $scoreValues.appendTo($scoreTable);
-  $scoreTable.appendTo($("#turnScoreBox"));
-};
+//   $scoreTable.empty();
+//   $scoreTitles.appendTo($scoreTable);
+//   $scoreValues.appendTo($scoreTable);
+//   $scoreTable.appendTo($("#turnScoreBox"));
+// };
 
 /************************
 DISPLAY SCORE FORM - new method, making a form
@@ -263,24 +263,20 @@ let displayScoreForm = function(scoreOptions) {
     sortableScores.push([title, scoreOptions[title]]);
   }
 
-  sortableScores.sort(function(a, b) {
-    return b[1] - a[1];
-  });
+  sortableScores.sort( (a, b) => b[1] - a[1] );
 
-    // sort the possibilities
+  // sort the possibilities
   let sortedScoreOptions = {};
-  sortableScores.forEach( function(item) {
-    sortedScoreOptions[item[0]]=item[1]
-  });
+  _.each(sortableScores, item => sortedScoreOptions[item[0]] = item[1]);
 
-  for (scoreCategory in sortedScoreOptions) {
+  _.each(sortedScoreOptions, function(scoreValue, scoreCategory) {
 
-    let thisScoreDisplay = sortedScoreOptions[scoreCategory] + ' points: ' +cleanTitles[scoreCategory];
+    let thisScoreDisplay = scoreValue + ' points: ' + cleanTitles[scoreCategory];
 
     let $thisScoreButton = $('<label class="clickableScore"><input type="radio" name="score" value="' + scoreCategory + '">' + thisScoreDisplay + '</label><br>');
 
     $thisScoreButton.appendTo($scoreForm);
-  }
+  });
   let $submitScoreBtn = $('<input type="submit" value="Accept This Score"></input>');
   $submitScoreBtn.appendTo($scoreForm);
 
@@ -289,8 +285,8 @@ let displayScoreForm = function(scoreOptions) {
   $scoreForm.appendTo($scoreTable);
   $scoreTable.appendTo($("#turnScoreBox"));
 
-  let getTitleAndValue = function(completedScoreForm) {
-    let usableFormElements = completedScoreForm[0];
+  let getTitleAndValue = function(submittedScoreForm) {
+    let usableFormElements = submittedScoreForm[0];
     let i = 0;
     while (usableFormElements[i]) {
       if (usableFormElements[i].checked) {
@@ -308,7 +304,6 @@ let displayScoreForm = function(scoreOptions) {
     let selectedStuff = getTitleAndValue($scoreForm);
 
     console.log('you accepted: ' + selectedStuff[0] + ' for ' + selectedStuff[1] + ' points.')
-
   });
 };
 
