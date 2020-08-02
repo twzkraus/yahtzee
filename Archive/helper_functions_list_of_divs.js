@@ -66,19 +66,23 @@ let animateRoll = function(dieLoc) {
 /************************
 COMPUTE SCORE - Helpers for each type
 ************************/
-// check hand for upper section scores
 let countForOneNum = function(hand, num) {
   let score = 0;
-  _.each(hand, function(card) {
-    if (card === num) {
+  for (let i = 0; i < hand.length; i++) {
+    if (hand[i] === num) {
       score += num;
     }
-  });
+  }
   return score;
 };
 
 let sumAll = function(hand) {
   return hand.reduce((a,b) => a + b);
+};
+
+// helper for small straight--checks whether difference between each element is 1.
+let isSequential = function(list) {
+
 };
 
 let includes3OfAKind = function(hand) {
@@ -150,6 +154,7 @@ COMPUTE SCORE - Overall hand logic
 let scoreMe =  function(hand) {
   let possScores = {};
   // make a copy then sort it:
+  // when I didn't slice, this line would sort allDice, which sorted the rendering.
   let sortedHand = hand.slice(0).sort();
   let validHands = [];
   let numberKeys = [null, 'ones', 'twos', 'threes', 'fours', 'fives', 'sixes'];
@@ -165,34 +170,40 @@ let scoreMe =  function(hand) {
   if (includes3OfAKind(sortedHand)) {
     possScores['3ok'] = sumAll(sortedHand);
 
+    // full house
     if (includesFullHouse(sortedHand)) {
       possScores.fullHouse = 25;
     }
 
+    // 4 of a kind
     if (includes4OfAKind(sortedHand)) {
       possScores['4ok'] = sumAll(sortedHand);
 
+      // yahtzee
       if (includesYahtzee(sortedHand)) {
         possScores.yahtzee = 50;
       }
     }
   }
 
+  // small straight?
   if (includesSmallStraight(sortedHand)) {
     possScores.smallStraight = 30;
   }
 
+  // large straight?
   if (includesLargeStraight(sortedHand)) {
     possScores.largeStraight = 40;
   }
 
+  // chance
   possScores.chance = sumAll(sortedHand);
 
-  return possScores;
+  return possScores
 };
 
 /************************
-DISPLAY SCORE - working, effective function to display possible scores
+DISPLAY SCORE - working, effective function to display only (doesn't allow clickage)
 ************************/
 
 let displayScores = function(scoreOptions) {
@@ -217,31 +228,34 @@ let displayScores = function(scoreOptions) {
 
   // sort the items in the object-convert to array
   let sortableScores = [];
-  _.each(scoreOptions, function(title) {
+  for (title in scoreOptions) {
     sortableScores.push([title, scoreOptions[title]]);
-  });
+  }
 
-  sortableScores.sort( (a, b) => b[1] - a[1] );
+  sortableScores.sort(function(a, b) {
+    return b[1] - a[1];
+  });
 
     // sort the possibilities
   let sortedScoreOptions = {};
-  sortableScores.forEach( item => sortedScoreOptions[item[0]] = item[1] );
+  sortableScores.forEach( function(item) {
+  sortedScoreOptions[item[0]]=item[1]
+  })
 
-  // let i = 1;
-  // let $tableRows = [];
-  // for (scoreCategory in sortedScoreOptions) {
-  //   $tableRows[i] = $('<div class="tableRow" id="tableRow' + i +'"></div>');
-  //   let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
-  //   let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
-  //   console.log(i);
+  let i = 1;
+  let $tableRows = [];
+  for (scoreCategory in sortedScoreOptions) {
+    $tableRows[i] = $('<div class="tableRow" id="tableRow' + i +'"></div>');
+    let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
+    let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
 
-  //   // use well-formatted titles:
-  //   $thisScoreTitle.text(cleanTitles[scoreCategory] + ':');
-  //   $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
+    // use well-formatted titles:
+    $thisScoreTitle.text(cleanTitles[scoreCategory] + ':');
+    $thisScoreValue.text(sortedScoreOptions[scoreCategory]);
 
-  //   $thisScoreTitle.appendTo($scoreTitles);
-  //   $thisScoreValue.appendTo($scoreValues);
-  // }
+    $thisScoreTitle.appendTo($scoreTitles);
+    $thisScoreValue.appendTo($scoreValues);
+  }
 
   $scoreTable.empty();
   $scoreTitles.appendTo($scoreTable);
@@ -270,6 +284,7 @@ let displayScoreForm = function(scoreOptions) {
     chance: 'Chance'
   };
   let $scoreTable = $('#scoreTable');
+  $scoreTable.empty();
 
   let $scoreForm = $('<form id="scoreForm"></form>');
 
@@ -289,43 +304,40 @@ let displayScoreForm = function(scoreOptions) {
     sortedScoreOptions[item[0]]=item[1]
   });
 
+  let i = 0;
+  let $thisScoreClickableBox = [];
+  let scoreCats = [];
   for (scoreCategory in sortedScoreOptions) {
+    // let $thisScoreTitle = $('<div class="scoreTitle" id="scoreTitle' + i +'"></div>');
+    // let $thisScoreValue = $('<div class="scoreValue" id="scoreValue' + i +'"></div>');
 
-    let thisScoreDisplay = sortedScoreOptions[scoreCategory] + ' points: ' +cleanTitles[scoreCategory];
+    let thisScoreTitle = cleanTitles[scoreCategory];
+    let thisScoreValue = sortedScoreOptions[scoreCategory];
+    let thisScoreDisplay = thisScoreTitle + ':     ' + thisScoreValue;
 
-    let $thisScoreButton = $('<label class="clickableScore"><input type="radio" name="score" value="' + scoreCategory + '">' + thisScoreDisplay + '</label><br>');
+    // let $thisScoreButton = $('<label><input type="radio" name="score" value="' + scoreCategory + '">' + thisScoreDisplay + '</label><br>');
+    $thisScoreClickableBox[i] = $('<div class="clickableScore" id="' + scoreCategory + '">' + thisScoreDisplay + '</div>');
+    scoreCats[i] = scoreCategory;
+    // $thisScoreButton.appendTo($scoreForm);
 
-    $thisScoreButton.appendTo($scoreForm);
+
+    // $(document).ready(function() {
+      // $thisScoreClickableBox[i].click(function() {
+      //   // this should do more later when scorecard is established:
+      //   console.log('clicked on: ' + scoreCats[i]);
+      // });
+    // });
+    $thisScoreClickableBox[i].appendTo($scoreTable);
+    i++;
   }
-  let $submitScoreBtn = $('<input type="submit" value="Accept This Score"></input>');
-  $submitScoreBtn.appendTo($scoreForm);
 
-  $scoreTable.empty();
+  // $scoreTable.empty();
+  // $thisScoreClickableBox.appendTo($scoreTable);
+  // $scoreTitles.appendTo($scoreTable);
+  // $scoreValues.appendTo($scoreTable);
 
-  $scoreForm.appendTo($scoreTable);
+  // $scoreForm.appendTo($scoreTable);
   $scoreTable.appendTo($("#turnScoreBox"));
-
-  let getTitleAndValue = function(completedScoreForm) {
-    let usableFormElements = completedScoreForm[0];
-    let i = 0;
-    while (usableFormElements[i]) {
-      if (usableFormElements[i].checked) {
-        let selectedTitle = usableFormElements[i].value;
-        let selectedValue = sortedScoreOptions[selectedTitle];
-        return [selectedTitle, selectedValue];
-      }
-      i++;
-    }
-  };
-
-  // this function needs a way to catch if there's an error:
-  $scoreForm.submit(function() {
-    event.preventDefault();
-    let selectedStuff = getTitleAndValue($scoreForm);
-
-    console.log('you accepted: ' + selectedStuff[0] + ' for ' + selectedStuff[1] + ' points.')
-
-  });
 };
 
 /************************

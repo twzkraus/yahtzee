@@ -70,4 +70,30 @@ $(document).ready(function() {
     location.reload(true);
   });
 
+  /************************
+  PLAN FOR CREATING PLAYERS:
+  let Player = function(name) {
+    this.name = name;
+  };
+  let keys = ['ones',
+    'twos',
+    'threes',
+    'fours',
+    'fives',
+    'sixes',
+    '3ok',
+    '4ok',
+    'fullHouse',
+    'smallStraight',
+    'largeStraight',
+    'yahtzee',
+    'chance'
+  ];
+  Player.prototype.scorecard = {};
+  keys.forEach(function(key) {
+    Player.prototype.scorecard[key] = undefined;
+  });
+
+  ************************/
+
 });
