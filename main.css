@@ -1,12 +1,15 @@
 body {
-  background-color: maroon;
+  background-color: blue;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
-  align-items: right;
+  /* justify-content: right; */
 }
 
 .mainContent {
-  align-items: right;
+  background-color: maroon;
+  margin: auto;
+  width: 50%;
+  height: 100%;
 }
 
 header {
@@ -31,25 +34,26 @@ header {
 
 .diceLoc {
   border-radius: 10%;
+  width: 20%;
+  height: 104px;
 }
 
 .dice {
-  padding: 4px;
+  padding: 0.5em;
   background-color: white;
-  width: 104px;
-  height: 104px;
+  /* width: 104px; */
+  /* width: 5em; */
+  width: 75%;
+  height: 75%;
   border-radius: 10%;
-  margin: 5px;
-}
-
-.dice .selected {
-  background-color: red;
+  margin: 0.3em;
 }
 
 .dot {
   display: block;
-  width: 24px;
-  height: 24px;
+  /* width: 24px; */
+  width: 1.4em;
+  height: 1.4em;
   border-radius: 50%;
   background-color:black;
 }
