@@ -1,3 +1,5 @@
+// UPDATE 9/27 FOR REACTIFY: I'M COMMENTING OUT THINGS AS I'M MOVING THEM TO DICEMETHODS.JS
+
 /************************
 DICE DISPLAY DEFINITIONS
 ************************/
@@ -6,44 +8,46 @@ var $diceBox = $(".diceBox");
 var $rolledDiceLocs = [];
 var $dieFace = [null];
 let isSelected = [false, false, false, false, false];
-var makeFace = function(value) {
-  let counter = 0;
-  let stringOfSpans = '';
-  if (value > 3) {
-    stringOfSpans += '<div class="column">';
-  }
-  counter = 0;
-  while (counter < value) {
-    // need to add columns for dice values 4, 5,  and 6--to stack the dots
-    if (value > 3  && counter === Math.floor(value / 2)) {
-      stringOfSpans += '</div><div class="column">';
-    }
-    // dice value 5 has 3 columns
-    if (value === 5  && counter === 3) {
-      stringOfSpans += '</div><div class="column">';
-    }
-    // for all dice, add dots
-    stringOfSpans += '<span class="dot"></span>';
-    counter++;
-  }
-  // close off last column if you have it
-  if (value > 3) {
-    stringOfSpans += '</div>';
-  }
-  return $('<div class="dice face' + value + '">' + stringOfSpans + '</div>');
-}
+// // relocated to display.face()
+// var makeFace = function(value) {
+//   let counter = 0;
+//   let stringOfSpans = '';
+//   if (value > 3) {
+//     stringOfSpans += '<div class="column">';
+//   }
+//   counter = 0;
+//   while (counter < value) {
+//     // need to add columns for dice values 4, 5,  and 6--to stack the dots
+//     if (value > 3  && counter === Math.floor(value / 2)) {
+//       stringOfSpans += '</div><div class="column">';
+//     }
+//     // dice value 5 has 3 columns
+//     if (value === 5  && counter === 3) {
+//       stringOfSpans += '</div><div class="column">';
+//     }
+//     // for all dice, add dots
+//     stringOfSpans += '<span class="dot"></span>';
+//     counter++;
+//   }
+//   // close off last column if you have it
+//   if (value > 3) {
+//     stringOfSpans += '</div>';
+//   }
+//   return $('<div class="dice face' + value + '">' + stringOfSpans + '</div>');
+// }
 
 /************************
 ROLL, SHOW, AND ANIMATE DICE ROLLS
 ************************/
-let rollDice = function(n) {
-  let rolledDice = [];
-  for (let i = 0; i < n; i++) {
-    let thisDie = Math.ceil( Math.random() * 6);
-    rolledDice.push(thisDie);
-  }
-  return rolledDice;
-};
+// // relocated to play.rollDice
+// let rollDice = function(n) {
+//   let rolledDice = [];
+//   for (let i = 0; i < n; i++) {
+//     let thisDie = Math.ceil( Math.random() * 6);
+//     rolledDice.push(thisDie);
+//   }
+//   return rolledDice;
+// };
 
 // display 1 die
 let renderDie = function(valRolled, dieLoc) {
@@ -67,165 +71,167 @@ let animateRoll = function(dieLoc) {
 COMPUTE SCORE - Helpers for each type
 ************************/
 // check hand for upper section scores
-let countForOneNum = function(hand, num) {
-  let score = 0;
-  _.each(hand, function(card) {
-    if (card === num) {
-      score += num;
-    }
-  });
-  return score;
-};
+// let countForOneNum = function(hand, num) {
+//   let score = 0;
+//   _.each(hand, function(card) {
+//     if (card === num) {
+//       score += num;
+//     }
+//   });
+//   return score;
+// };
 
-let sumAll = function(hand) {
-  return hand.reduce((a,b) => a + b);
-};
+// let sumAll = function(hand) {
+//   return hand.reduce((a,b) => a + b);
+// };
 
-let includes3OfAKind = function(hand) {
-  // note: assumes hand is sorted.
-  // take difference of elements two away from each other
-  for (let i = 0; i < hand.length - 2; i++) {
-    if (hand[i + 2] - hand[i] === 0) {
-      return true;
-    }
-  }
-  return false;
-};
+// let includes3OfAKind = function(hand) {
+//   // note: assumes hand is sorted.
+//   // take difference of elements two away from each other
+//   for (let i = 0; i < hand.length - 2; i++) {
+//     if (hand[i + 2] - hand[i] === 0) {
+//       return true;
+//     }
+//   }
+//   return false;
+// };
 
-let includesFullHouse = function(hand) {
-  // requires that 3ok is met--then first two and last two in hand must be pairs.
-  return hand[0] === hand[1] && hand[3] === hand[4];
-};
+// let includesFullHouse = function(hand) {
+//   // requires that 3ok is met--then first two and last two in hand must be pairs.
+//   return hand[0] === hand[1] && hand[3] === hand[4];
+// };
 
-let includes4OfAKind = function(hand) {
-  // note: assumes hand is sorted.
-  for (let i = 0; i < hand.length - 3; i++) {
-    if (hand[i + 3] - hand[i] === 0) {
-      return true;
-    }
-  }
-  return false;
-};
+// let includes4OfAKind = function(hand) {
+//   // note: assumes hand is sorted.
+//   for (let i = 0; i < hand.length - 3; i++) {
+//     if (hand[i + 3] - hand[i] === 0) {
+//       return true;
+//     }
+//   }
+//   return false;
+// };
 
-let includesSmallStraight = function(hand) {
-  // hand is sorted
+// let includesSmallStraight = function(hand) {
+//   // hand is sorted
 
-  // possible for one number to be out of sequence-that is the allowance:
-    // 2, 3, 3, 4, 5
-    // 2, 2, 3, 4, 5
-    // 1, 3, 4, 5, 6
-  let singleAllowance = 0;
-  for (let i = 0; i < hand.length - 1; i++) {
-    if (hand[i + 1] - hand[i] !== 1) {
-      singleAllowance++;
-    }
-    if (singleAllowance > 1) {
-      return false;
-    }
-  }
-  return true;
-};
+//   // possible for one number to be out of sequence-that is the allowance:
+//     // 2, 3, 3, 4, 5
+//     // 2, 2, 3, 4, 5
+//     // 1, 3, 4, 5, 6
+//     // Problem: 1, 2, 3, 5, 6, returns true (1 allowance)
 
-let includesLargeStraight = function(hand) {
-  if (hand[4] - hand[0] !== 4) {
-    return false;
-  }
+//   let singleAllowance = 0;
+//   for (let i = 0; i < hand.length - 1; i++) {
+//     if (hand[i + 1] - hand[i] !== 1) {
+//       singleAllowance++;
+//     }
+//     if (singleAllowance > 1) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
 
-  for (let i = 0; i < hand.length - 1; i++) {
-    if (hand[i + 1] - hand[i] !== 1) {
-      return false;
-    }
-  }
-  return true;
-};
+// let includesLargeStraight = function(hand) {
+//   if (hand[4] - hand[0] !== 4) {
+//     return false;
+//   }
 
-let includesYahtzee = function(hand) {
-  return hand[0] === hand[4];
-};
+//   for (let i = 0; i < hand.length - 1; i++) {
+//     if (hand[i + 1] - hand[i] !== 1) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
+
+// let includesYahtzee = function(hand) {
+//   return hand[0] === hand[4];
+// };
 
 /************************
 COMPUTE SCORE - Overall hand logic
 ************************/
 
-let scoreMe =  function(hand) {
-  let possScores = {};
-  // make a copy then sort it:
-  let sortedHand = hand.slice(0).sort();
-  let validHands = [];
-  let numberKeys = [null, 'ones', 'twos', 'threes', 'fours', 'fives', 'sixes'];
+// let scoreMe =  function(hand) {
+//   let possScores = {};
+//   // make a copy then sort it:
+//   let sortedHand = hand.slice(0).sort();
+//   let validHands = [];
+//   let numberKeys = [null, 'ones', 'twos', 'threes', 'fours', 'fives', 'sixes'];
 
-  // 1-6:
-  for (let i = 1; i <= 6 ; i++) {
-    if (sortedHand.includes(i)) {
-      possScores[numberKeys[i]] = countForOneNum(sortedHand, i);
-    }
-  }
+//   // 1-6:
+//   for (let i = 1; i <= 6 ; i++) {
+//     if (sortedHand.includes(i)) {
+//       possScores[numberKeys[i]] = countForOneNum(sortedHand, i);
+//     }
+//   }
 
-  // 3 of a kind -- gatekeeper step. nests 4ok, full house, and yahtzee because somewhat inter-related.
-  if (includes3OfAKind(sortedHand)) {
-    possScores['3ok'] = sumAll(sortedHand);
+//   // 3 of a kind -- gatekeeper step. nests 4ok, full house, and yahtzee because somewhat inter-related.
+//   if (includes3OfAKind(sortedHand)) {
+//     possScores['3ok'] = sumAll(sortedHand);
 
-    if (includesFullHouse(sortedHand)) {
-      possScores.fullHouse = 25;
-    }
+//     if (includesFullHouse(sortedHand)) {
+//       possScores.fullHouse = 25;
+//     }
 
-    if (includes4OfAKind(sortedHand)) {
-      possScores['4ok'] = sumAll(sortedHand);
+//     if (includes4OfAKind(sortedHand)) {
+//       possScores['4ok'] = sumAll(sortedHand);
 
-      if (includesYahtzee(sortedHand)) {
-        possScores.yahtzee = 50;
-      }
-    }
-  }
+//       if (includesYahtzee(sortedHand)) {
+//         possScores.yahtzee = 50;
+//       }
+//     }
+//   }
 
-  if (includesSmallStraight(sortedHand)) {
-    possScores.smallStraight = 30;
-  }
+//   if (includesSmallStraight(sortedHand)) {
+//     possScores.smallStraight = 30;
+//   }
 
-  if (includesLargeStraight(sortedHand)) {
-    possScores.largeStraight = 40;
-  }
+//   if (includesLargeStraight(sortedHand)) {
+//     possScores.largeStraight = 40;
+//   }
 
-  possScores.chance = sumAll(sortedHand);
+//   possScores.chance = sumAll(sortedHand);
 
-  return possScores;
-};
+//   return possScores;
+// };
 
 /************************
 DISPLAY SCORE FORM - new method, making a form
 ************************/
 
-let displayScoreForm = function(scoreOptions) {
-  let cleanTitles = {
-    ones: 'Ones',
-    twos: 'Twos',
-    threes: 'Threes',
-    fours: 'Fours',
-    fives: 'Fives',
-    sixes: 'Sixes',
-    '3ok': 'Three of a Kind',
-    '4ok': 'Four of a Kind',
-    fullHouse: 'Full House',
-    smallStraight: 'Small Straight',
-    largeStraight: 'Large Straight',
-    yahtzee: 'YAHTZEE',
-    chance: 'Chance'
-  };
-  let $scoreTable = $('#scoreTable');
+// let displayScoreForm = function(scoreOptions) {
+//   let cleanTitles = {
+//     ones: 'Ones',
+//     twos: 'Twos',
+//     threes: 'Threes',
+//     fours: 'Fours',
+//     fives: 'Fives',
+//     sixes: 'Sixes',
+//     '3ok': 'Three of a Kind',
+//     '4ok': 'Four of a Kind',
+//     fullHouse: 'Full House',
+//     smallStraight: 'Small Straight',
+//     largeStraight: 'Large Straight',
+//     yahtzee: 'YAHTZEE',
+//     chance: 'Chance'
+//   };
+//   let $scoreTable = $('#scoreTable');
 
-  let $scoreForm = $('<form id="scoreForm"></form>');
+//   let $scoreForm = $('<form id="scoreForm"></form>');
 
-  // sort the items in the object-convert to array
-  let sortableScores = [];
-  for (title in scoreOptions) {
-    sortableScores.push([title, scoreOptions[title]]);
-  }
+//   // sort the items in the object-convert to array
+//   let sortableScores = [];
+//   for (title in scoreOptions) {
+//     sortableScores.push([title, scoreOptions[title]]);
+//   }
 
-  sortableScores.sort( (a, b) => b[1] - a[1] );
+//   sortableScores.sort( (a, b) => b[1] - a[1] );
 
-  // sort the possibilities
-  let sortedScoreOptions = {};
-  _.each(sortableScores, item => sortedScoreOptions[item[0]] = item[1]);
+//   // sort the possibilities
+//   let sortedScoreOptions = {};
+//   _.each(sortableScores, item => sortedScoreOptions[item[0]] = item[1]);
 
   _.each(sortedScoreOptions, function(scoreValue, scoreCategory) {
 
