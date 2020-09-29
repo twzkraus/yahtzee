@@ -12,26 +12,26 @@ let isSelected = [false, false, false, false, false];
 // var makeFace = function(value) {
 //   let counter = 0;
 //   let stringOfSpans = '';
-//   if (value > 3) {
-//     stringOfSpans += '<div class="column">';
-//   }
-//   counter = 0;
-//   while (counter < value) {
-//     // need to add columns for dice values 4, 5,  and 6--to stack the dots
-//     if (value > 3  && counter === Math.floor(value / 2)) {
-//       stringOfSpans += '</div><div class="column">';
-//     }
-//     // dice value 5 has 3 columns
-//     if (value === 5  && counter === 3) {
-//       stringOfSpans += '</div><div class="column">';
-//     }
-//     // for all dice, add dots
-//     stringOfSpans += '<span class="dot"></span>';
-//     counter++;
-//   }
-//   // close off last column if you have it
-//   if (value > 3) {
-//     stringOfSpans += '</div>';
+  // if (value > 3) {
+  //   stringOfSpans += '<div class="column">';
+  // }
+  // counter = 0;
+  // while (counter < value) {
+  //   // need to add columns for dice values 4, 5,  and 6--to stack the dots
+  //   if (value > 3  && counter === Math.floor(value / 2)) {
+  //     stringOfSpans += '</div><div class="column">';
+  //   }
+  //   // dice value 5 has 3 columns
+  //   if (value === 5  && counter === 3) {
+  //     stringOfSpans += '</div><div class="column">';
+  //   }
+  //   // for all dice, add dots
+  //   stringOfSpans += '<span class="dot"></span>';
+  //   counter++;
+  // }
+  // // close off last column if you have it
+  // if (value > 3) {
+  //   stringOfSpans += '</div>';
 //   }
 //   return $('<div class="dice face' + value + '">' + stringOfSpans + '</div>');
 // }
@@ -50,13 +50,13 @@ ROLL, SHOW, AND ANIMATE DICE ROLLS
 // };
 
 // display 1 die
-let renderDie = function(valRolled, dieLoc) {
-  // valRolled: number of dice rolled
-  // dieLoc: jquery identifier of location
+// let renderDie = function(valRolled, dieLoc) {
+//   // valRolled: number of dice rolled
+//   // dieLoc: jquery identifier of location
 
-  dieLoc.empty();
-  makeFace(valRolled).appendTo(dieLoc);
-};
+//   dieLoc.empty();
+//   makeFace(valRolled).appendTo(dieLoc);
+// };
 
 let animateRoll = function(dieLoc) {
   renderDie(Math.ceil(Math.random() * 6), dieLoc);
@@ -233,21 +233,21 @@ DISPLAY SCORE FORM - new method, making a form
 //   let sortedScoreOptions = {};
 //   _.each(sortableScores, item => sortedScoreOptions[item[0]] = item[1]);
 
-  _.each(sortedScoreOptions, function(scoreValue, scoreCategory) {
+  // _.each(sortedScoreOptions, function(scoreValue, scoreCategory) {
 
-    let thisScoreDisplay = scoreValue + ' points: ' + cleanTitles[scoreCategory];
+  //   let thisScoreDisplay = scoreValue + ' points: ' + cleanTitles[scoreCategory];
 
-    let $thisScoreButton = $('<label class="clickableScore"><input type="radio" name="score" value="' + scoreCategory + '">' + thisScoreDisplay + '</label><br>');
+  //   let $thisScoreButton = $('<label class="clickableScore"><input type="radio" name="score" value="' + scoreCategory + '">' + thisScoreDisplay + '</label><br>');
 
-    $thisScoreButton.appendTo($scoreForm);
-  });
-  let $submitScoreBtn = $('<input type="submit" value="Accept This Score"></input>');
-  $submitScoreBtn.appendTo($scoreForm);
+  //   $thisScoreButton.appendTo($scoreForm);
+  // });
+  // let $submitScoreBtn = $('<input type="submit" value="Accept This Score"></input>');
+  // $submitScoreBtn.appendTo($scoreForm);
 
-  $scoreTable.empty();
+  // $scoreTable.empty();
 
-  $scoreForm.appendTo($scoreTable);
-  $scoreTable.appendTo($("#turnScoreBox"));
+  // $scoreForm.appendTo($scoreTable);
+  // $scoreTable.appendTo($("#turnScoreBox"));
 
   let getTitleAndValue = function(submittedScoreForm) {
     let usableFormElements = submittedScoreForm[0];
