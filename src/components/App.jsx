@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { display, play } from '../diceMethods.js';
+import { display, play } from '../../diceMethods.js';
 import Die from './Die.jsx';
 import ScoreForm from './ScoreForm.jsx';
 
@@ -19,7 +19,7 @@ const App = (props) => {
         <button id="rollBtn">Start Turn</button>
       </div>
       <div className="scoreBox">
-        <ScoreForm scores={possScores} onSubmit={} />
+        <ScoreForm scores={possScores} />
         {/* need to define onSubmit function for the form */}
       </div>
     </div>

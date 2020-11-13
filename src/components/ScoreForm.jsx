@@ -1,5 +1,5 @@
 import React from 'react';
-import ScoreItem from './ScoreItem';
+import ScoreItem from './ScoreItem.jsx';
 
 const ScoreForm = ({scores}) => (
   <form id="scoreForm">

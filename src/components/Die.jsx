@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Dots from './Dots.jsx';
 
 const Die = ({val, position}) => {
 

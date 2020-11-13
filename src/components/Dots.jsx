@@ -15,6 +15,7 @@ const Dots = ({val}) => {
       dots.map((i) => <span className="dot" key={i}/> ) :
       // 6: add 3 dots in 2 columns
       val === 6 ?
+      <>
       <div className="dieCol">
         <span className="dot" key={i++}/>
         <span className="dot" key={i++}/>
@@ -24,12 +25,16 @@ const Dots = ({val}) => {
         <span className="dot" key={i++}/>
         <span className="dot" key={i++}/>
         <span className="dot" key={i++}/>
-      </div> :
+      </div>
+      </> :
       // 4 or 5: 2 dots in first column
+      <>
       <div className="dieCol">
         <span className="dot" key={i++}/>
         <span className="dot" key={i++}/>
-      </div>}
+      </div>
+      </>
+      }
 
       {val === 5 ?
       // 5: needs center column
