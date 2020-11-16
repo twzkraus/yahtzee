@@ -5,6 +5,7 @@
   "main": "helper_functions.js",
   "scripts": {
     "test": "jest",
+    "start": "node server/index.js",
     "build": "webpack"
   },
   "repository": {
