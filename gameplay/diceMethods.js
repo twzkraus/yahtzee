@@ -75,7 +75,7 @@ const play = {
     })
     return possScores;
   },
-}
+};
 
 const allScores = {
   'ones': (hand) => scoreHelpers.countForOne(hand, 1),

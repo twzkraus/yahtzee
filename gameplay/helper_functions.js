@@ -329,39 +329,39 @@ let setStatus = function(status) {
 TAKE A TURN
 ************************/
 
-let takeTurn = function(turnStatus) {
-  for (let i = 0; i < 5; i++) {
-    $rolledDiceLocs[i] = $('#diceLoc' + i);
-  }
+// let takeTurn = function(turnStatus) {
+//   for (let i = 0; i < 5; i++) {
+//     $rolledDiceLocs[i] = $('#diceLoc' + i);
+//   }
 
-  let hand = turnStatus.currentHand;
-  let prevRolls = turnStatus.rollsMade;
+//   let hand = turnStatus.currentHand;
+//   let prevRolls = turnStatus.rollsMade;
 
-  if (prevRolls === 0) {
-    clearSelection();
-  } else {
-    isSelected = getSelection();
-  }
+//   if (prevRolls === 0) {
+//     clearSelection();
+//   } else {
+//     isSelected = getSelection();
+//   }
 
-  allDice = rollDiceIfNotSelected(isSelected, hand);
+//   allDice = rollDiceIfNotSelected(isSelected, hand);
 
-  // delay dice rendering a bit so it happens after rolling animation
-  setTimeout(function() {
-    for (let i = 0; i < 5; i++) {
-        renderDie(allDice[i], $rolledDiceLocs[i]);
-    }
-  }, 750);
+//   // delay dice rendering a bit so it happens after rolling animation
+//   setTimeout(function() {
+//     for (let i = 0; i < 5; i++) {
+//         renderDie(allDice[i], $rolledDiceLocs[i]);
+//     }
+//   }, 750);
 
-  let nRollsNow = prevRolls + 1;
+//   let nRollsNow = prevRolls + 1;
 
-  let turnSummary = {
-    rollsMade: nRollsNow,
-    currentHand: allDice,
-    currentSelection: isSelected
-  };
+//   let turnSummary = {
+//     rollsMade: nRollsNow,
+//     currentHand: allDice,
+//     currentSelection: isSelected
+//   };
 
-  return turnSummary;
-};
+//   return turnSummary;
+// };
 
 /************************
 SET TURN STATUS
