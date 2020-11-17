@@ -12,12 +12,12 @@ const App = (props) => {
   const takeTurn = async () => {
     let rollsMade = 0;
     let acceptedHand = [];
-    while (rollsMade < 3 && acceptedHand.length < 5) {
+    // while (rollsMade < 3 && acceptedHand.length < 5) {
       let thisRoll = play.rollDice(5 - acceptedHand.length);
       setDiceVals(thisRoll);
-      setPossScores(display.getScoreOptions(thisRoll));
+      setPossScores(display.getScoreOptions(play.getAllScores(thisRoll)));
       rollsMade++;
-    }
+    // }
   };
 
 
