@@ -26,7 +26,6 @@ const display = {
     return $('<div class="dice face' + value + '">' + stringOfSpans + '</div>');
   },
   getScoreOptions: (scoreOptions) => {
-    debugger;
     let cleanTitles = {
       ones: 'Ones',
       twos: 'Twos',
