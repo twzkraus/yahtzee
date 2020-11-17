@@ -8,16 +8,19 @@ const App = (props) => {
 
   const [diceVals, setDiceVals] = useState([1, 1, 1, 1, 1]);
   const [possScores, setPossScores] = useState([]);
+  const [acceptedHand, setAcceptedHand] = useState([]);
 
-  const takeTurn = async () => {
+  const takeTurn = () => {
     let rollsMade = 0;
-    let acceptedHand = [];
     // while (rollsMade < 3 && acceptedHand.length < 5) {
-      let thisRoll = play.rollDice(5 - acceptedHand.length);
-      setDiceVals(thisRoll);
-      setPossScores(display.getScoreOptions(play.getAllScores(thisRoll)));
-      rollsMade++;
+      rollOnce();
     // }
+  }
+
+  const rollOnce = () => {
+    let thisRoll = play.rollDice(5 - acceptedHand.length);
+    setDiceVals(thisRoll);
+    setPossScores(play.getAndDisplayScores(thisRoll));
   };
 
 

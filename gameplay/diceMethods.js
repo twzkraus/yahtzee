@@ -78,6 +78,10 @@ const play = {
   },
 };
 
+play.getAndDisplayScores = (hand) => {
+  return display.getScoreOptions(play.getAllScores(hand));
+}
+
 const allScores = {
   'ones': (hand) => scoreHelpers.countForOne(hand, 1),
   'twos': (hand) => scoreHelpers.countForOne(hand, 2),
