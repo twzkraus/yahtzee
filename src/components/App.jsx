@@ -68,6 +68,26 @@ const App = (props) => {
     }
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    let acceptedScore = parseCategoryAndScore(document.forms['scoreForm'].elements);
+    if (acceptedScore) {
+      console.log('your accepted score is', acceptedScore);
+      // addScore(acceptedScore);
+      handleNewTurn();
+    }
+  };
+
+  const parseCategoryAndScore = (form) => {
+    for (let i = 0; i < form.length; i++) {
+      if (form[i].checked) {
+        let scorePieces = form[i].value.split('--');
+        return { [scorePieces[0]]: parseInt(scorePieces[1]) }
+      }
+    }
+    console.log('you must select a score');
+  }
+
   return (
     <div className="mainContent">
       <div className="diceBox">
@@ -77,7 +97,7 @@ const App = (props) => {
         {getRollButton()}
       </div>
       <div className="scoreBox">
-        <ScoreForm scores={possScores} />
+        <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit}/>
         {/* need to define onSubmit function for the form */}
       </div>
     </div>

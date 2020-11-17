@@ -1,7 +1,7 @@
 import React from 'react';
 import ScoreItem from './ScoreItem.jsx';
 
-const ScoreForm = ({scores}) => {
+const ScoreForm = ({ scores, handleFormSubmit }) => {
   let scoreArray = [];
   for (let key in scores) {
     if (scores[key]) {
@@ -9,10 +9,9 @@ const ScoreForm = ({scores}) => {
     }
   }
   return (
-    <form id="scoreForm">
+    <form id="scoreForm" onSubmit={(e) => handleFormSubmit(e)}>
       {scoreArray.map(score => <ScoreItem score={score}/>)}
-      {/* this wasn't here in jquery version, so I'm not sure where it's supposed to be */}
-      <button type="submit"></button>
+      {scoreArray.length ? <button type="submit">Accept Score</button> : ''}
     </form>
   );
 }
