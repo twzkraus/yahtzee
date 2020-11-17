@@ -13,15 +13,32 @@ const App = (props) => {
 
   const takeTurn = () => {
     let rollsMade = 0;
-    // while (rollsMade < 3 && acceptedHand.length < 5) {
+    while (rollsMade < 3 && acceptedHand.length < 5) {
       rollOnce();
-    // }
+      rollsMade++;
+    }
+  };
+
+  const numSelected = () => {
+    return selected.filter(el => el).length;
   }
 
   const rollOnce = () => {
-    let thisRoll = play.rollDice(5 - acceptedHand.length);
-    setDiceVals(thisRoll);
-    setPossScores(play.getAndDisplayScores(thisRoll));
+    let thisRoll = play.rollDice(5 - numSelected());
+    let currentDiceVals = setDiceValsIfNotSelected(thisRoll);
+    setPossScores(play.getAndDisplayScores(currentDiceVals));
+  };
+
+  const setDiceValsIfNotSelected = (roll) => {
+    let diceValsCopy = diceVals.slice();
+    diceValsCopy.forEach((val, i) => {
+      if (!selected[i]) {
+        let value = roll.pop();
+        diceValsCopy[i] = value;
+      }
+    })
+    setDiceVals(diceValsCopy);
+    return diceValsCopy;
   };
 
   const handleSelect = (position) => {
