@@ -1,0 +1,25 @@
+#scoreTable {
+  display: flex;
+  flex-direction: column;
+  text-align: space-between;
+}
+
+.tableRow {
+  display: flex;
+  flex-direction: row;
+}
+
+#scoreValues {
+  margin-left: 30px;
+}
+
+.clickableScore {
+  border-radius: 5px;
+  margin: 5px;
+  width: 50%;
+}
+
+.clickableScore:hover {
+  background-color: rgb(163, 94, 94);
+  cursor: pointer;
+}
