@@ -38,6 +38,10 @@ header {
   display: flex;
 }
 
+.selected {
+  background-color: yellow;
+}
+
 .diceLoc {
   border-radius: 10%;
   width: 20%;
