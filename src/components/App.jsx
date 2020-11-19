@@ -90,7 +90,6 @@ const App = (props) => {
   };
 
   const addScore = (acceptedScore) => {
-    debugger;
     thisUser.addScore(acceptedScore);
   };
 
