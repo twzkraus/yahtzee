@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { display, play } from '../../gameplay/diceMethods.js';
 import Die from './Die.jsx';
 import ScoreForm from './ScoreForm.jsx';
+import User from '../../gameplay/userClass.js';
+const thisUser = new User('Turner');
 
 
 const App = (props) => {
@@ -72,8 +74,7 @@ const App = (props) => {
     e.preventDefault();
     let acceptedScore = parseCategoryAndScore(document.forms['scoreForm'].elements);
     if (acceptedScore) {
-      console.log('your accepted score is', acceptedScore);
-      // addScore(acceptedScore);
+      addScore(acceptedScore);
       handleNewTurn();
     }
   };
@@ -86,7 +87,12 @@ const App = (props) => {
       }
     }
     console.log('you must select a score');
-  }
+  };
+
+  const addScore = (acceptedScore) => {
+    debugger;
+    thisUser.addScore(acceptedScore);
+  };
 
   return (
     <div className="mainContent">
@@ -98,7 +104,6 @@ const App = (props) => {
       </div>
       <div className="scoreBox">
         <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit}/>
-        {/* need to define onSubmit function for the form */}
       </div>
     </div>
   )
