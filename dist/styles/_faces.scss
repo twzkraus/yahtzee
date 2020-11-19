@@ -1,29 +1,8 @@
-.face1 {
+@mixin fullCenter {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.face2, .face3, .face4, .face5, .face6 {
-  display: flex;
-  justify-content : space-between;
-}
-
-.face2 .dot:nth-of-type(2) {
-  align-self: flex-end;
-}
-
-.face3 .dot:nth-of-type(2) {
-  display: flex;
   align-self: center;
-}
-
-.face3 .dot:nth-of-type(3) {
-  align-self: flex-end;
-}
-
-.face4 .dot:nth-of-type(2) {
-  align-self: flex-end;
 }
 
 .column {
@@ -32,6 +11,19 @@
   justify-content: space-between;
 }
 
+.face1, .face3 .dot:nth-of-type(2)  {
+  @include fullCenter();
+}
+
+.face2, .face3, .face4, .face5, .face6 {
+  display: flex;
+  justify-content : space-between;
+}
+
+.face2 .dot:nth-of-type(2), .face3 .dot:nth-of-type(3), .face4 .dot:nth-of-type(2) {
+  align-self: flex-end;
+}
+
 .face5 .column:nth-last-of-type(2) {
-  justify-content: center;
+  @include fullCenter();
 }

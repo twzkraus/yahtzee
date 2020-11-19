@@ -8,7 +8,7 @@ const thisUser = new User('Turner');
 
 const App = (props) => {
 
-  const [diceVals, setDiceVals] = useState([1, 1, 1, 1, 1]);
+  const [diceVals, setDiceVals] = useState([2, 3, 4, 5, 6]);
   const [possScores, setPossScores] = useState([]);
   const [selected, setSelected] = useState([false, false, false, false, false]);
   const [rollsMade, setRollsMade] = useState(0);
