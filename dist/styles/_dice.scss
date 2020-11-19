@@ -1,5 +1,5 @@
 .diceBox {
-  display: flex;
+  display: inline-flex;
 }
 
 .selected {
@@ -8,8 +8,8 @@
 
 .diceLoc {
   border-radius: 10%;
-  width: 20%;
-  height: 104px;
+  width: 6em;
+  height: 6em;
 }
 
 .dice {

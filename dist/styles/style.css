@@ -33,9 +33,9 @@ header {
 }
 
 .diceBox {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
 .selected {
@@ -44,8 +44,8 @@ header {
 
 .diceLoc {
   border-radius: 10%;
-  width: 20%;
-  height: 104px;
+  width: 6em;
+  height: 6em;
 }
 
 .dice {
