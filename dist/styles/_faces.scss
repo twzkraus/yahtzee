@@ -1,0 +1,29 @@
+@mixin fullCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.face1, .face3 .dot:nth-of-type(2)  {
+  @include fullCenter();
+}
+
+.face2, .face3, .face4, .face5, .face6 {
+  display: flex;
+  justify-content : space-between;
+}
+
+.face2 .dot:nth-of-type(2), .face3 .dot:nth-of-type(3), .face4 .dot:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+.face5 .column:nth-last-of-type(2) {
+  @include fullCenter();
+}

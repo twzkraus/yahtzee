@@ -1,0 +1,169 @@
+body {
+  background-color: maroon;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mainContent {
+  background-color: maroon;
+  margin: auto;
+  width: 50%;
+  height: 800px;
+}
+
+header {
+  -webkit-box-align: left;
+      -ms-flex-align: left;
+          align-items: left;
+}
+
+#logo {
+  font-size: 80px;
+  color: white;
+  font-family: "PT Sans Narrow";
+  font-style: italic;
+  letter-spacing: 0.02em;
+  -webkit-text-stroke-width: 0.1px;
+  -webkit-text-stroke-color: #555555;
+  text-shadow: 2px 2px gold;
+}
+
+#logo:hover {
+  cursor: pointer;
+}
+
+#scoreboard, th, td {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.diceBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.selected {
+  background-color: yellow;
+}
+
+.diceLoc {
+  border-radius: 10%;
+  width: 6em;
+  height: 6em;
+}
+
+.dice {
+  padding: 0.5em;
+  background-color: white;
+  max-width: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 75%;
+  height: 75%;
+  border-radius: 10%;
+  margin: 0.3em;
+}
+
+.dot {
+  display: block;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.face1, .face3 .dot:nth-of-type(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.face2, .face3, .face4, .face5, .face6 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.face2 .dot:nth-of-type(2), .face3 .dot:nth-of-type(3), .face4 .dot:nth-of-type(2) {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+.face5 .column:nth-last-of-type(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+#scoreTable {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: space-between;
+}
+
+.tableRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#scoreValues {
+  margin-left: 30px;
+}
+
+.clickableScore {
+  border-radius: 5px;
+  margin: 5px;
+  width: 50%;
+}
+
+.clickableScore:hover {
+  background-color: #a35e5e;
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */

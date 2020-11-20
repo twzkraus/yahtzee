@@ -1,0 +1,32 @@
+.diceBox {
+  display: inline-flex;
+}
+
+.selected {
+  background-color: yellow;
+}
+
+.diceLoc {
+  border-radius: 10%;
+  width: 6em;
+  height: 6em;
+}
+
+.dice {
+  padding: 0.5em;
+  background-color: white;
+  max-width: 80px;
+  display: flex;
+  width: 75%;
+  height: 75%;
+  border-radius: 10%;
+  margin: 0.3em;
+}
+
+.dot {
+  display: block;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  background-color:black;
+}

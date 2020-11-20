@@ -5,35 +5,35 @@ $(document).ready(function() {
   /************************
   SETUP BOXES FOR 5 DICE
   ************************/
-  var $rolledDiceLocs = [];
-  for (let i = 0; i < 5; i++) {
-    $rolledDiceLocs[i] = $('<div class="diceLoc" id="diceLoc' + i + '"></div>');
-    $rolledDiceLocs[i].appendTo($diceBox);
-  }
+  // var $rolledDiceLocs = [];
+  // for (let i = 0; i < 5; i++) {
+  //   $rolledDiceLocs[i] = $('<div class="diceLoc" id="diceLoc' + i + '"></div>');
+  //   $rolledDiceLocs[i].appendTo($diceBox);
+  // }
 
   /************************
   EXAMPLE DICE SETUP
   ************************/
-  var $exampleDice = [];
+  // var $exampleDice = [];
 
-  for (let i = 0; i < 5; i++) {
-    $exampleDice[i] = makeFace(1);
-    $exampleDice[i].appendTo($rolledDiceLocs[i]);
-  }
+  // for (let i = 0; i < 5; i++) {
+  //   $exampleDice[i] = makeFace(1);
+  //   $exampleDice[i].appendTo($rolledDiceLocs[i]);
+  // }
 
   var $rollBtn = $('#rollBtn');
 
   // jquery function for selecting dice
-  for (let i = 0; i < 5; i++) {
-    $rolledDiceLocs[i].click(function() {
-      if (isSelected[i]) {
-        $rolledDiceLocs[i].css("background-color", "transparent");
-      } else {
-        $rolledDiceLocs[i].css("background-color", "yellow");
-      }
-      isSelected[i] = !isSelected[i];
-    });
-  }
+  // for (let i = 0; i < 5; i++) {
+  //   $rolledDiceLocs[i].click(function() {
+  //     if (isSelected[i]) {
+  //       $rolledDiceLocs[i].css("background-color", "transparent");
+  //     } else {
+  //       $rolledDiceLocs[i].css("background-color", "yellow");
+  //     }
+  //     isSelected[i] = !isSelected[i];
+  //   });
+  // }
 
   let status = {
     rollsMade: 0,

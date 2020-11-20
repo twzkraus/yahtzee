@@ -1,0 +1,40 @@
+$bg-color: maroon;
+
+body {
+  background-color: $bg-color;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mainContent {
+  background-color: $bg-color;
+  margin: auto;
+  width: 50%;
+  height: 800px;
+}
+
+header {
+  align-items: left;
+}
+
+#logo {
+  font-size: 80px;
+  color: white;
+  font-family: "PT Sans Narrow";
+  font-style: italic;
+  letter-spacing: 0.02em;
+  -webkit-text-stroke-width: 0.1px;
+  -webkit-text-stroke-color: rgb(85, 85, 85);
+  text-shadow: 2px 2px gold;
+}
+
+#logo:hover {
+  cursor: pointer;
+}
+
+#scoreboard, th, td {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
