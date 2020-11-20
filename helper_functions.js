@@ -409,6 +409,7 @@ PLAY GAME
 ************************/
 
 // figure out how many players
+
 // set up scorecard
 // while turncounter < nPlayers * ?13?, take turns
 // after each turn, make player select a score category
