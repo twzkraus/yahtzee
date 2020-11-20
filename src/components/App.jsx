@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { display, play } from '../../gameplay/diceMethods.js';
 import Die from './Die.jsx';
 import ScoreForm from './ScoreForm.jsx';
+import ScoreCard from './ScoreCard.jsx';
 import User from '../../gameplay/userClass.js';
-const thisUser = new User('Turner');
 
+
+const thisUser = new User('Turner');
 
 const App = (props) => {
 
@@ -104,6 +106,7 @@ const App = (props) => {
       <div className="scoreBox">
         <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit}/>
       </div>
+      <ScoreCard scores={thisUser.scores}/>
     </div>
   )
 };

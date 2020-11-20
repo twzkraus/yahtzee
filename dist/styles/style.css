@@ -32,6 +32,13 @@ header {
   cursor: pointer;
 }
 
+#scoreboard, th, td {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
 .diceBox {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
