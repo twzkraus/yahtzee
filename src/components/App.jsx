@@ -98,7 +98,7 @@ const App = (props) => {
   return (
     <div className="mainContent">
       <div className="diceBox">
-        {diceVals.map((die, i) => <Die val={diceVals[i]} position={i} setSelected={handleSelect} selected={selected[i]}/>)}
+        {diceVals.map((die, i) => <Die val={diceVals[i]} position={i} selectable={rollsMade > 0} setSelected={handleSelect} selected={selected[i]}/>)}
       </div>
       <div id="buttonBox">
         {getRollButton()}

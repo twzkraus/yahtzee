@@ -1,7 +1,7 @@
 import React from 'react';
 import Dots from './Dots.jsx';
 
-const Die = ({val, position, setSelected, selected}) => {
+const Die = ({val, position, setSelected, selected, selectable}) => {
 
   const getSelected = () => (
     <div className={`diceLoc diceLoc${position} selected`}>
@@ -13,7 +13,7 @@ const Die = ({val, position, setSelected, selected}) => {
 
   const getUnselected = () => (
     <div className={`diceLoc diceLoc${position}`}>
-      <div className={`dice face${val}`} onClick={() => setSelected(position)}>
+      <div className={`dice face${val}`} onClick={selectable ? () => setSelected(position) : () => console.log('cant select this')}>
         <Dots val={val} />
       </div>
     </div>
