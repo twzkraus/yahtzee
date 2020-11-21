@@ -1,7 +1,9 @@
 #scoreTable {
-  display: flex;
-  flex-direction: column;
-  text-align: space-between;
+  // display: flex;
+  // flex-direction: column;
+  // text-align: space-between;
+  display: block;
+  height: 75px;
 }
 
 .tableRow {

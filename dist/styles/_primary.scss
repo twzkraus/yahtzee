@@ -32,6 +32,11 @@ header {
   cursor: pointer;
 }
 
+#scoreboard {
+  position: absolute;
+  top: 50%;
+}
+
 #scoreboard, th, td {
   background-color: white;
   color: black;
