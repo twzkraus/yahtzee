@@ -56,15 +56,15 @@ const ScoreCard = ({ scores }) => {
   const getUpperSummary = () => (
       <>
         <tr>
-          <td>{'Upper Section Total'}</td>
+          <td><b>{'Upper Section Total'}</b></td>
           <td>{upperScore}</td>
         </tr>
         <tr>
-        <td>{'Bonus'}</td>
+        <td><b>{'Bonus'}</b></td>
         <td>{bonusAchieved ? 35 : 0}</td>
       </tr>
       <tr>
-        <td>{'Total With Bonus'}</td>
+        <td><b>{'Total With Bonus'}</b></td>
         <td>{upperWithBonus}</td>
       </tr>
       <tr>
@@ -77,15 +77,15 @@ const ScoreCard = ({ scores }) => {
   const getLowerSummary = () => (
     <>
       <tr>
-        <td>{'Upper Section Total'}</td>
+        <td><b>{'Upper Section Total'}</b></td>
         <td>{upperWithBonus}</td>
       </tr>
       <tr>
-        <td>{'Lower Section Total'}</td>
+        <td><b>{'Lower Section Total'}</b></td>
         <td>{lowerScore}</td>
       </tr>
       <tr>
-        <td>{'Total With Bonus'}</td>
+        <td><b>{'Total With Bonus'}</b></td>
         <td>{upperWithBonus + lowerScore}</td>
       </tr>
       <tr>
