@@ -67,11 +67,11 @@ const play = {
   },
   getAllScores: (hand) => {
     const possScores = {};
-    const sortedHand = hand.slice(0).sort();
+    const sortedHand = hand.slice(0).sort((a, b) => a - b);
     const keys = ['ones', 'twos', 'threes', 'fours', 'fives', 'sixes', '3ok', '4ok', 'fullHouse', 'smallStraight', 'largeStraight', 'yahtzee', 'chance'];
     // upper section
     keys.forEach(key => {
-      possScores[key] = allScores[key](hand);
+      possScores[key] = allScores[key](sortedHand);
     })
     return possScores;
   },
@@ -124,6 +124,7 @@ const scoreHelpers = {
     return hand.reduce((a, b) => a + b);
   },
   includes3OfAKind: (hand) => {
+    debugger;
     for (let i = 0; i < hand.length - 2; i++) {
       if (hand[i + 2] === hand[i]) {
         return true;
