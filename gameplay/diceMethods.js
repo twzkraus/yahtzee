@@ -89,24 +89,12 @@ const allScores = {
   'fives': (hand) => scoreHelpers.countForOne(hand, 5),
   'sixes': (hand) => scoreHelpers.countForOne(hand, 6),
   'chance': (hand) => scoreHelpers.sumAll(hand),
-  '3ok': (hand) => {
-    scoreHelpers.includes3OfAKind(hand) ? scoreHelpers.sumAll(hand) : 0;
-  },
-  '4ok': (hand) => {
-    scoreHelpers.includes4OfAKind(hand) ? scoreHelpers.sumAll(hand) : 0;
-  },
-  'fullHouse': (hand) => {
-    scoreHelpers.includesFullHouse(hand) ? 25 : 0;
-  },
-  'smallStraight': (hand) => {
-    scoreHelpers.includesSmallStraight(hand) ? 30 : 0;
-  },
-  'largeStraight': (hand) => {
-    scoreHelpers.includesLargeStraight(hand) ? 40 : 0;
-  },
-  'yahtzee': (hand) => {
-    scoreHelpers.includesYahtzee(hand) ? 50 : 0;
-  },
+  '3ok': (hand) => scoreHelpers.includes3OfAKind(hand) ? scoreHelpers.sumAll(hand) : 0,
+  '4ok': (hand) => scoreHelpers.includes4OfAKind(hand) ? scoreHelpers.sumAll(hand) : 0,
+  'fullHouse': (hand) => scoreHelpers.includesFullHouse(hand) ? 25 : 0,
+  'smallStraight': (hand) => scoreHelpers.includesSmallStraight(hand) ? 30 : 0,
+  'largeStraight': (hand) => scoreHelpers.includesLargeStraight(hand) ? 40 : 0,
+  'yahtzee': (hand) => scoreHelpers.includesYahtzee(hand) ? 50 : 0,
 };
 
 const scoreHelpers = {
@@ -124,7 +112,6 @@ const scoreHelpers = {
     return hand.reduce((a, b) => a + b);
   },
   includes3OfAKind: (hand) => {
-    debugger;
     for (let i = 0; i < hand.length - 2; i++) {
       if (hand[i + 2] === hand[i]) {
         return true;
@@ -140,9 +127,6 @@ const scoreHelpers = {
     };
     return false;
   },
-  includesFullHouse: (hand) => {
-    return hand[0] === hand[1] && hand[3] === hand[4];
-  },
   includesSmallStraight: (hand) => {
     if (hand[0] > 3) {
       return false;
@@ -151,8 +135,8 @@ const scoreHelpers = {
     let value = null;
     let sequential;
     hand.forEach(die => {
-      if (die - value === 1) {
-        sequential = (sequential || 1) + 1;
+      if (!value || die - value === 1) {
+        sequential = (sequential || 0) + 1;
       }
       value = die;
     });
@@ -178,5 +162,9 @@ const scoreHelpers = {
   }
 
 }
+
+scoreHelpers.includesFullHouse = (hand) => {
+  return scoreHelpers.includes3OfAKind(hand) && hand[0] === hand[1] && hand[3] === hand[4];
+};
 
 module.exports = { display, play };
