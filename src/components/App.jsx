@@ -24,10 +24,20 @@ const App = (props) => {
     return selected.filter(el => el).length;
   };
 
+  const parsePossScores = (rawScores) => {
+    let validScores = {};
+    for (let key in rawScores) {
+      if (!thisUser.scores[key]) {
+        validScores[key] = rawScores[key];
+      }
+    }
+    setPossScores(validScores);
+  }
+
   const rollOnce = () => {
     let thisRoll = play.rollDice(5 - numSelected());
     let currentDiceVals = setDiceValsIfNotSelected(thisRoll);
-    setPossScores(play.getAndDisplayScores(currentDiceVals));
+    parsePossScores(play.getAndDisplayScores(currentDiceVals));
   };
 
   const setDiceValsIfNotSelected = (roll) => {
@@ -73,6 +83,7 @@ const App = (props) => {
   };
 
   const handleFormSubmit = (e) => {
+    debugger;
     e.preventDefault();
     let acceptedScore = parseCategoryAndScore(document.forms['scoreForm'].elements);
     if (acceptedScore) {
