@@ -95,7 +95,6 @@ const App = (props) => {
     for (let i = 0; i < form.length; i++) {
       if (form[i].checked) {
         let scorePieces = form[i].value.split('--');
-        debugger;
         return { [scorePieces[0]]: parseInt(scorePieces[1]) }
       }
     }
