@@ -8,13 +8,14 @@ const prettyNames = {
   'fours': 'Fours',
   'fives': 'Fives',
   'sixes': 'Sixes',
-  'chance': 'Chance',
   '3ok': '3 of a Kind',
   '4ok': '4 of a Kind',
   'fullHouse': 'Full House',
   'smallStraight': 'Small Straight',
   'largeStraight': 'Large Straight',
   'yahtzee': 'Yahtzee',
+  'chance': 'Chance',
+  'bonusYahtzee': 'Bonus Yahtzee',
 };
 
 const ScoreForm = ({ scores, handleFormSubmit }) => {

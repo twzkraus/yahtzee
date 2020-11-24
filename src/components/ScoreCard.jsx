@@ -7,23 +7,23 @@ const prettyNames = {
   'fours': 'Fours',
   'fives': 'Fives',
   'sixes': 'Sixes',
-  'chance': 'Chance',
   '3ok': '3 of a Kind',
   '4ok': '4 of a Kind',
   'fullHouse': 'Full House',
   'smallStraight': 'Small Straight',
   'largeStraight': 'Large Straight',
   'yahtzee': 'Yahtzee',
+  'chance': 'Chance',
+  'bonusYahtzee': 'Bonus Yahtzee',
 };
 
 const ScoreCard = ({ scores }) => {
-  debugger;
 
   let scoreArray = [];
   let runningTotal = 0;
   let upperScore, lowerScore, upperWithBonus, bonusAchieved;
   for (let key in scores) {
-    if (key === 'chance') {
+    if (key === '3ok') {
       scoreArray.push(['mid']);
       upperScore = runningTotal;
       upperWithBonus = upperScore;

@@ -7,13 +7,14 @@ var User = function(name) {
     'fours': null,
     'fives': null,
     'sixes': null,
-    'chance': null,
     '3ok': null,
     '4ok': null,
     'fullHouse': null,
     'smallStraight': null,
     'largeStraight': null,
     'yahtzee': null,
+    'chance': null,
+    'bonusYahtzee': null,
   }
 }
 
