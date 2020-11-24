@@ -21,7 +21,7 @@ const ScoreForm = ({ scores, handleFormSubmit }) => {
   let scoreArray = [];
   for (let key in scores) {
     if (scores[key]) {
-      scoreArray.push([scores[key], prettyNames[key]]);
+      scoreArray.push([scores[key], key, prettyNames[key]]);
     }
   }
   return (

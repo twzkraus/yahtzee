@@ -83,7 +83,6 @@ const App = (props) => {
   };
 
   const handleFormSubmit = (e) => {
-    debugger;
     e.preventDefault();
     let acceptedScore = parseCategoryAndScore(document.forms['scoreForm'].elements);
     if (acceptedScore) {
@@ -96,6 +95,7 @@ const App = (props) => {
     for (let i = 0; i < form.length; i++) {
       if (form[i].checked) {
         let scorePieces = form[i].value.split('--');
+        debugger;
         return { [scorePieces[0]]: parseInt(scorePieces[1]) }
       }
     }

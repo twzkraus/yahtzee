@@ -17,6 +17,7 @@ const prettyNames = {
 };
 
 const ScoreCard = ({ scores }) => {
+  debugger;
 
   let scoreArray = [];
   let runningTotal = 0;
