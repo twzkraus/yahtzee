@@ -48,6 +48,10 @@ header {
   top: 5%;
 }
 
+.td-center {
+  text-align: center;
+}
+
 .diceBox {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;

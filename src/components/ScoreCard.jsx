@@ -49,7 +49,7 @@ const ScoreCard = ({ scores, float }) => {
     return (
       <tr>
         <td>{prettyNames[arrayEl[0]]}</td>
-        <td>{arrayEl[1]}</td>
+        <td className='td-center'>{arrayEl[1]}</td>
       </tr>
     )
   };
@@ -58,15 +58,15 @@ const ScoreCard = ({ scores, float }) => {
       <>
         <tr>
           <td><b>{'Upper Section Total'}</b></td>
-          <td>{upperScore}</td>
+          <td className='td-center'>{upperScore}</td>
         </tr>
         <tr>
         <td><b>{'Bonus'}</b></td>
-        <td>{bonusAchieved ? 35 : 0}</td>
+        <td className='td-center'>{bonusAchieved ? 35 : 0}</td>
       </tr>
       <tr>
         <td><b>{'Total With Bonus'}</b></td>
-        <td>{upperWithBonus}</td>
+        <td className='td-center'>{upperWithBonus}</td>
       </tr>
       <tr>
         <td>{''}</td>
@@ -79,15 +79,15 @@ const ScoreCard = ({ scores, float }) => {
     <>
       <tr>
         <td><b>{'Upper Section Total'}</b></td>
-        <td>{upperWithBonus}</td>
+        <td className='td-center'>{upperWithBonus}</td>
       </tr>
       <tr>
         <td><b>{'Lower Section Total'}</b></td>
-        <td>{lowerScore}</td>
+        <td className='td-center'>{lowerScore}</td>
       </tr>
       <tr>
         <td><b>{'Total With Bonus'}</b></td>
-        <td>{upperWithBonus + lowerScore}</td>
+        <td className='td-center'>{upperWithBonus + lowerScore}</td>
       </tr>
       <tr>
         <td>{''}</td>
