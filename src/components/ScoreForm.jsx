@@ -20,7 +20,6 @@ const prettyNames = {
 
 const ScoreForm = ({ scores, handleFormSubmit, handleZero }) => {
   let scoreArray = [];
-  debugger;
   for (let key in scores) {
     // if (scores[key]) {
       scoreArray.push([scores[key], key, prettyNames[key]]);

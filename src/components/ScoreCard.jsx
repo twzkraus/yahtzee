@@ -17,7 +17,7 @@ const prettyNames = {
   'bonusYahtzee': 'Bonus Yahtzee',
 };
 
-const ScoreCard = ({ scores }) => {
+const ScoreCard = ({ scores, float }) => {
 
   let scoreArray = [];
   let runningTotal = 0;
@@ -97,7 +97,7 @@ const ScoreCard = ({ scores }) => {
   );
 
   return (
-    <table id="scoreboard">
+    <table className={`scoreboard float-${float}`}>
       <thead>
         <th>Category</th>
         <th>Player 1</th>

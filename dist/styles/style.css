@@ -28,20 +28,25 @@ header {
   text-shadow: 2px 2px gold;
 }
 
-#logo:hover {
+.logo:hover {
   cursor: pointer;
 }
 
-#scoreboard {
+.scoreboard {
   position: absolute;
   top: 55%;
 }
 
-#scoreboard, th, td {
+.scoreboard, th, td {
   background-color: white;
   color: black;
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.float-true {
+  position: relative;
+  top: 5%;
 }
 
 .diceBox {

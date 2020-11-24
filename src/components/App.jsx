@@ -11,7 +11,7 @@ const thisUser = new User('Turner');
 const App = (props) => {
 
   const [diceVals, setDiceVals] = useState([1, 1, 1, 1, 1]);
-  const [possScores, setPossScores] = useState([]);
+  const [possScores, setPossScores] = useState(null);
   const [selected, setSelected] = useState([false, false, false, false, false]);
   const [rollsMade, setRollsMade] = useState(0);
 
@@ -61,7 +61,7 @@ const App = (props) => {
   const handleNewTurn = () => {
     setRollsMade(0);
     setSelected([false, false, false, false, false]);
-    setPossScores([]);
+    setPossScores(null);
     setDiceVals([1, 1, 1, 1, 1]);
     // eventually: change player
   };
@@ -131,7 +131,7 @@ const App = (props) => {
       <div className="scoreBox">
         <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero}/>
       </div>
-      <ScoreCard scores={thisUser.scores}/>
+      <ScoreCard scores={thisUser.scores} float={!!possScores}/>
     </div>
   )
 };
