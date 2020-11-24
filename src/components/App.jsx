@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { display, play } from '../../gameplay/diceMethods.js';
 import Die from './Die.jsx';
 import ScoreForm from './ScoreForm.jsx';
@@ -98,11 +98,26 @@ const App = (props) => {
         return { [scorePieces[0]]: parseInt(scorePieces[1]) }
       }
     }
-    console.log('you must select a score');
+    console.log('you must select a score--maybe make this a popup?');
   };
 
   const addScore = (acceptedScore) => {
     thisUser.addScore(acceptedScore);
+  };
+
+  const handleZero = (event) => {
+    event.preventDefault();
+    addZerosToScoreCard();
+  };
+
+  const addZerosToScoreCard = () => {
+    let scoresCopy = JSON.parse(JSON.stringify(possScores));
+    for (let key in thisUser.scores) {
+      if (!possScores[key] && !thisUser.scores[key]) {
+        scoresCopy[key] = 0;
+      }
+    }
+    setPossScores(scoresCopy);
   };
 
   return (
@@ -114,7 +129,7 @@ const App = (props) => {
         {getRollButton()}
       </div>
       <div className="scoreBox">
-        <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit}/>
+        <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero}/>
       </div>
       <ScoreCard scores={thisUser.scores}/>
     </div>

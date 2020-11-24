@@ -18,17 +18,19 @@ const prettyNames = {
   'bonusYahtzee': 'Bonus Yahtzee',
 };
 
-const ScoreForm = ({ scores, handleFormSubmit }) => {
+const ScoreForm = ({ scores, handleFormSubmit, handleZero }) => {
   let scoreArray = [];
+  debugger;
   for (let key in scores) {
-    if (scores[key]) {
+    // if (scores[key]) {
       scoreArray.push([scores[key], key, prettyNames[key]]);
-    }
+    // }
   }
   return (
     <form id="scoreForm" onSubmit={(e) => handleFormSubmit(e)}>
       {scoreArray.map(score => <ScoreItem score={score}/>)}
       {scoreArray.length ? <button type="submit">Accept Score</button> : ''}
+      {scoreArray.length ? <button onClick={handleZero}>Take a Zero</button> : ''}
     </form>
   );
 }
