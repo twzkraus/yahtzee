@@ -62,3 +62,19 @@ test('properly identifies a yahtzee', () => {
     expect(result['yahtzee']).toBe(50);
   }
 });
+
+test('properly identifies a full house', () => {
+  for (let num1 = 1; num1 <= 6; num1++) {
+    for (let num2 = 1; num2 <= 6; num2++) {
+      let hand = [];
+      while (hand.length < 3) {
+        hand.push(num1);
+      }
+      while (hand.length < 5) {
+        hand.push(num2);
+      }
+      let result = play.getAllScores(hand);
+      expect(result['fullHouse']).toBe(25);
+    }
+  }
+})
