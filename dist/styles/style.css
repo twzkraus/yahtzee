@@ -52,6 +52,11 @@ header {
   text-align: center;
 }
 
+.td-emphasis {
+  text-align: center;
+  font-weight: 600;
+}
+
 .diceBox {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;

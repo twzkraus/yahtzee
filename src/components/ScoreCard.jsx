@@ -66,10 +66,14 @@ const ScoreCard = ({ scores, float }) => {
       </tr>
       <tr>
         <td><b>{'Total With Bonus'}</b></td>
-        <td className='td-center'>{upperWithBonus}</td>
+        <td className='td-center td-emphasis'>{upperWithBonus}</td>
       </tr>
       <tr>
         <td>{''}</td>
+        <td>{''}</td>
+      </tr>
+      <tr>
+        <td className='td-emphasis'>{'Lower Section'}</td>
         <td>{''}</td>
       </tr>
     </>
@@ -86,8 +90,8 @@ const ScoreCard = ({ scores, float }) => {
         <td className='td-center'>{lowerScore}</td>
       </tr>
       <tr>
-        <td><b>{'Total With Bonus'}</b></td>
-        <td className='td-center'>{upperWithBonus + lowerScore}</td>
+        <td><b>{'Grand Total'}</b></td>
+        <td className='td-center td-emphasis'>{upperWithBonus + lowerScore}</td>
       </tr>
       <tr>
         <td>{''}</td>
@@ -99,7 +103,7 @@ const ScoreCard = ({ scores, float }) => {
   return (
     <table className={`scoreboard float-${float}`}>
       <thead>
-        <th>Category</th>
+        <th>{'Upper Section'}</th>
         <th>Player 1</th>
       </thead>
       {scoreArray.map(cat => getRow(cat))}
