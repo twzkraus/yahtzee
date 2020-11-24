@@ -52,3 +52,13 @@ test('properly identifies a large straight', () => {
   }
 });
 
+test('properly identifies a yahtzee', () => {
+  for (let num = 1; num <= 6; num++) {
+    let hand = [];
+    while (hand.length < 5) {
+      hand.push(num);
+    }
+    let result = play.getAllScores(hand);
+    expect(result['yahtzee']).toBe(50);
+  }
+});
