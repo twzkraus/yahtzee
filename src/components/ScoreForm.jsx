@@ -2,7 +2,7 @@ import React from 'react';
 import ScoreItem from './ScoreItem.jsx';
 
 const prettyNames = {
-  'ones': 'Ones',
+  'ones': 'Aces',
   'twos': 'Twos',
   'threes': 'Threes',
   'fours': 'Fours',

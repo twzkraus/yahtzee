@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const prettyNames = {
-  'ones': 'Ones',
+  'ones': 'Aces',
   'twos': 'Twos',
   'threes': 'Threes',
   'fours': 'Fours',
