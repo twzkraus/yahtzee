@@ -143,7 +143,7 @@ const App = (props) => {
   const addZerosToScoreCard = () => {
     let scoresCopy = JSON.parse(JSON.stringify(possScores));
     for (let key in players[currentPlayerIdx].scores) {
-      if (!possScores[key] && !players[currentPlayerIdx].scores[key]) {
+      if (!possScores[key] && !players[currentPlayerIdx].scores[key] && key !== 'bonusYahtzee') {
         scoresCopy[key] = 0;
       }
     }
