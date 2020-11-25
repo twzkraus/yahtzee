@@ -35,9 +35,26 @@ const App = (props) => {
   }
 
   const rollOnce = () => {
-    let thisRoll = play.rollDice(5 - numSelected());
-    let currentDiceVals = setDiceValsIfNotSelected(thisRoll);
-    parsePossScores(play.getAndDisplayScores(currentDiceVals));
+    animateRoll(5, () => {
+      let thisRoll = play.rollDice(5 - numSelected());
+      let currentDiceVals = setDiceValsIfNotSelected(thisRoll);
+      parsePossScores(play.getAndDisplayScores(currentDiceVals));
+    })
+  };
+
+  const animateRoll = (n, cb) => {
+    let currentVals = diceVals.slice();
+    for (let i = 0; i < 5; i++) {
+      if (!selected[i]) {
+        currentVals[i] = Math.ceil(Math.random() * 6);
+      }
+    }
+    setDiceVals(currentVals);
+    if (n) {
+      setTimeout(() => animateRoll(n - 1, cb), 100);
+    } else {
+      cb();
+    }
   };
 
   const setDiceValsIfNotSelected = (roll) => {
