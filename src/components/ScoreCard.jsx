@@ -100,7 +100,7 @@ const ScoreCard = ({ players, float }) => {
     return (
       <>
         <th>{'Upper Section'}</th>
-        {players.map((player, i) => <th><input size="10" type="text" value={player.name} onChange={(e) => handleNameChange(i, e.target.value)}/></th>)}
+        {players.map((player, i) => <th>{player.name}</th>)}
       </>
     );
   }
