@@ -93,10 +93,6 @@ const ScoreCard = ({ scores, float }) => {
         <td><b>{'Grand Total'}</b></td>
         <td className='td-center td-emphasis'>{upperWithBonus + lowerScore}</td>
       </tr>
-      <tr>
-        <td>{''}</td>
-        <td>{''}</td>
-      </tr>
     </>
   );
 
