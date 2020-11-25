@@ -18,6 +18,28 @@ var User = function(name) {
   }
 }
 
+User.prototype.getUpperScore = () => {
+  let total = 0;
+  let categories = ['ones', 'twos', 'threes', 'fours', 'fives', 'sixes'];
+  for (let key in this.scores) {
+    if (categories.indexOf(key) >= 0) {
+      total += this.scores[key];
+    }
+  }
+  return total;
+};
+
+User.prototype.getLowerScore = () => {
+  let total = 0;
+  let categories =['3ok','4ok','fullHouse','smallStraight','largeStraight','yahtzee','chance','bonusYahtzee'];
+  for (let key in this.scores) {
+    if (categories.indexOf(key) >= 0) {
+      total += this.scores[key];
+    }
+  }
+  return total;
+};
+
 User.prototype.addScore = function(scoreObj) {
   const key = Object.keys(scoreObj);
   if (!this.scores[key]) {
