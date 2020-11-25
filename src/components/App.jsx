@@ -5,9 +5,6 @@ import ScoreForm from './ScoreForm.jsx';
 import ScoreCard from './ScoreCard.jsx';
 import User from '../../gameplay/userClass.js';
 
-
-// const thisUser = new User('Turner');
-
 const App = (props) => {
 
   const [diceVals, setDiceVals] = useState([1, 1, 1, 1, 1]);
@@ -134,7 +131,6 @@ const App = (props) => {
 
   const addScore = (acceptedScore) => {
     players[currentPlayerIdx].addScore(acceptedScore);
-    setPlayers(players);
   };
 
   const handleZero = (event) => {
