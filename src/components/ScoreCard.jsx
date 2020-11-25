@@ -18,7 +18,6 @@ const prettyNames = {
 };
 
 const ScoreCard = ({ players, float }) => {
-  // let runningTotal = 0;
   const getScoreArray = () => {
     let result = [];
     for (let key in players[0].scores) {
@@ -36,7 +35,6 @@ const ScoreCard = ({ players, float }) => {
   };
 
   let scoreArray = getScoreArray();
-  debugger;
 
   const getRow = (arrayEl) => {
     if (arrayEl[0] === 'mid') {

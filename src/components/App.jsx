@@ -14,7 +14,7 @@ const App = (props) => {
   const [possScores, setPossScores] = useState(null);
   const [selected, setSelected] = useState([false, false, false, false, false]);
   const [rollsMade, setRollsMade] = useState(0);
-  const [players, setPlayers] = ([[new User('Player 1'), new User('Player 2')]]);
+  const [players, setPlayers] = useState([new User('Player 1'), new User('Player 2')]);
   const [currentPlayerIdx, setCurrentPlayerIdx] = useState(0);
 
   const initiateGameStart = (n, names) => {
@@ -134,6 +134,7 @@ const App = (props) => {
 
   const addScore = (acceptedScore) => {
     players[currentPlayerIdx].addScore(acceptedScore);
+    setPlayers(players);
   };
 
   const handleZero = (event) => {
