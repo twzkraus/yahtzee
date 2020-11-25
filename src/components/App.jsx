@@ -13,6 +13,7 @@ const App = (props) => {
   const [rollsMade, setRollsMade] = useState(0);
   const [players, setPlayers] = useState([new User('Player 1'), new User('Player 2')]);
   const [currentPlayerIdx, setCurrentPlayerIdx] = useState(0);
+  const [alertMsg, setAlertMsg] = useState(null);
 
   const initiateGameStart = (n, names) => {
     let weakPlayers = [];
@@ -121,6 +122,15 @@ const App = (props) => {
     }
   };
 
+  const alertUser = (msg) => {
+    setAlertMsg(msg);
+    setTimeout(turnAlertOff, 1500);
+  };
+
+  const turnAlertOff = () => {
+    setAlertMsg(null);
+  };
+
   const parseCategoryAndScore = (form) => {
     for (let i = 0; i < form.length; i++) {
       if (form[i].checked) {
@@ -128,7 +138,7 @@ const App = (props) => {
         return { [scorePieces[0]]: parseInt(scorePieces[1]) }
       }
     }
-    console.log('you must select a score--maybe make this a popup?');
+    alertUser('Please select a score option first');
   };
 
   const addScore = (acceptedScore) => {
@@ -162,6 +172,7 @@ const App = (props) => {
       <div className="scoreBox">
         <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero} rollsMade={rollsMade}/>
       </div>
+      {alertMsg ? <div>{alertMsg}</div> : ''}
       <ScoreCard players={players} float={!!possScores}/>
     </div>
   )
