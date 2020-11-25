@@ -36,6 +36,8 @@ const App = (props) => {
     for (let key in rawScores) {
       if (!players[currentPlayerIdx].scores[key]) {
         validScores[key] = rawScores[key];
+      } else if (key === 'yahtzee' && players[currentPlayerIdx].scores[key]) {
+        validScores['bonusYahtzee'] = 100;
       }
     }
     setPossScores(validScores);
