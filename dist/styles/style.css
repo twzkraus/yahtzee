@@ -57,6 +57,10 @@ header {
   font-weight: 600;
 }
 
+#zero-button {
+  margin-top: 10px;
+}
+
 .diceBox {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
