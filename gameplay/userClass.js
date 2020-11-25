@@ -18,7 +18,7 @@ var User = function(name) {
   }
 }
 
-User.prototype.getUpperScore = () => {
+User.prototype.getUpperScore = function() {
   let total = 0;
   let categories = ['ones', 'twos', 'threes', 'fours', 'fives', 'sixes'];
   for (let key in this.scores) {
@@ -29,7 +29,7 @@ User.prototype.getUpperScore = () => {
   return total;
 };
 
-User.prototype.getLowerScore = () => {
+User.prototype.getLowerScore = function() {
   let total = 0;
   let categories =['3ok','4ok','fullHouse','smallStraight','largeStraight','yahtzee','chance','bonusYahtzee'];
   for (let key in this.scores) {

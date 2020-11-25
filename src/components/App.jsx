@@ -14,7 +14,7 @@ const App = (props) => {
   const [possScores, setPossScores] = useState(null);
   const [selected, setSelected] = useState([false, false, false, false, false]);
   const [rollsMade, setRollsMade] = useState(0);
-  const [players, setPlayers] = ([[{name: 'Turner', scores: {'3ok': 12}}]]);
+  const [players, setPlayers] = ([[new User('Turner')]]);
   const [currentPlayerIdx, setCurrentPlayerIdx] = useState(0);
 
   const initiateGameStart = (n, names) => {
