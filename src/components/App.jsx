@@ -24,7 +24,6 @@ const App = (props) => {
 
   const makeNthRoll = () => {
     rollOnce();
-    setRollsMade(rollsMade + 1);
   };
 
   const numSelected = () => {
@@ -47,6 +46,7 @@ const App = (props) => {
     animateRoll(5, () => {
       let thisRoll = play.rollDice(5 - numSelected());
       let currentDiceVals = setDiceValsIfNotSelected(thisRoll);
+      setRollsMade(rollsMade + 1);
       parsePossScores(play.getAndDisplayScores(currentDiceVals));
     })
   };
@@ -160,7 +160,7 @@ const App = (props) => {
         {getRollButton()}
       </div>
       <div className="scoreBox">
-        <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero}/>
+        <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero} rollsMade={rollsMade}/>
       </div>
       <ScoreCard players={players} float={!!possScores}/>
     </div>

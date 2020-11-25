@@ -18,7 +18,7 @@ const prettyNames = {
   'bonusYahtzee': 'Bonus Yahtzee',
 };
 
-const ScoreForm = ({ scores, handleFormSubmit, handleZero }) => {
+const ScoreForm = ({ scores, handleFormSubmit, handleZero, rollsMade }) => {
   let scoreArray = [];
   for (let key in scores) {
     scoreArray.push([scores[key], key, prettyNames[key]]);
@@ -27,7 +27,7 @@ const ScoreForm = ({ scores, handleFormSubmit, handleZero }) => {
     <form id="scoreForm" onSubmit={(e) => handleFormSubmit(e)}>
       {scoreArray.map(score => <ScoreItem score={score}/>)}
       {scoreArray.length ? <button type="submit">Accept Score</button> : ''}
-      {scoreArray.length ? <button onClick={handleZero}>Take a Zero</button> : ''}
+      {rollsMade > 0 ? <button onClick={handleZero}>Take a Zero</button> : ''}
     </form>
   );
 }
