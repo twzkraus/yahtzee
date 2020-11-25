@@ -137,6 +137,8 @@ const scoreHelpers = {
     hand.forEach(die => {
       if (!value || die - value === 1) {
         sequential = (sequential || 0) + 1;
+      } else if (die - value > 1) {
+        sequential = 1;
       }
       value = die;
     });

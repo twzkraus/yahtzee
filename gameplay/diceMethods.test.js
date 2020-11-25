@@ -77,4 +77,10 @@ test('properly identifies a full house', () => {
       expect(result['fullHouse']).toBe(25);
     }
   }
-})
+});
+
+test('doesn\'t yield small straight for 1, 2, 3, 5, 6', () => {
+  let hand = [1, 2, 3, 5, 6];
+  let result = play.getAllScores(hand);
+  expect(result['smallStraight']).toBeLessThan(30);
+});
