@@ -17,12 +17,12 @@ const prettyNames = {
   'bonusYahtzee': 'Bonus Yahtzee',
 };
 
-const ScoreCard = ({ scores, float }) => {
-
+const ScoreCard = ({ players, float }) => {
+  debugger;
   let scoreArray = [];
   let runningTotal = 0;
   let upperScore, lowerScore, upperWithBonus, bonusAchieved;
-  for (let key in scores) {
+  for (let key in players[0].scores) {
     if (key === '3ok') {
       scoreArray.push(['mid']);
       upperScore = runningTotal;
@@ -96,11 +96,19 @@ const ScoreCard = ({ scores, float }) => {
     </>
   );
 
+  const getHead = () => {
+    return (
+      <>
+        <th>{'Upper Section'}</th>
+        {players.map(player => <th>{player.name}</th>)}
+      </>
+    );
+  }
+
   return (
     <table className={`scoreboard float-${float}`}>
       <thead>
-        <th>{'Upper Section'}</th>
-        <th>Player 1</th>
+        {getHead()}
       </thead>
       {scoreArray.map(cat => getRow(cat))}
     </table>

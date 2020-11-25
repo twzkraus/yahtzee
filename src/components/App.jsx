@@ -6,7 +6,7 @@ import ScoreCard from './ScoreCard.jsx';
 import User from '../../gameplay/userClass.js';
 
 
-const thisUser = new User('Turner');
+// const thisUser = new User('Turner');
 
 const App = (props) => {
 
@@ -14,6 +14,16 @@ const App = (props) => {
   const [possScores, setPossScores] = useState(null);
   const [selected, setSelected] = useState([false, false, false, false, false]);
   const [rollsMade, setRollsMade] = useState(0);
+  const [players, setPlayers] = ([{name: 'Turner'}]);
+  const [currentPlayerIdx, setCurrentPlayerIdx] = useState(0);
+
+  const initiateGameStart = (n, names) => {
+    let weakPlayers = [];
+    while (weakPlayers.length < n) {
+      weakPlayers.push(new User(names[i]));
+    }
+    setPlayers(weakPlayers);
+  }
 
   const makeNthRoll = () => {
     rollOnce();
@@ -27,7 +37,7 @@ const App = (props) => {
   const parsePossScores = (rawScores) => {
     let validScores = {};
     for (let key in rawScores) {
-      if (!thisUser.scores[key]) {
+      if (!players[currentPlayerIdx].scores[key]) {
         validScores[key] = rawScores[key];
       }
     }
@@ -80,8 +90,12 @@ const App = (props) => {
     setSelected([false, false, false, false, false]);
     setPossScores(null);
     setDiceVals([1, 1, 1, 1, 1]);
-    // eventually: change player
+    changePlayer();
   };
+
+  const changePlayer = () => {
+    setCurrentPlayerIdx((currentPlayerIdx + 1) % players.length );
+  }
 
   const getRollButton = () => {
     let nth;
@@ -119,7 +133,7 @@ const App = (props) => {
   };
 
   const addScore = (acceptedScore) => {
-    thisUser.addScore(acceptedScore);
+    players[currentPlayerIdx].addScore(acceptedScore);
   };
 
   const handleZero = (event) => {
@@ -129,8 +143,8 @@ const App = (props) => {
 
   const addZerosToScoreCard = () => {
     let scoresCopy = JSON.parse(JSON.stringify(possScores));
-    for (let key in thisUser.scores) {
-      if (!possScores[key] && !thisUser.scores[key]) {
+    for (let key in players[currentPlayerIdx].scores) {
+      if (!possScores[key] && !players[currentPlayerIdx].scores[key]) {
         scoresCopy[key] = 0;
       }
     }
@@ -148,7 +162,7 @@ const App = (props) => {
       <div className="scoreBox">
         <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero}/>
       </div>
-      <ScoreCard scores={thisUser.scores} float={!!possScores}/>
+      <ScoreCard players={players} float={!!possScores}/>
     </div>
   )
 };
