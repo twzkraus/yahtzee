@@ -61,7 +61,7 @@ const ScoreCard = ({ players, float }) => {
           {players.map(player => <td className='td-center'>{player.getUpperScore()}</td>)}
         </tr>
         <tr>
-        <td><b>{'Bonus'}</b></td>
+        <td><b>{'Upper Section Bonus'}</b></td>
         {players.map(player => <td className='td-center'>{player.hasBonus() ? 35 : 0}</td>)}
       </tr>
       <tr>
