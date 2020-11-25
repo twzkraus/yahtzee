@@ -34,6 +34,10 @@ const ScoreCard = ({ players, float }) => {
     return result;
   };
 
+  const handleNameChange = (i, value) => {
+    players[i].name = value;
+  };
+
   let scoreArray = getScoreArray();
 
   const getRow = (arrayEl) => {
@@ -96,7 +100,7 @@ const ScoreCard = ({ players, float }) => {
     return (
       <>
         <th>{'Upper Section'}</th>
-        {players.map(player => <th><input size="10" type="text" value={player.name} onChange={(e) => player.changeName(e.target.value)}/></th>)}
+        {players.map((player, i) => <th><input size="10" type="text" value={player.name} onChange={(e) => handleNameChange(i, e.target.value)}/></th>)}
       </>
     );
   }
