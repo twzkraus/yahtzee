@@ -18,16 +18,25 @@ const prettyNames = {
 };
 
 const ScoreCard = ({ players, float }) => {
-  debugger;
-  let scoreArray = [];
-  let runningTotal = 0;
-  for (let key in players[0].scores) {
-    if (key === '3ok') {
-      scoreArray.push(['mid']);
+  // let runningTotal = 0;
+  const getScoreArray = () => {
+    let result = [];
+    for (let key in players[0].scores) {
+      if (key === '3ok') {
+        result.push(['mid']);
+      }
+      let el = [key];
+      for (let i = 0; i < players.length; i++) {
+        el.push(players[i].scores[key]);
+      }
+      result.push(el);
     }
-    scoreArray.push([key, players[0].scores[key]]);
-  }
-  scoreArray.push(['end']);
+    result.push(['end']);
+    return result;
+  };
+
+  let scoreArray = getScoreArray();
+  debugger;
 
   const getRow = (arrayEl) => {
     if (arrayEl[0] === 'mid') {
@@ -38,7 +47,7 @@ const ScoreCard = ({ players, float }) => {
     return (
       <tr>
         <td>{prettyNames[arrayEl[0]]}</td>
-        <td className='td-center'>{arrayEl[1]}</td>
+        {arrayEl.slice(1).map(el => <td className='td-center'>{el}</td>)}
       </tr>
     )
   };
@@ -59,11 +68,11 @@ const ScoreCard = ({ players, float }) => {
       </tr>
       <tr>
         <td>{''}</td>
-        <td>{''}</td>
+        {players.map(p => <td>{''}</td> )}
       </tr>
       <tr>
         <td className='td-emphasis'>{'Lower Section'}</td>
-        <td>{''}</td>
+        {players.map(p => <td>{''}</td> )}
       </tr>
     </>
   );
