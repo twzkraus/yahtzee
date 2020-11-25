@@ -62,6 +62,9 @@ User.prototype.addScore = function(scoreObj) {
   if (!this.scores[key]) {
     this.scores[key] = scoreObj[key];
     console.log(`score of ${this.scores[key]} for category ${key} has been added!`);
+  } else if (key[0] === 'bonusYahtzee') {
+    this.scores[key] += scoreObj[key];
+    console.log(`Jackpot! An extra ${scoreObj[key]} points were added for ${key}!`);
   } else {
     console.log(`FAIL: score not added. The user already has a value for ${key}`);
   }
