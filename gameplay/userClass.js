@@ -40,6 +40,23 @@ User.prototype.getLowerScore = function() {
   return total;
 };
 
+User.prototype.hasBonus = function() {
+  return this.getUpperScore() >= 63;
+};
+
+User.prototype.getFullUpperScore = function() {
+  let rawScore = this.getUpperScore();
+  let bonus = 0;
+  if (rawScore >= 63) {
+    bonus = 35;
+  }
+  return rawScore + bonus;
+};
+
+User.prototype.getTotalScore = function() {
+  return this.getFullUpperScore() + this.getLowerScore();
+};
+
 User.prototype.addScore = function(scoreObj) {
   const key = Object.keys(scoreObj);
   if (!this.scores[key]) {

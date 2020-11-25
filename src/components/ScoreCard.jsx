@@ -58,11 +58,11 @@ const ScoreCard = ({ players, float }) => {
         </tr>
         <tr>
         <td><b>{'Bonus'}</b></td>
-        {players.map(player => <td className='td-center'>{player.getUpperScore() >= 63 ? 35 : 0}</td>)}
+        {players.map(player => <td className='td-center'>{player.hasBonus() ? 35 : 0}</td>)}
       </tr>
       <tr>
         <td><b>{'Total With Bonus'}</b></td>
-        {players.map(player => <td className='td-center td-emphasis'>{player.getUpperScore() >= 63 ? player.getUpperScore() + 35 : player.getUpperScore()}</td>)}
+        {players.map(player => <td className='td-center td-emphasis'>{player.getFullUpperScore()}</td>)}
       </tr>
       <tr>
         <td>{''}</td>
@@ -79,7 +79,7 @@ const ScoreCard = ({ players, float }) => {
     <>
       <tr>
         <td><b>{'Upper Section Total'}</b></td>
-        {players.map(player => <td className='td-center'>{player.getUpperScore() >= 63 ? player.getUpperScore() + 35 : player.getUpperScore()}</td>)}
+        {players.map(player => <td className='td-center'>{player.getFullUpperScore()}</td>)}
       </tr>
       <tr>
         <td><b>{'Lower Section Total'}</b></td>
@@ -87,7 +87,7 @@ const ScoreCard = ({ players, float }) => {
       </tr>
       <tr>
         <td><b>{'Grand Total'}</b></td>
-        {players.map(player => <td className='td-center td-emphasis'>{player.getLowerScore() + player.getUpperScore() >= 63 ? player.getUpperScore() + 35 : player.getUpperScore()}</td>)}
+        {players.map(player => <td className='td-center td-emphasis'>{player.getTotalScore()}</td>)}
       </tr>
     </>
   );
