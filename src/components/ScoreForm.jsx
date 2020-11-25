@@ -25,6 +25,7 @@ const ScoreForm = ({ scores, handleFormSubmit, handleZero, rollsMade }) => {
   }
   return (
     <form id="scoreForm" onSubmit={(e) => handleFormSubmit(e)}>
+      {rollsMade > 0 ? <p><b>Possible Scores:</b></p> : ''}
       {scoreArray.map(score => <ScoreItem score={score}/>)}
       {scoreArray.length ? <button type="submit">Accept Score</button> : ''}
       <br></br>
