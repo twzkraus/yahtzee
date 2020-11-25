@@ -1,3 +1,20 @@
+const categories = {
+  'ones': 'upper',
+  'twos': 'upper',
+  'threes': 'upper',
+  'fours': 'upper',
+  'fives': 'upper',
+  'sixes': 'upper',
+  '3ok': 'lower',
+  '4ok': 'lower',
+  'fullHouse': 'lower',
+  'smallStraight': 'lower',
+  'largeStraight': 'lower',
+  'yahtzee': 'lower',
+  'chance': 'lower',
+  'bonusYahtzee': 'lower',
+};
+
 var User = function(name) {
   this.name = name;
   this.scores = {
@@ -15,29 +32,18 @@ var User = function(name) {
     'yahtzee': null,
     'chance': null,
     'bonusYahtzee': null,
-  }
+  };
+  this.upperScore = 0;
+  this.lowerScore = 0;
+  this.upperBonus = 0;
 }
 
 User.prototype.getUpperScore = function() {
-  let total = 0;
-  let categories = ['ones', 'twos', 'threes', 'fours', 'fives', 'sixes'];
-  for (let key in this.scores) {
-    if (categories.indexOf(key) >= 0) {
-      total += this.scores[key];
-    }
-  }
-  return total;
+  return this.upperScore;
 };
 
 User.prototype.getLowerScore = function() {
-  let total = 0;
-  let categories =['3ok','4ok','fullHouse','smallStraight','largeStraight','yahtzee','chance','bonusYahtzee'];
-  for (let key in this.scores) {
-    if (categories.indexOf(key) >= 0) {
-      total += this.scores[key];
-    }
-  }
-  return total;
+  return this.lowerScore;
 };
 
 User.prototype.hasBonus = function() {
@@ -45,12 +51,7 @@ User.prototype.hasBonus = function() {
 };
 
 User.prototype.getFullUpperScore = function() {
-  let rawScore = this.getUpperScore();
-  let bonus = 0;
-  if (rawScore >= 63) {
-    bonus = 35;
-  }
-  return rawScore + bonus;
+  return this.upperScore + this.upperBonus;
 };
 
 User.prototype.getTotalScore = function() {
@@ -59,11 +60,12 @@ User.prototype.getTotalScore = function() {
 
 User.prototype.addScore = function(scoreObj) {
   const key = Object.keys(scoreObj);
+  const score = scoreObj[key];
   if (!this.scores[key]) {
-    this.scores[key] = scoreObj[key];
+    this.addToSection(key, score);
     console.log(`score of ${this.scores[key]} for category ${key} has been added!`);
   } else if (key[0] === 'bonusYahtzee') {
-    this.scores[key] += scoreObj[key];
+    this.addToSection(key, score);
     console.log(`Jackpot! An extra ${scoreObj[key]} points were added for ${key}!`);
   } else {
     console.log(`FAIL: score not added. The user already has a value for ${key}`);
@@ -72,6 +74,18 @@ User.prototype.addScore = function(scoreObj) {
 
 User.prototype.changeName = function(value) {
   this.name = value;
+};
+
+User.prototype.addToSection = function(key, score) {
+  this.scores[key] = score;
+  if (categories[key] === 'upper') {
+    this.upperScore += score;
+    if (this.upperScore >= 63) {
+      this.upperBonus = 35;
+    }
+  } else if (categories[key] === 'lower') {
+    this.lowerScore += score;
+  }
 };
 
 export default User;
