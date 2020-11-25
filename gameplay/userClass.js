@@ -70,4 +70,8 @@ User.prototype.addScore = function(scoreObj) {
   }
 };
 
+User.prototype.changeName = function(value) {
+  this.name = value;
+};
+
 export default User;
