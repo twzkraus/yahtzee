@@ -134,15 +134,19 @@ const scoreHelpers = {
     // count how many sequential
     let value = null;
     let sequential;
+    let maxSequential;
     hand.forEach(die => {
       if (!value || die - value === 1) {
         sequential = (sequential || 0) + 1;
       } else if (die - value > 1) {
         sequential = 1;
       }
+      if (!maxSequential || sequential > maxSequential) {
+        maxSequential = sequential;
+      }
       value = die;
     });
-    if (sequential >= 4) {
+    if (maxSequential >= 4) {
       return true;
     }
     return false;

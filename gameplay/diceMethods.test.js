@@ -84,3 +84,9 @@ test('doesn\'t yield small straight for 1, 2, 3, 5, 6', () => {
   let result = play.getAllScores(hand);
   expect(result['smallStraight']).toBeLessThan(30);
 });
+
+test('allows small straight for 1, 2, 3, 4, 6', () => {
+  let hand = [1, 2, 3, 4, 6];
+  let result = play.getAllScores(hand);
+  expect(result['smallStraight']).toBe(30);
+});
