@@ -12,9 +12,9 @@ const prettyNames = {
   'fullHouse': 'Full House',
   'smallStraight': 'Small Straight',
   'largeStraight': 'Large Straight',
-  'yahtzee': 'Yahtzee',
+  'yahtzee': 'Yacht-C',
   'chance': 'Chance',
-  'bonusYahtzee': 'Bonus Yahtzee',
+  'bonusYahtzee': 'Bonus Yacht-C',
 };
 
 const ScoreCard = ({ players, float }) => {

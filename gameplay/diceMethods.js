@@ -38,7 +38,7 @@ const display = {
       fullHouse: 'Full House',
       smallStraight: 'Small Straight',
       largeStraight: 'Large Straight',
-      yahtzee: 'YAHTZEE',
+      yahtzee: 'Yacht-C',
       chance: 'Chance'
     };
 
