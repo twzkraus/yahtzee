@@ -34,7 +34,7 @@ const App = (props) => {
   const parsePossScores = (rawScores) => {
     let validScores = {};
     for (let key in rawScores) {
-      if (!players[currentPlayerIdx].scores[key]) {
+      if (players[currentPlayerIdx].scores[key] === null) {
         validScores[key] = rawScores[key];
       } else if (key === 'yahtzee' && players[currentPlayerIdx].scores[key]) {
         validScores['bonusYahtzee'] = 100;
@@ -153,7 +153,7 @@ const App = (props) => {
   const addZerosToScoreCard = () => {
     let scoresCopy = JSON.parse(JSON.stringify(possScores));
     for (let key in players[currentPlayerIdx].scores) {
-      if (!possScores[key] && !players[currentPlayerIdx].scores[key] && key !== 'bonusYahtzee') {
+      if (!possScores[key] && players[currentPlayerIdx].scores[key] === null && key !== 'bonusYahtzee') {
         scoresCopy[key] = 0;
       }
     }
