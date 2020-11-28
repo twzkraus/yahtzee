@@ -128,9 +128,9 @@ const App = (props) => {
 
   const getRollButton = () => {
     if (rollsMade < 3) {
-      return <button id="roll-button" onClick={makeNthRoll}>{`ROLL!`}</button>
+      return <button id="roll-button" onClick={makeNthRoll}>{`Roll!`}</button>
     } else {
-      return <button id="roll-button" disabled >{`No Rolls Left`}</button>
+      return <button id="roll-button-inactive">{`Roll!`}</button>
     }
   };
 

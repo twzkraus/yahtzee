@@ -79,9 +79,21 @@ header {
 #roll-button {
   width: 50%;
   font-size: 60px;
-  background-color: yellow;
   color: black;
   margin: auto;
+  border-radius: 10px;
+  font-family: 'Pacifico';
+  background-color: yellow;
+}
+
+#roll-button-inactive {
+  width: 50%;
+  font-size: 60px;
+  color: black;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Pacifico';
+  background-color: grey;
 }
 
 #messageBox {

@@ -70,12 +70,23 @@ header {
   justify-content: center;
 }
 
-#roll-button {
+@mixin roll-button-basics {
   width: 50%;
   font-size: 60px;
-  background-color: yellow;
   color: black;
   margin: auto;
+  border-radius: 10px;
+  font-family: 'Pacifico';
+}
+
+#roll-button {
+  @include roll-button-basics();
+  background-color: yellow;
+}
+
+#roll-button-inactive {
+  @include roll-button-basics();
+  background-color: grey;
 }
 
 #messageBox {
