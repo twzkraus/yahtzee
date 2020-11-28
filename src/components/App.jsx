@@ -17,12 +17,16 @@ const App = (props) => {
   const [numTurns, setNumTurns] = useState(0);
   const [winner, setWinner] = useState(null);
 
-  const initiateGameStart = (n, names) => {
-    let weakPlayers = [];
-    while (weakPlayers.length < n) {
-      weakPlayers.push(new User(names[i]));
-    }
-    setPlayers(weakPlayers);
+  const startNewGame = () => {
+    setDiceVals([1, 1, 1, 1, 1]);
+    setPossScores(null);
+    setSelected([false, false, false, false, false]);
+    setRollsMade(0);
+    setPlayers([new User('Player 1'), new User('Player 2')]);
+    setCurrentPlayerIdx(0);
+    setAlertMsg(null);
+    setNumTurns(0);
+    setWinner(null);
   };
 
   const makeNthRoll = () => {
@@ -96,7 +100,6 @@ const App = (props) => {
     let playerWithMax = null;
     players.forEach(player => {
       if (player.scores.bonusYahtzee === null) {
-        // NOTE: This is not working at the moment. Bonus Yahtzee shows up as blank.
         player.addScore({ 'bonusYahtzee': 0});
       }
       let thisPlayersScore = player.getTotalScore();
@@ -189,8 +192,7 @@ const App = (props) => {
           <p>
             {`Game Over! The winner is ${winner.name}`}
           </p>
-          {/* Note: button does not do anything currently  */}
-          <button>Play Again</button>
+          <button onClick={startNewGame}>Play Again</button>
         </> :
         <>
           <p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p>
