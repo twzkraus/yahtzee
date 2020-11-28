@@ -63,9 +63,17 @@ header {
   margin-top: 10px;
 }
 
+#buttonBox {
+  display: flex;
+  width: 200%;
+  align-items: center;
+  justify-content: center;
+}
+
 #roll-button {
-  width: 100%;
+  width: 50%;
   font-size: 60px;
   background-color: yellow;
   color: black;
+  margin: auto;
 }
