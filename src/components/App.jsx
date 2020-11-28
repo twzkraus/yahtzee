@@ -116,13 +116,14 @@ const App = (props) => {
       setSelected([false, false, false, false, false]);
       setPossScores(null);
       setDiceVals([1, 1, 1, 1, 1]);
-      setNumTurns(numTurns + 1);
       changePlayer();
     }
   };
 
   const changePlayer = () => {
-    setCurrentPlayerIdx((currentPlayerIdx + 1) % players.length );
+    let newNumTurns = numTurns + 1;
+    setNumTurns(newNumTurns);
+    setCurrentPlayerIdx(newNumTurns % players.length);
   };
 
   const getRollButton = () => {
@@ -188,6 +189,7 @@ const App = (props) => {
           <p>
             {`Game Over! The winner is ${winner.name}`}
           </p>
+          {/* Note: button does not do anything currently  */}
           <button>Play Again</button>
         </> :
         <>
