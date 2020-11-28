@@ -98,18 +98,10 @@ const App = (props) => {
   }
 
   const getRollButton = () => {
-    let nth;
-    if (rollsMade === 0) {
-      nth = 'first';
-    } else if (rollsMade === 1) {
-      nth = '2nd';
-    } else if (rollsMade === 2) {
-      nth = 'last';
-    }
     if (rollsMade < 3) {
       return <button id="roll-button" onClick={makeNthRoll}>{`ROLL DICE`}</button>
     } else {
-      return <button disabled>{`No rolls left`}</button>
+      return <button id="roll-button" disabled >{`No Rolls Left`}</button>
     }
   };
 
@@ -162,7 +154,7 @@ const App = (props) => {
 
   return (
     <div className="mainContent">
-      <div id="message-box">{`Now Playing: ${players[currentPlayerIdx].name}`}</div>
+      <div id="message-box"><p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p><p>{`Rolls made: ${rollsMade}`}</p></div>
       <div className="diceBox">
         {diceVals.map((die, i) => <Die val={diceVals[i]} position={i} selectable={rollsMade > 0} setSelected={handleSelect} selected={selected[i]}/>)}
       </div>
