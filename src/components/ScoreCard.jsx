@@ -17,7 +17,7 @@ const prettyNames = {
   'bonusYahtzee': 'Bonus Yacht-C',
 };
 
-const ScoreCard = ({ players, float }) => {
+const ScoreCard = ({ players, float, currentPlayerIdx, possScores }) => {
   const getScoreArray = () => {
     let result = [];
     for (let key in players[0].scores) {
@@ -49,7 +49,11 @@ const ScoreCard = ({ players, float }) => {
     return (
       <tr>
         <td>{prettyNames[arrayEl[0]]}</td>
-        {arrayEl.slice(1).map(el => <td className='td-center'>{el}</td>)}
+        {arrayEl.slice(1).map((el, idx) =>
+          idx === currentPlayerIdx && possScores && possScores[arrayEl[0]] ?
+          <td className='td-center'><button className="score-option">{possScores[arrayEl[0]]}</button></td>:
+          <td className='td-center'>{el}</td>
+        )}
       </tr>
     )
   };

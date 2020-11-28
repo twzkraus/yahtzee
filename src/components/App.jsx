@@ -210,7 +210,7 @@ const App = (props) => {
         <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero} rollsMade={rollsMade}/>
       </div>
       {alertMsg ? <div>{alertMsg}</div> : ''}
-      <ScoreCard players={players} float={!!possScores}/>
+      <ScoreCard players={players} float={!!possScores} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleFormSubmit}/>
     </div>
   )
 };
