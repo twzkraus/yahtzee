@@ -77,7 +77,7 @@ User.prototype.changeName = function(value) {
 };
 
 User.prototype.addToSection = function(key, score) {
-  this.scores[key] = score;
+  this.scores[key] += score;
   if (categories[key] === 'upper') {
     this.upperScore += score;
     if (this.upperScore >= 63) {
