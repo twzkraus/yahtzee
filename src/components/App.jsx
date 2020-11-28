@@ -14,6 +14,8 @@ const App = (props) => {
   const [players, setPlayers] = useState([new User('Player 1'), new User('Player 2')]);
   const [currentPlayerIdx, setCurrentPlayerIdx] = useState(0);
   const [alertMsg, setAlertMsg] = useState(null);
+  const [numTurns, setNumTurns] = useState(0);
+  const [winner, setWinner] = useState(null);
 
   const initiateGameStart = (n, names) => {
     let weakPlayers = [];
@@ -85,21 +87,43 @@ const App = (props) => {
     setSelected(selectedCopy);
   };
 
+  const gameIsOver = () => {
+    return numTurns === players.length * 13 - 1;
+  };
+
+  const handleGameOver = () => {
+    let max = 0;
+    let playerWithMax = null;
+    players.forEach(player => {
+      let thisPlayersScore = player.getTotalScore();
+      if (thisPlayersScore > max) {
+        max = thisPlayersScore;
+        playerWithMax = player;
+      }
+    });
+    setWinner(playerWithMax);
+  };
+
   const handleNewTurn = () => {
-    setRollsMade(0);
-    setSelected([false, false, false, false, false]);
-    setPossScores(null);
-    setDiceVals([1, 1, 1, 1, 1]);
-    changePlayer();
+    if (gameIsOver()) {
+      handleGameOver();
+    } else {
+      setRollsMade(0);
+      setSelected([false, false, false, false, false]);
+      setPossScores(null);
+      setDiceVals([1, 1, 1, 1, 1]);
+      setNumTurns(numTurns + 1);
+      changePlayer();
+    }
   };
 
   const changePlayer = () => {
     setCurrentPlayerIdx((currentPlayerIdx + 1) % players.length );
-  }
+  };
 
   const getRollButton = () => {
     if (rollsMade < 3) {
-      return <button id="roll-button" onClick={makeNthRoll}>{`ROLL DICE`}</button>
+      return <button id="roll-button" onClick={makeNthRoll}>{`ROLL!`}</button>
     } else {
       return <button id="roll-button" disabled >{`No Rolls Left`}</button>
     }
@@ -154,7 +178,20 @@ const App = (props) => {
 
   return (
     <div className="mainContent">
-      <div id="messageBox"><p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p><p>{`Rolls made: ${rollsMade}`}</p></div>
+      <div id="messageBox">
+        {gameIsOver() ?
+        <>
+          <p>
+            {`Game Over! The winner is ${winner.name}`}
+          </p>
+          <button>Play Again</button>
+        </> :
+        <>
+          <p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p>
+          <p>{`Rolls made: ${rollsMade}`}</p>
+        </>
+        }
+      </div>
       <div className="diceBox">
         {diceVals.map((die, i) => <Die val={diceVals[i]} position={i} selectable={rollsMade > 0} setSelected={handleSelect} selected={selected[i]}/>)}
       </div>
