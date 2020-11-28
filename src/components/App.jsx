@@ -95,6 +95,10 @@ const App = (props) => {
     let max = 0;
     let playerWithMax = null;
     players.forEach(player => {
+      if (player.bonusYahtzee === null) {
+        // NOTE: This is not working at the moment. Bonus Yahtzee shows up as blank.
+        player.addScore({ 'bonusYahtzee': 0});
+      }
       let thisPlayersScore = player.getTotalScore();
       if (thisPlayersScore > max) {
         max = thisPlayersScore;
@@ -179,7 +183,7 @@ const App = (props) => {
   return (
     <div className="mainContent">
       <div id="messageBox">
-        {gameIsOver() ?
+        {(gameIsOver() && !!winner) ?
         <>
           <p>
             {`Game Over! The winner is ${winner.name}`}
