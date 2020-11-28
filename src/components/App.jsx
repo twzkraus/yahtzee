@@ -95,7 +95,7 @@ const App = (props) => {
     let max = 0;
     let playerWithMax = null;
     players.forEach(player => {
-      if (player.bonusYahtzee === null) {
+      if (player.scores.bonusYahtzee === null) {
         // NOTE: This is not working at the moment. Bonus Yahtzee shows up as blank.
         player.addScore({ 'bonusYahtzee': 0});
       }
