@@ -8,25 +8,26 @@
 
 .diceLoc {
   border-radius: 10%;
-  width: 6em;
-  height: 6em;
+  width: 12em;
+  height: 12em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dice {
   padding: 0.5em;
   background-color: white;
-  max-width: 80px;
   display: flex;
-  width: 75%;
-  height: 75%;
+  width: 80%;
+  height: 80%;
   border-radius: 10%;
-  margin: 0.3em;
 }
 
 .dot {
   display: block;
-  width: 1.4em;
-  height: 1.4em;
+  width: 2.7em;
+  height: 2.7em;
   border-radius: 50%;
   background-color:black;
 }

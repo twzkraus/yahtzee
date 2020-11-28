@@ -8,7 +8,6 @@ body {
 
 .mainContent {
   background-color: $bg-color;
-  margin: auto;
   width: 50%;
   height: 800px;
 }
@@ -18,7 +17,7 @@ header {
 }
 
 #logo {
-  font-size: 80px;
+  font-size: 100px;
   color: white;
   font-family: "PT Sans Narrow";
   font-style: italic;
@@ -35,6 +34,9 @@ header {
 .scoreboard {
   position: relative;
   top: 15%;
+  font-size: 35px;
+  table-layout: auto;
+  width: 150%;
 }
 
 .scoreboard, th, td {
@@ -57,6 +59,41 @@ header {
   font-weight: 600;
 }
 
+.td-empty {
+  background-color: lightgray;
+}
+
 #zero-button {
   margin-top: 10px;
+}
+
+#buttonBox {
+  display: flex;
+  width: 200%;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin roll-button-basics {
+  width: 50%;
+  font-size: 60px;
+  color: black;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Pacifico';
+}
+
+#roll-button {
+  @include roll-button-basics();
+  background-color: yellow;
+}
+
+#roll-button-inactive {
+  @include roll-button-basics();
+  background-color: grey;
+}
+
+#messageBox {
+  font-size: 35px;
+  width: 200%;
 }

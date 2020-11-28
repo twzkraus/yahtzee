@@ -6,7 +6,6 @@ body {
 
 .mainContent {
   background-color: maroon;
-  margin: auto;
   width: 50%;
   height: 800px;
 }
@@ -18,7 +17,7 @@ header {
 }
 
 #logo {
-  font-size: 80px;
+  font-size: 100px;
   color: white;
   font-family: "PT Sans Narrow";
   font-style: italic;
@@ -35,6 +34,9 @@ header {
 .scoreboard {
   position: relative;
   top: 15%;
+  font-size: 35px;
+  table-layout: auto;
+  width: 150%;
 }
 
 .scoreboard, th, td {
@@ -57,8 +59,50 @@ header {
   font-weight: 600;
 }
 
+.td-empty {
+  background-color: lightgray;
+}
+
 #zero-button {
   margin-top: 10px;
+}
+
+#buttonBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 200%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#roll-button {
+  width: 50%;
+  font-size: 60px;
+  color: black;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Pacifico';
+  background-color: yellow;
+}
+
+#roll-button-inactive {
+  width: 50%;
+  font-size: 60px;
+  color: black;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Pacifico';
+  background-color: grey;
+}
+
+#messageBox {
+  font-size: 35px;
+  width: 200%;
 }
 
 .diceBox {
@@ -73,27 +117,34 @@ header {
 
 .diceLoc {
   border-radius: 10%;
-  width: 6em;
-  height: 6em;
+  width: 12em;
+  height: 12em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .dice {
   padding: 0.5em;
   background-color: white;
-  max-width: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 75%;
-  height: 75%;
+  width: 80%;
+  height: 80%;
   border-radius: 10%;
-  margin: 0.3em;
 }
 
 .dot {
   display: block;
-  width: 1.4em;
-  height: 1.4em;
+  width: 2.7em;
+  height: 2.7em;
   border-radius: 50%;
   background-color: black;
 }

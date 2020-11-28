@@ -14,6 +14,8 @@ const App = (props) => {
   const [players, setPlayers] = useState([new User('Player 1'), new User('Player 2')]);
   const [currentPlayerIdx, setCurrentPlayerIdx] = useState(0);
   const [alertMsg, setAlertMsg] = useState(null);
+  const [numTurns, setNumTurns] = useState(0);
+  const [winner, setWinner] = useState(null);
 
   const initiateGameStart = (n, names) => {
     let weakPlayers = [];
@@ -34,7 +36,7 @@ const App = (props) => {
   const parsePossScores = (rawScores) => {
     let validScores = {};
     for (let key in rawScores) {
-      if (!players[currentPlayerIdx].scores[key]) {
+      if (players[currentPlayerIdx].scores[key] === null) {
         validScores[key] = rawScores[key];
       } else if (key === 'yahtzee' && players[currentPlayerIdx].scores[key]) {
         validScores['bonusYahtzee'] = 100;
@@ -85,31 +87,50 @@ const App = (props) => {
     setSelected(selectedCopy);
   };
 
+  const gameIsOver = () => {
+    return numTurns === players.length * 13 - 1;
+  };
+
+  const handleGameOver = () => {
+    let max = 0;
+    let playerWithMax = null;
+    players.forEach(player => {
+      if (player.bonusYahtzee === null) {
+        // NOTE: This is not working at the moment. Bonus Yahtzee shows up as blank.
+        player.addScore({ 'bonusYahtzee': 0});
+      }
+      let thisPlayersScore = player.getTotalScore();
+      if (thisPlayersScore > max) {
+        max = thisPlayersScore;
+        playerWithMax = player;
+      }
+    });
+    setWinner(playerWithMax);
+  };
+
   const handleNewTurn = () => {
-    setRollsMade(0);
-    setSelected([false, false, false, false, false]);
-    setPossScores(null);
-    setDiceVals([1, 1, 1, 1, 1]);
-    changePlayer();
+    if (gameIsOver()) {
+      handleGameOver();
+    } else {
+      setRollsMade(0);
+      setSelected([false, false, false, false, false]);
+      setPossScores(null);
+      setDiceVals([1, 1, 1, 1, 1]);
+      changePlayer();
+    }
   };
 
   const changePlayer = () => {
-    setCurrentPlayerIdx((currentPlayerIdx + 1) % players.length );
-  }
+    let newNumTurns = numTurns + 1;
+    setNumTurns(newNumTurns);
+    setCurrentPlayerIdx(newNumTurns % players.length);
+  };
 
   const getRollButton = () => {
-    let nth;
-    if (rollsMade === 0) {
-      nth = 'first';
-    } else if (rollsMade === 1) {
-      nth = '2nd';
-    } else if (rollsMade === 2) {
-      nth = 'last';
-    }
     if (rollsMade < 3) {
-      return <button onClick={makeNthRoll}>{`Make ${nth} roll`}</button>
+      return <button id="roll-button" onClick={makeNthRoll}>{`Roll!`}</button>
     } else {
-      return <button disabled>{`No rolls left`}</button>
+      return <button id="roll-button-inactive">{`Roll!`}</button>
     }
   };
 
@@ -153,7 +174,7 @@ const App = (props) => {
   const addZerosToScoreCard = () => {
     let scoresCopy = JSON.parse(JSON.stringify(possScores));
     for (let key in players[currentPlayerIdx].scores) {
-      if (!possScores[key] && !players[currentPlayerIdx].scores[key] && key !== 'bonusYahtzee') {
+      if (!possScores[key] && players[currentPlayerIdx].scores[key] === null && key !== 'bonusYahtzee') {
         scoresCopy[key] = 0;
       }
     }
@@ -162,7 +183,21 @@ const App = (props) => {
 
   return (
     <div className="mainContent">
-      <div id="message-box">{`Now Playing: ${players[currentPlayerIdx].name}`}</div>
+      <div id="messageBox">
+        {(gameIsOver() && !!winner) ?
+        <>
+          <p>
+            {`Game Over! The winner is ${winner.name}`}
+          </p>
+          {/* Note: button does not do anything currently  */}
+          <button>Play Again</button>
+        </> :
+        <>
+          <p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p>
+          <p>{`Rolls made: ${rollsMade}`}</p>
+        </>
+        }
+      </div>
       <div className="diceBox">
         {diceVals.map((die, i) => <Die val={diceVals[i]} position={i} selectable={rollsMade > 0} setSelected={handleSelect} selected={selected[i]}/>)}
       </div>
