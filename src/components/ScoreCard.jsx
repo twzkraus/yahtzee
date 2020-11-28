@@ -74,7 +74,7 @@ const ScoreCard = ({ players, float }) => {
       </tr>
       <tr>
         <td className='td-emphasis'>{'Lower Section'}</td>
-        {players.map(p => <td>{''}</td> )}
+        {players.map(p => <td className="td-empty">{''}</td> )}
       </tr>
     </>
   );

@@ -59,6 +59,10 @@ header {
   font-weight: 600;
 }
 
+.td-empty {
+  background-color: lightgray;
+}
+
 #zero-button {
   margin-top: 10px;
 }
