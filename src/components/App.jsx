@@ -107,7 +107,7 @@ const App = (props) => {
       nth = 'last';
     }
     if (rollsMade < 3) {
-      return <button onClick={makeNthRoll}>{`Make ${nth} roll`}</button>
+      return <button id="roll-button" onClick={makeNthRoll}>{`Make ${nth} roll`}</button>
     } else {
       return <button disabled>{`No rolls left`}</button>
     }
