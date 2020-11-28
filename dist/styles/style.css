@@ -84,6 +84,10 @@ header {
   margin: auto;
 }
 
+#messageBox {
+  font-size: 35px;
+}
+
 .diceBox {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;

@@ -154,7 +154,7 @@ const App = (props) => {
 
   return (
     <div className="mainContent">
-      <div id="message-box"><p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p><p>{`Rolls made: ${rollsMade}`}</p></div>
+      <div id="messageBox"><p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p><p>{`Rolls made: ${rollsMade}`}</p></div>
       <div className="diceBox">
         {diceVals.map((die, i) => <Die val={diceVals[i]} position={i} selectable={rollsMade > 0} setSelected={handleSelect} selected={selected[i]}/>)}
       </div>
