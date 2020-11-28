@@ -233,4 +233,11 @@ header {
   background-color: #a35e5e;
   cursor: pointer;
 }
+
+.score-option {
+  background-color: yellow;
+  color: red;
+  font-size: 35px;
+  border-radius: 5px;
+}
 /*# sourceMappingURL=style.css.map */
