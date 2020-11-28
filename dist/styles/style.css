@@ -102,6 +102,7 @@ header {
 
 #messageBox {
   font-size: 35px;
+  width: 200%;
 }
 
 .diceBox {
