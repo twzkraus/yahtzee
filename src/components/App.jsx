@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { display, play } from '../../gameplay/diceMethods.js';
 import Die from './Die.jsx';
-import ScoreForm from './ScoreForm.jsx';
 import ScoreCard from './ScoreCard.jsx';
 import User from '../../gameplay/userClass.js';
 
@@ -17,12 +16,16 @@ const App = (props) => {
   const [numTurns, setNumTurns] = useState(0);
   const [winner, setWinner] = useState(null);
 
-  const initiateGameStart = (n, names) => {
-    let weakPlayers = [];
-    while (weakPlayers.length < n) {
-      weakPlayers.push(new User(names[i]));
-    }
-    setPlayers(weakPlayers);
+  const startNewGame = () => {
+    setDiceVals([1, 1, 1, 1, 1]);
+    setPossScores(null);
+    setSelected([false, false, false, false, false]);
+    setRollsMade(0);
+    setPlayers([new User('Player 1'), new User('Player 2')]);
+    setCurrentPlayerIdx(0);
+    setAlertMsg(null);
+    setNumTurns(0);
+    setWinner(null);
   };
 
   const makeNthRoll = () => {
@@ -95,8 +98,7 @@ const App = (props) => {
     let max = 0;
     let playerWithMax = null;
     players.forEach(player => {
-      if (player.bonusYahtzee === null) {
-        // NOTE: This is not working at the moment. Bonus Yahtzee shows up as blank.
+      if (player.scores.bonusYahtzee === null) {
         player.addScore({ 'bonusYahtzee': 0});
       }
       let thisPlayersScore = player.getTotalScore();
@@ -134,32 +136,12 @@ const App = (props) => {
     }
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    let acceptedScore = parseCategoryAndScore(document.forms['scoreForm'].elements);
-    if (acceptedScore) {
-      addScore(acceptedScore);
-      handleNewTurn();
-    }
-  };
-
-  const alertUser = (msg) => {
-    setAlertMsg(msg);
-    setTimeout(turnAlertOff, 1500);
-  };
-
-  const turnAlertOff = () => {
-    setAlertMsg(null);
-  };
-
-  const parseCategoryAndScore = (form) => {
-    for (let i = 0; i < form.length; i++) {
-      if (form[i].checked) {
-        let scorePieces = form[i].value.split('--');
-        return { [scorePieces[0]]: parseInt(scorePieces[1]) }
-      }
-    }
-    alertUser('Please select a score option first');
+  const handleScoreClick = (e) => {
+    let [key, valString] = e.target.value.split('-');
+    let val = parseInt(valString);
+    let acceptedScore = { [key]: val };
+    addScore(acceptedScore);
+    handleNewTurn();
   };
 
   const addScore = (acceptedScore) => {
@@ -189,8 +171,7 @@ const App = (props) => {
           <p>
             {`Game Over! The winner is ${winner.name}`}
           </p>
-          {/* Note: button does not do anything currently  */}
-          <button>Play Again</button>
+          <button onClick={startNewGame}>Play Again</button>
         </> :
         <>
           <p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p>
@@ -204,11 +185,11 @@ const App = (props) => {
       <div id="buttonBox">
         {getRollButton()}
       </div>
-      <div className="scoreBox">
-        <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero} rollsMade={rollsMade}/>
-      </div>
       {alertMsg ? <div>{alertMsg}</div> : ''}
-      <ScoreCard players={players} float={!!possScores}/>
+      <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleScoreClick}/>
+      <>
+        {rollsMade > 0 ? <button id="zero-button" onClick={handleZero}>Take a Zero</button> : ''}
+      </>
     </div>
   )
 };

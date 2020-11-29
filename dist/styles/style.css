@@ -33,7 +33,7 @@ header {
 
 .scoreboard {
   position: relative;
-  top: 15%;
+  top: 5%;
   font-size: 35px;
   table-layout: auto;
   width: 150%;
@@ -44,10 +44,6 @@ header {
   color: black;
   border: 1px solid black;
   border-collapse: collapse;
-}
-
-.float-true {
-  top: 5%;
 }
 
 .td-center {
@@ -64,7 +60,7 @@ header {
 }
 
 #zero-button {
-  margin-top: 10px;
+  margin-top: 50px;
 }
 
 #buttonBox {
@@ -232,5 +228,13 @@ header {
 .clickableScore:hover {
   background-color: #a35e5e;
   cursor: pointer;
+}
+
+.score-option {
+  background-color: white;
+  color: gray;
+  font-size: 35px;
+  border-radius: 5px;
+  width: 75%;
 }
 /*# sourceMappingURL=style.css.map */
