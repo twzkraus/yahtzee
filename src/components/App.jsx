@@ -137,32 +137,12 @@ const App = (props) => {
     }
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    let acceptedScore = parseCategoryAndScore(document.forms['scoreForm'].elements);
-    if (acceptedScore) {
-      addScore(acceptedScore);
-      handleNewTurn();
-    }
-  };
-
-  const alertUser = (msg) => {
-    setAlertMsg(msg);
-    setTimeout(turnAlertOff, 1500);
-  };
-
-  const turnAlertOff = () => {
-    setAlertMsg(null);
-  };
-
-  const parseCategoryAndScore = (form) => {
-    for (let i = 0; i < form.length; i++) {
-      if (form[i].checked) {
-        let scorePieces = form[i].value.split('--');
-        return { [scorePieces[0]]: parseInt(scorePieces[1]) }
-      }
-    }
-    alertUser('Please select a score option first');
+  const handleScoreClick = (e) => {
+    let [key, valString] = e.target.value.split('-');
+    let val = parseInt(valString);
+    let acceptedScore = { [key]: val };
+    addScore(acceptedScore);
+    handleNewTurn();
   };
 
   const addScore = (acceptedScore) => {
@@ -210,7 +190,10 @@ const App = (props) => {
         <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero} rollsMade={rollsMade}/>
       </div> */}
       {alertMsg ? <div>{alertMsg}</div> : ''}
-      <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleFormSubmit}/>
+      <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleScoreClick}/>
+      <>
+        {rollsMade > 0 ? <button id="zero-button" onClick={handleZero}>Take a Zero</button> : ''}
+      </>
     </div>
   )
 };
