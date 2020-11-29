@@ -206,11 +206,11 @@ const App = (props) => {
       <div id="buttonBox">
         {getRollButton()}
       </div>
-      <div className="scoreBox">
+      {/* <div className="scoreBox">
         <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero} rollsMade={rollsMade}/>
-      </div>
+      </div> */}
       {alertMsg ? <div>{alertMsg}</div> : ''}
-      <ScoreCard players={players} float={!!possScores} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleFormSubmit}/>
+      <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleFormSubmit}/>
     </div>
   )
 };

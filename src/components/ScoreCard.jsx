@@ -17,7 +17,7 @@ const prettyNames = {
   'bonusYahtzee': 'Bonus Yacht-C',
 };
 
-const ScoreCard = ({ players, float, currentPlayerIdx, possScores }) => {
+const ScoreCard = ({ players, currentPlayerIdx, possScores }) => {
   const getScoreArray = () => {
     let result = [];
     for (let key in players[0].scores) {
@@ -110,7 +110,7 @@ const ScoreCard = ({ players, float, currentPlayerIdx, possScores }) => {
   }
 
   return (
-    <table className={`scoreboard float-${float}`}>
+    <table className={`scoreboard`}>
       <thead>
         {getHead()}
       </thead>
