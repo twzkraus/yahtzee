@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { display, play } from '../../gameplay/diceMethods.js';
 import Die from './Die.jsx';
-import ScoreForm from './ScoreForm.jsx';
 import ScoreCard from './ScoreCard.jsx';
 import User from '../../gameplay/userClass.js';
 
@@ -186,9 +185,6 @@ const App = (props) => {
       <div id="buttonBox">
         {getRollButton()}
       </div>
-      {/* <div className="scoreBox">
-        <ScoreForm scores={possScores} handleFormSubmit={handleFormSubmit} handleZero={handleZero} rollsMade={rollsMade}/>
-      </div> */}
       {alertMsg ? <div>{alertMsg}</div> : ''}
       <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleScoreClick}/>
       <>
