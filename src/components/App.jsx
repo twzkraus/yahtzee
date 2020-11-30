@@ -113,6 +113,7 @@ const App = (props) => {
   const handleNewTurn = () => {
     if (gameIsOver()) {
       handleGameOver();
+      setPossScores(null);
     } else {
       setRollsMade(0);
       setSelected([false, false, false, false, false]);
