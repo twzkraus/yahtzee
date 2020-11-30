@@ -132,7 +132,7 @@ const App = (props) => {
     if (rollsMade < 3) {
       return <button id="roll-button" onClick={makeNthRoll}>{`Roll!`}</button>
     } else {
-      return <button id="roll-button-inactive">{`Roll!`}</button>
+      return <button id="roll-button-inactive" onClick={handleZero}>{`Take a Zero`}</button>
     }
   };
 
@@ -184,12 +184,12 @@ const App = (props) => {
       </div>
       <div id="buttonBox">
         {getRollButton()}
+        {/* <>
+          {rollsMade > 0 ? <button id="zero-button" onClick={handleZero}>Take a Zero :(</button> : ''}
+        </> */}
       </div>
       {alertMsg ? <div>{alertMsg}</div> : ''}
       <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleScoreClick}/>
-      <>
-        {rollsMade > 0 ? <button id="zero-button" onClick={handleZero}>Take a Zero</button> : ''}
-      </>
     </div>
   )
 };

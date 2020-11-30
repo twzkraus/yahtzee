@@ -64,10 +64,6 @@ header {
   background-color: lightgray;
 }
 
-#zero-button {
-  margin-top: 50px;
-}
-
 #buttonBox {
   display: -webkit-box;
   display: -ms-flexbox;
