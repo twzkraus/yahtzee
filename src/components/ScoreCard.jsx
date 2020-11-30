@@ -51,8 +51,8 @@ const ScoreCard = ({ players, currentPlayerIdx, possScores, handleSelect }) => {
         <td>{prettyNames[arrayEl[0]]}</td>
         {arrayEl.slice(1).map((el, idx) =>
           idx === currentPlayerIdx && possScores && possScores[arrayEl[0]] !== undefined ?
-          <td className='td-center'><button className="score-option" value={`${arrayEl[0]}-${possScores[arrayEl[0]]}`} onClick={handleSelect}>{possScores[arrayEl[0]]}</button></td>:
-          <td className='td-center'>{el}</td>
+          <td className='td-center clickable'><button className="score-option" value={`${arrayEl[0]}-${possScores[arrayEl[0]]}`} onClick={handleSelect}>{possScores[arrayEl[0]]}</button></td>:
+          <td className='td-center clickable'>{el}</td>
         )}
       </tr>
     )

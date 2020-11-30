@@ -17,7 +17,8 @@ header {
 }
 
 #logo {
-  font-size: 100px;
+  font-size: 80px;
+  margin-top: -10px;
   color: white;
   font-family: "PT Sans Narrow";
   font-style: italic;
@@ -33,7 +34,7 @@ header {
 
 .scoreboard {
   position: relative;
-  top: 5%;
+  top: 1.5%;
   font-size: 35px;
   table-layout: auto;
   width: 150%;
@@ -48,7 +49,10 @@ header {
 
 .td-center {
   text-align: center;
-  height: 50px;
+}
+
+.clickable {
+  height: 60px;
 }
 
 .td-emphasis {
@@ -73,7 +77,7 @@ header {
 
 @mixin roll-button-basics {
   width: 50%;
-  font-size: 60px;
+  font-size: 50px;
   color: black;
   margin: auto;
   border-radius: 10px;
@@ -93,4 +97,7 @@ header {
 #messageBox {
   font-size: 35px;
   width: 200%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: -30px;
 }
