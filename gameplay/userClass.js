@@ -15,6 +15,15 @@ const categories = {
   'bonusYahtzee': 'lower',
 };
 
+const valsToCats = {
+  1: 'ones',
+  2: 'twos',
+  3: 'threes',
+  4: 'fours',
+  5: 'fives',
+  6: 'sixes'
+};
+
 var User = function(name) {
   this.name = name;
   this.scores = {
@@ -58,11 +67,11 @@ User.prototype.getTotalScore = function() {
   return this.getFullUpperScore() + this.getLowerScore();
 };
 
-User.prototype.addScore = function(scoreObj) {
+User.prototype.addScore = function(scoreObj, diceVals) {
   const key = Object.keys(scoreObj)[0];
   const score = scoreObj[key];
   if (key === 'bonusYahtzee') {
-    this.handleBonusYahtzee(key, score);
+    this.handleBonusYahtzee(key, score, diceVals);
     console.log(`Jackpot! An extra ${scoreObj[key]} points were added for ${key}!`);
   } else if (!this.scores[key]) {
     this.addToSection(key, score);
@@ -85,6 +94,17 @@ User.prototype.addToSection = function(key, score) {
     }
   } else if (categories[key] === 'lower') {
     this.lowerScore += score;
+  }
+};
+
+User.prototype.handleBonusYahtzee = function(key, score, vals) {
+  if (key === 'bonusYahtzee' && score === 100) {
+    this.addToSection(key, score);
+    let val = vals[0];
+    let cat = valsToCats[val];
+    if (this.scores[cat] === null) {
+      this.addToSection(cat, val * 5);
+    }
   }
 };
 

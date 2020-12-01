@@ -159,7 +159,7 @@ const App = (props) => {
   };
 
   const addScore = (acceptedScore) => {
-    players[currentPlayerIdx].addScore(acceptedScore);
+    players[currentPlayerIdx].addScore(acceptedScore, diceVals);
   };
 
   const handleZero = (event) => {
