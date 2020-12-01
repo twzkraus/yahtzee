@@ -59,14 +59,14 @@ User.prototype.getTotalScore = function() {
 };
 
 User.prototype.addScore = function(scoreObj) {
-  const key = Object.keys(scoreObj);
+  const key = Object.keys(scoreObj)[0];
   const score = scoreObj[key];
-  if (!this.scores[key]) {
+  if (key === 'bonusYahtzee') {
+    this.handleBonusYahtzee(key, score);
+    console.log(`Jackpot! An extra ${scoreObj[key]} points were added for ${key}!`);
+  } else if (!this.scores[key]) {
     this.addToSection(key, score);
     console.log(`score of ${this.scores[key]} for category ${key} has been added!`);
-  } else if (key[0] === 'bonusYahtzee') {
-    this.addToSection(key, score);
-    console.log(`Jackpot! An extra ${scoreObj[key]} points were added for ${key}!`);
   } else {
     console.log(`FAIL: score not added. The user already has a value for ${key}`);
   }
