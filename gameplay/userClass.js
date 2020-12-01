@@ -104,8 +104,18 @@ User.prototype.handleBonusYahtzee = function(key, score, vals) {
     let cat = valsToCats[val];
     if (this.scores[cat] === null) {
       this.addToSection(cat, val * 5);
+    } else {
+      this.handleYahtzeeAsJoker();
     }
   }
+};
+
+User.prototype.handleYahtzeeAsJoker = function() {
+  return {
+    'fullHouse': 25,
+    'smallStraight': 30,
+    'largeStraight': 40,
+  };
 };
 
 export default User;
