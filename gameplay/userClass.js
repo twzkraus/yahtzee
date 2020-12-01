@@ -71,7 +71,7 @@ User.prototype.addScore = function(scoreObj, diceVals) {
   const key = Object.keys(scoreObj)[0];
   const score = scoreObj[key];
   if (key === 'bonusYahtzee') {
-    this.handleBonusYahtzee(key, score, diceVals);
+    return this.handleBonusYahtzee(key, score, diceVals);
     console.log(`Jackpot! An extra ${scoreObj[key]} points were added for ${key}!`);
   } else if (!this.scores[key]) {
     this.addToSection(key, score);
@@ -105,7 +105,7 @@ User.prototype.handleBonusYahtzee = function(key, score, vals) {
     if (this.scores[cat] === null) {
       this.addToSection(cat, val * 5);
     } else {
-      this.handleYahtzeeAsJoker();
+      return this.handleYahtzeeAsJoker();
     }
   }
 };
