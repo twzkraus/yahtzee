@@ -3,6 +3,7 @@ import { display, play } from '../../gameplay/diceMethods.js';
 import Die from './Die.jsx';
 import ScoreCard from './ScoreCard.jsx';
 import User from '../../gameplay/userClass.js';
+import Confetti from 'react-confetti';
 
 const App = (props) => {
 
@@ -164,8 +165,13 @@ const App = (props) => {
     setPossScores(scoresCopy);
   };
 
+  const celebrate = () => (
+    <Confetti numberOfPieces={3000} recycle={false} gravity={0.35} confettiSource={{x: 0, y: 0, w: window.innerWidth, h: 200}}/>
+  );
+
   return (
     <div className="mainContent">
+      {possScores && (possScores['yahtzee'] || possScores['bonusYahtzee']) ? celebrate() : ''}
       <div id="messageBox">
         {(gameIsOver() && !!winner) ?
         <>
@@ -185,9 +191,6 @@ const App = (props) => {
       </div>
       <div id="buttonBox">
         {getRollButton()}
-        {/* <>
-          {rollsMade > 0 ? <button id="zero-button" onClick={handleZero}>Take a Zero :(</button> : ''}
-        </> */}
       </div>
       {alertMsg ? <div>{alertMsg}</div> : ''}
       <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleScoreClick}/>
