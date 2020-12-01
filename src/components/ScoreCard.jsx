@@ -17,10 +17,10 @@ const prettyNames = {
   'bonusYahtzee': 'Bonus Yacht-C',
 };
 
-const ScoreCard = ({ players, currentPlayerIdx, possScores, handleSelect }) => {
+const ScoreCard = ({ players, currentPlayerIdx, possScores, handleSelect, handleZero }) => {
   const getScoreArray = () => {
     let result = [];
-    for (let key in players[0].scores) {
+    for (let key in prettyNames) {
       if (key === '3ok') {
         result.push(['mid']);
       }
@@ -39,6 +39,17 @@ const ScoreCard = ({ players, currentPlayerIdx, possScores, handleSelect }) => {
   };
 
   let scoreArray = getScoreArray();
+
+  const hasZeroScores = () => {
+    for (let key in possScores) {
+      return false;
+    }
+    return true;
+  };
+
+  if (possScores && hasZeroScores()) {
+    handleZero();
+  }
 
   const getRow = (arrayEl) => {
     if (arrayEl[0] === 'mid') {

@@ -151,7 +151,9 @@ const App = (props) => {
   };
 
   const handleZero = (event) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     addZerosToScoreCard();
   };
 
@@ -193,7 +195,7 @@ const App = (props) => {
         {getRollButton()}
       </div>
       {alertMsg ? <div>{alertMsg}</div> : ''}
-      <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleScoreClick}/>
+      <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleScoreClick} handleZero={handleZero}/>
     </div>
   )
 };
