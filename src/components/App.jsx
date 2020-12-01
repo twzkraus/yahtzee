@@ -5,28 +5,40 @@ import ScoreCard from './ScoreCard.jsx';
 import User from '../../gameplay/userClass.js';
 import Confetti from 'react-confetti';
 
+const defaults = {
+  diceVals: [1, 1, 1, 1, 1],
+  possScores: null,
+  selected: [false, false, false, false, false],
+  rollsMade: 0,
+  players: [new User('Player 1'), new User('Player 2')],
+  currentPlayerIdx: 0,
+  alertMsg: null,
+  numTurns: 0,
+  winner: null,
+};
+
 const App = (props) => {
 
-  const [diceVals, setDiceVals] = useState([1, 1, 1, 1, 1]);
-  const [possScores, setPossScores] = useState(null);
-  const [selected, setSelected] = useState([false, false, false, false, false]);
-  const [rollsMade, setRollsMade] = useState(0);
-  const [players, setPlayers] = useState([new User('Player 1'), new User('Player 2')]);
-  const [currentPlayerIdx, setCurrentPlayerIdx] = useState(0);
-  const [alertMsg, setAlertMsg] = useState(null);
-  const [numTurns, setNumTurns] = useState(0);
-  const [winner, setWinner] = useState(null);
+  const [diceVals, setDiceVals] = useState(defaults.diceVals);
+  const [possScores, setPossScores] = useState(defaults.possScores);
+  const [selected, setSelected] = useState(defaults.selected);
+  const [rollsMade, setRollsMade] = useState(defaults.rollsMade);
+  const [players, setPlayers] = useState(defaults.players);
+  const [currentPlayerIdx, setCurrentPlayerIdx] = useState(defaults.currentPlayerIdx);
+  const [alertMsg, setAlertMsg] = useState(defaults.alertMsg);
+  const [numTurns, setNumTurns] = useState(defaults.numTurns);
+  const [winner, setWinner] = useState(defaults.winner);
 
   const startNewGame = () => {
-    setDiceVals([1, 1, 1, 1, 1]);
-    setPossScores(null);
-    setSelected([false, false, false, false, false]);
-    setRollsMade(0);
-    setPlayers([new User('Player 1'), new User('Player 2')]);
-    setCurrentPlayerIdx(0);
-    setAlertMsg(null);
-    setNumTurns(0);
-    setWinner(null);
+    setDiceVals(defaults.diceVals);
+    setPossScores(defaults.possScores);
+    setSelected(defaults.selected);
+    setRollsMade(defaults.rollsMade);
+    setPlayers(defaults.players);
+    setCurrentPlayerIdx(defaults.currentPlayerIdx);
+    setAlertMsg(defaults.alertMsg);
+    setNumTurns(defaults.numTurns);
+    setWinner(defaults.winner);
   };
 
   const makeNthRoll = () => {
