@@ -5,12 +5,20 @@ import ScoreCard from './ScoreCard.jsx';
 import User from '../../gameplay/userClass.js';
 import Confetti from 'react-confetti';
 
+const getNewPlayers = (n) => {
+  let result = [];
+  while (result.length < n) {
+    result.push(new User(`Player ${result.length + 1}`));
+  }
+  return result;
+};
+
 const defaults = {
   diceVals: [1, 1, 1, 1, 1],
   possScores: null,
   selected: [false, false, false, false, false],
   rollsMade: 0,
-  players: [new User('Player 1'), new User('Player 2')],
+  players: () => getNewPlayers(2),
   currentPlayerIdx: 0,
   alertMsg: null,
   numTurns: 0,
@@ -23,7 +31,7 @@ const App = (props) => {
   const [possScores, setPossScores] = useState(defaults.possScores);
   const [selected, setSelected] = useState(defaults.selected);
   const [rollsMade, setRollsMade] = useState(defaults.rollsMade);
-  const [players, setPlayers] = useState(defaults.players);
+  const [players, setPlayers] = useState(defaults.players());
   const [currentPlayerIdx, setCurrentPlayerIdx] = useState(defaults.currentPlayerIdx);
   const [alertMsg, setAlertMsg] = useState(defaults.alertMsg);
   const [numTurns, setNumTurns] = useState(defaults.numTurns);
@@ -34,7 +42,7 @@ const App = (props) => {
     setPossScores(defaults.possScores);
     setSelected(defaults.selected);
     setRollsMade(defaults.rollsMade);
-    setPlayers(defaults.players);
+    setPlayers(defaults.players());
     setCurrentPlayerIdx(defaults.currentPlayerIdx);
     setAlertMsg(defaults.alertMsg);
     setNumTurns(defaults.numTurns);
@@ -122,6 +130,7 @@ const App = (props) => {
     });
     setPossScores(null);
     setWinner(playerWithMax);
+    alert(`${playerWithMax.name} is the winner!`);
   };
 
   const handleNewTurn = () => {
@@ -133,6 +142,7 @@ const App = (props) => {
       setPossScores(null);
       setDiceVals([1, 1, 1, 1, 1]);
       changePlayer();
+      setAlertMsg(null);
     }
   };
 
@@ -154,12 +164,27 @@ const App = (props) => {
     let [key, valString] = e.target.value.split('-');
     let val = parseInt(valString);
     let acceptedScore = { [key]: val };
-    addScore(acceptedScore);
-    handleNewTurn();
+    let bonusCategories = addScore(acceptedScore);
+    if (!bonusCategories) {
+      handleNewTurn();
+    } else {
+      handleYahtzeeJoker(bonusCategories);
+    }
   };
 
   const addScore = (acceptedScore) => {
-    players[currentPlayerIdx].addScore(acceptedScore, diceVals);
+    return players[currentPlayerIdx].addScore(acceptedScore, diceVals);
+  };
+
+  const handleYahtzeeJoker = (bonusCategories) => {
+    let scores = play.getAndDisplayScores(diceVals);
+    for (let key in bonusCategories) {
+      scores[key] = bonusCategories[key];
+    }
+    delete scores.yahtzee;
+    delete scores.bonusYahtzee;
+    parsePossScores(scores);
+    setAlertMsg('MEGA BONUS! Please select your bonus score');
   };
 
   const handleZero = (event) => {
@@ -192,7 +217,7 @@ const App = (props) => {
           <p>
             {`Game Over! The winner is ${winner.name}`}
           </p>
-          <button onClick={startNewGame}>Play Again</button>
+          <button id="play-again-button"onClick={startNewGame}>Play Again</button>
         </> :
         <>
           <p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p>
@@ -206,7 +231,9 @@ const App = (props) => {
       <div id="buttonBox">
         {getRollButton()}
       </div>
-      {alertMsg ? <div>{alertMsg}</div> : ''}
+      <div id="alertBox">
+        {alertMsg ? <div>{alertMsg}</div> : ''}
+      </div>
       <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleScoreClick} handleZero={handleZero}/>
     </div>
   )
