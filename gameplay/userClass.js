@@ -70,7 +70,7 @@ User.prototype.getTotalScore = function() {
 User.prototype.addScore = function(scoreObj, diceVals) {
   const key = Object.keys(scoreObj)[0];
   const score = scoreObj[key];
-  if (key === 'bonusYahtzee') {
+  if (key === 'bonusYahtzee' && score === 100) {
     return this.handleBonusYahtzee(key, score, diceVals);
     console.log(`Jackpot! An extra ${scoreObj[key]} points were added for ${key}!`);
   } else if (!this.scores[key]) {
