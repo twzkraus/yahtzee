@@ -112,7 +112,7 @@ const App = (props) => {
   };
 
   const gameIsOver = () => {
-    return numTurns === players.length * 13 - 1;
+    return numTurns >= players.length * 13 - 1;
   };
 
   const handleGameOver = () => {
