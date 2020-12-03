@@ -5,7 +5,7 @@ const Die = ({val, position, setSelected, selected, selectable}) => {
 
   const getSelected = () => (
     <div className={`diceLoc diceLoc${position} selected`}>
-      <div className={`dice face${val}`} onClick={() => setSelected(position)}>
+      <div className={`dice face${val}`} onClick={selectable ? () => setSelected(position) : console.log('cant de-select this')}>
         <Dots val={val} />
       </div>
     </div>
