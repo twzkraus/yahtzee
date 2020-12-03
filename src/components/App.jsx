@@ -135,6 +135,7 @@ const App = (props) => {
 
   const handleNewTurn = () => {
     if (gameIsOver()) {
+      changePlayer();
       handleGameOver();
     } else {
       setRollsMade(0);
@@ -227,7 +228,7 @@ const App = (props) => {
         }
       </div>
       <div className="diceBox">
-        {diceVals.map((die, i) => <Die val={diceVals[i]} position={i} selectable={rollsMade > 0} setSelected={handleSelect} selected={selected[i]}/>)}
+        {diceVals.map((die, i) => <Die val={diceVals[i]} position={i} selectable={rollsMade > 0 && numTurns < players.length * 13} setSelected={handleSelect} selected={selected[i]}/>)}
       </div>
       <div id="buttonBox">
         {getRollButton()}
