@@ -156,7 +156,13 @@ header {
   margin-left: 10%;
   align-items: center;
   justify-content: center;
-  background-color: rgb(185, 101, 101);
+  background-color: $bg-color;
   position: fixed;
   z-index: 1;
+}
+
+@media only screen and (min-width: 1200px) {
+  body {
+    background-color: purple;
+  }
 }

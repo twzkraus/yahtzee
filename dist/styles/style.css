@@ -164,6 +164,8 @@ header {
   .scoreboard .score-option {
     font-size: 30px;
     width: 50%;
+  }
+
 #portal-node {
   font-size: 30px;
   width: 80%;
@@ -177,7 +179,7 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #b96565;
+  background-color: maroon;
   position: fixed;
   z-index: 1;
 }
