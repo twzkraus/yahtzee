@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { display, play } from '../../gameplay/diceMethods.js';
 import Die from './Die.jsx';
 import ScoreCard from './ScoreCard.jsx';
 import User from '../../gameplay/userClass.js';
+import Popup from './Popup.jsx';
 import Confetti from 'react-confetti';
 
 const getNewPlayers = (n) => {
@@ -221,6 +223,7 @@ const App = (props) => {
         <div id="messageBox">
           {(gameIsOver() && !!winner) ?
           <>
+            {ReactDOM.createPortal(<Popup message={`Game Over! The winner is ${winner.name}`}/>, document.getElementById('portal-node'))}
             <p>
               {`Game Over! The winner is ${winner.name}`}
             </p>
