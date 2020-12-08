@@ -6,8 +6,14 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  mode: 'production',
-  watch: false,
+  mode: 'development',
+  watch: true,
+  resolve: {
+    alias: {
+      react: "preact/compat",
+      "react-dom": "preact/compat"
+    }
+  },
   module: {
     rules: [
       {
@@ -16,7 +22,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react']
+            presets: ['@babel/preset-react'],
           }
         }
       }

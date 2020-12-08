@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useState } from 'preact/hooks';
 import { display, play } from '../../gameplay/diceMethods.js';
 import Die from './Die.jsx';
 import ScoreCard from './ScoreCard.jsx';
