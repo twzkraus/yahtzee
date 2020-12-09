@@ -7,7 +7,7 @@ import User from '../../gameplay/userClass.js';
 import Popup from './Popup.jsx';
 import Confetti from 'react-confetti';
 
-const getNewPlayers = (n) => {
+const getNewPlayers = (n = 2) => {
   let result = [];
   while (result.length < n) {
     result.push(new User(`Player ${result.length + 1}`));
@@ -20,7 +20,7 @@ const defaults = {
   possScores: null,
   selected: [false, false, false, false, false],
   rollsMade: 0,
-  players: () => getNewPlayers(2),
+  players: (n) => getNewPlayers(n),
   currentPlayerIdx: 0,
   alertMsg: null,
   numTurns: 0,
@@ -38,18 +38,24 @@ const App = (props) => {
   const [alertMsg, setAlertMsg] = useState(defaults.alertMsg);
   const [numTurns, setNumTurns] = useState(defaults.numTurns);
   const [winner, setWinner] = useState(defaults.winner);
+  const [uninitialized, setUninitialized] = useState(true);
 
-  const startNewGame = () => {
+  const startNewGame = (n) => {
     setDiceVals(defaults.diceVals);
     setPossScores(defaults.possScores);
     setSelected(defaults.selected);
     setRollsMade(defaults.rollsMade);
-    setPlayers(defaults.players());
+    setPlayers(defaults.players(n));
     setCurrentPlayerIdx(defaults.currentPlayerIdx);
     setAlertMsg(defaults.alertMsg);
     setNumTurns(defaults.numTurns);
     setWinner(defaults.winner);
+    setUninitialized(false);
   };
+
+  useEffect(() => {
+    startNewGame(2);
+  }, []);
 
   const makeNthRoll = () => {
     rollOnce();
@@ -214,12 +220,12 @@ const App = (props) => {
 
   return (
     <div className="mainContent">
-      {/* {ReactDOM.createPortal(<Popup message={`Game Over! The winner is ${'steve'}`}/>, document.getElementById('portal-node'))} */}
+      {uninitialized ? ReactDOM.createPortal(<Popup scenario={'start'}/>, document.getElementById('portal-node')) : ''}
       {possScores && (possScores['yahtzee'] || possScores['bonusYahtzee']) ? celebrate() : ''}
       <div id="messageBox">
         {(gameIsOver() && !!winner) ?
         <>
-          {ReactDOM.createPortal(<Popup message={`Game Over! The winner is ${winner.name}`}/>, document.getElementById('portal-node'))}
+          {ReactDOM.createPortal(<Popup scenario={'end'} winner={winner}/>, document.getElementById('portal-node'))}
           <p>
             {`Game Over! The winner is ${winner.name}`}
           </p>
