@@ -141,7 +141,7 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: maroon;
+  background-color: #b96565;
   position: fixed;
   z-index: 1;
 }
