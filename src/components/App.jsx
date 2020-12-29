@@ -130,8 +130,11 @@ const App = (props) => {
     });
     setPossScores(null);
     setWinner(playerWithMax);
-    alert(`${playerWithMax.name} is the winner!`);
   };
+
+  useEffect(() => {
+    winner ? alert(`${winner.name} is the winner!`) : '';
+  }, [winner]);
 
   const handleNewTurn = () => {
     if (gameIsOver()) {
