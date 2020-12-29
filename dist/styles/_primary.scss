@@ -14,11 +14,14 @@ body {
 
 header {
   align-items: left;
+  display: flex;
+  justify-content: space-between;
 }
 
 #logo {
   font-size: 80px;
   margin-top: -10px;
+  margin-bottom: 40px;
   color: white;
   font-family: "PT Sans Narrow";
   font-style: italic;
@@ -73,7 +76,7 @@ header {
 
 @mixin roll-button-basics {
   width: 50%;
-  font-size: 50px;
+  font-size: 48px;
   color: black;
   margin: auto;
   border-radius: 10px;
@@ -102,10 +105,10 @@ header {
 
 #messageBox {
   font-size: 35px;
-  width: 200%;
-  display: flex;
-  justify-content: space-around;
-  margin-top: -30px;
+  display: block;
+  p {
+    margin: 10px;
+  }
 }
 
 #alertBox {
