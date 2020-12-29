@@ -215,32 +215,38 @@ const App = (props) => {
   );
 
   return (
-    <div className="mainContent">
-      {possScores && (possScores['yahtzee'] || possScores['bonusYahtzee']) ? celebrate() : ''}
-      <div id="messageBox">
-        {(gameIsOver() && !!winner) ?
-        <>
-          <p>
-            {`Game Over! The winner is ${winner.name}`}
-          </p>
-        </> :
-        <>
-          <p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p>
-          <p>{`Rolls made: ${rollsMade}`}</p>
-        </>
-        }
+    <>
+      <header>
+        <div id="logo" onClick={startNewGame}>Yacht-C!</div>
+        <div id="messageBox">
+          {(gameIsOver() && !!winner) ?
+          <>
+            <p>
+              {`Game Over! The winner is ${winner.name}`}
+            </p>
+          </> :
+          <>
+            <p>{`Now Playing: ${players[currentPlayerIdx].name}`}</p>
+            <p>{`Rolls made: ${rollsMade}`}</p>
+          </>
+          }
+        </div>
+      </header>
+      <div className="mainContent">
+        {possScores && (possScores['yahtzee'] || possScores['bonusYahtzee']) ? celebrate() : ''}
+
+        <div className="diceBox">
+          {diceVals.map((die, i) => <Die val={diceVals[i]} position={i} selectable={rollsMade > 0 && numTurns < players.length * 13} setSelected={handleSelect} selected={selected[i]}/>)}
+        </div>
+        <div id="buttonBox">
+          {getRollButton()}
+        </div>
+        <div id="alertBox">
+          {alertMsg ? <div>{alertMsg}</div> : ''}
+        </div>
+        <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleScoreClick} handleZero={handleZero}/>
       </div>
-      <div className="diceBox">
-        {diceVals.map((die, i) => <Die val={diceVals[i]} position={i} selectable={rollsMade > 0 && numTurns < players.length * 13} setSelected={handleSelect} selected={selected[i]}/>)}
-      </div>
-      <div id="buttonBox">
-        {getRollButton()}
-      </div>
-      <div id="alertBox">
-        {alertMsg ? <div>{alertMsg}</div> : ''}
-      </div>
-      <ScoreCard players={players} currentPlayerIdx={currentPlayerIdx} possScores={possScores} handleSelect={handleScoreClick} handleZero={handleZero}/>
-    </div>
+    </>
   )
 };
 
