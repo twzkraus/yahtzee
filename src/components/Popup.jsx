@@ -10,19 +10,24 @@ const Popup = ({ scenario, winner, startNewGame }) => {
     } else if (direction ==='+') {
       setNumPlayers(numPlayers + 1);
     }
-  }
+  };
 
   const getStartingPopup = () => {return (
     <>
-      <h1>
-        {`Welcome Aboard! How many players are joining us?`}
-      </h1>
-      <br></br>
-      <h1><button onClick={() => changeNumPlayers('-')}>{'-'}</button>
-        {numPlayers}
-        <button onClick={() => changeNumPlayers('+')}>{'+'}</button>
+      <div className="subPopup">
+        <h1>
+          {`Welcome Aboard! How many players are joining us?`}
         </h1>
-        <button onClick={() => startNewGame(numPlayers)}>{'OK!'}</button>
+      </div>
+      <div className="subPopup">
+        <h1><button onClick={() => changeNumPlayers('-')}>{'-'}</button>
+          {numPlayers}
+          <button onClick={() => changeNumPlayers('+')}>{'+'}</button>
+          </h1>
+      </div>
+      <div className="subPopup">
+        <button onClick={() => startNewGame(numPlayers)}>{'Go!'}</button>
+      </div>
     </>
   )};
 
