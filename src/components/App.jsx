@@ -40,7 +40,7 @@ const App = (props) => {
   const [winner, setWinner] = useState(defaults.winner);
   const [uninitialized, setUninitialized] = useState(true);
 
-  const startNewGame = (n) => {
+  const startNewGame = (n, reset = false) => {
     setDiceVals(defaults.diceVals);
     setPossScores(defaults.possScores);
     setSelected(defaults.selected);
@@ -50,7 +50,7 @@ const App = (props) => {
     setAlertMsg(defaults.alertMsg);
     setNumTurns(defaults.numTurns);
     setWinner(defaults.winner);
-    setUninitialized(false);
+    setUninitialized(reset);
   };
 
   const makeNthRoll = () => {
@@ -221,7 +221,7 @@ const App = (props) => {
   return (
     <>
       <header>
-        <div id="logo" onClick={startNewGame}>Yacht-C!</div>
+        <div id="logo" onClick={() => startNewGame(2, true)}>Yacht-C!</div>
         {uninitialized ? ReactDOM.createPortal(<Popup scenario={'start'} startNewGame={startNewGame}/>, document.getElementById('portal-node')) : ''}
         <div id="messageBox">
           {(gameIsOver() && !!winner) ?
