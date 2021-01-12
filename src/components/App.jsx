@@ -53,10 +53,6 @@ const App = (props) => {
     setUninitialized(false);
   };
 
-  useEffect(() => {
-    startNewGame(2);
-  }, []);
-
   const makeNthRoll = () => {
     rollOnce();
   };
@@ -226,7 +222,7 @@ const App = (props) => {
     <>
       <header>
         <div id="logo" onClick={startNewGame}>Yacht-C!</div>
-        {uninitialized ? ReactDOM.createPortal(<Popup scenario={'start'}/>, document.getElementById('portal-node')) : ''}
+        {uninitialized ? ReactDOM.createPortal(<Popup scenario={'start'} startNewGame={startNewGame}/>, document.getElementById('portal-node')) : ''}
         <div id="messageBox">
           {(gameIsOver() && !!winner) ?
           <>
