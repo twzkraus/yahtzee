@@ -18,6 +18,16 @@ const Popup = ({ scenario, winner, startGameWithNames }) => {
     setPlayerNames(playerCopy);
   };
 
+  const submitNames = () => {
+    let names = playerNames;
+    for (let i = 0; i < numPlayers; i++) {
+      if (!names[i]) {
+        names[i] = `Player ${i + 1}`;
+      }
+    }
+    startGameWithNames(names);
+  };
+
   const getNumbersPopup = () => (
     <>
       <div className="subPopup">
@@ -53,7 +63,7 @@ const Popup = ({ scenario, winner, startGameWithNames }) => {
           {names.map((name, i) => <><p>{`Player ${i + 1}:\t`}<input onChange={(e) => handlePlayerNameChange(e, i)}></input></p></>)}
         </form>
         <div className="subPopup">
-          <button onClick={() => startGameWithNames(playerNames)}>{'Play!'}</button>
+          <button onClick={() => submitNames(playerNames)}>{'Play!'}</button>
         </div>
       </>
     )
