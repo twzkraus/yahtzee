@@ -158,10 +158,6 @@ const App = (props) => {
     setWinner(playerWithMax);
   };
 
-  useEffect(() => {
-    winner ? alert(`${winner.name} is the winner!`) : '';
-  }, [winner]);
-
   const handleNewTurn = () => {
     if (gameIsOver()) {
       changePlayer();
@@ -248,7 +244,7 @@ const App = (props) => {
         <div id="messageBox">
           {(gameIsOver() && !!winner) ?
           <>
-            {ReactDOM.createPortal(<Popup message={`Game Over! The winner is ${winner.name}`}/>, document.getElementById('portal-node'))}
+            {ReactDOM.createPortal(<Popup scenario={'end'} winner={winner}/>, document.getElementById('portal-node'))}
             <p>
               {`Game Over! The winner is ${winner.name}`}
             </p>
