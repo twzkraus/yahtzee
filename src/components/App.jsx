@@ -53,10 +53,6 @@ const App = (props) => {
     setUninitialized(false);
   };
 
-  useEffect(() => {
-    startNewGame(2);
-  }, []);
-
   const makeNthRoll = () => {
     rollOnce();
   };
