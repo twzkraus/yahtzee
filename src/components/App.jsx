@@ -15,6 +15,15 @@ const getNewPlayers = (n = 2) => {
   return result;
 };
 
+const getPlayersFromNames = (names) => {
+  debugger;
+  let result = [];
+  for (let i = 0; i < names.length; i++) {
+    result.push(new User(names[i]));
+  }
+  return result;
+};
+
 const defaults = {
   diceVals: [1, 1, 1, 1, 1],
   possScores: null,
@@ -51,6 +60,20 @@ const App = (props) => {
     setNumTurns(defaults.numTurns);
     setWinner(defaults.winner);
     setUninitialized(reset);
+  };
+
+  const startGameWithNames = (names, reset = false) => {
+    // works like startNewGame, BUT we've been provided player names. Handle appropriately.
+    setDiceVals(defaults.diceVals);
+    setPossScores(defaults.possScores);
+    setSelected(defaults.selected);
+    setRollsMade(defaults.rollsMade);
+    setCurrentPlayerIdx(defaults.currentPlayerIdx);
+    setAlertMsg(defaults.alertMsg);
+    setNumTurns(defaults.numTurns);
+    setWinner(defaults.winner);
+    setUninitialized(reset);
+    setPlayers(getPlayersFromNames(names));
   };
 
   const makeNthRoll = () => {
@@ -222,7 +245,7 @@ const App = (props) => {
     <>
       <header>
         <div id="logo" onClick={() => startNewGame(2, true)}>Yacht-C!</div>
-        {uninitialized ? ReactDOM.createPortal(<Popup scenario={'start'} startNewGame={startNewGame}/>, document.getElementById('portal-node')) : ''}
+        {uninitialized ? ReactDOM.createPortal(<Popup scenario={'start'} startGameWithNames={startGameWithNames}/>, document.getElementById('portal-node')) : ''}
         <div id="messageBox">
           {(gameIsOver() && !!winner) ?
           <>
