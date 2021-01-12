@@ -5,10 +5,8 @@ const Popup = ({ scenario, winner, startNewGame }) => {
   const [numPlayers, setNumPlayers] = useState(2);
 
   const changeNumPlayers = (direction) => {
-    if (direction === '-' && numPlayers > 1) {
-      setNumPlayers(numPlayers - 1);
-    } else if (direction ==='+') {
-      setNumPlayers(numPlayers + 1);
+    if (direction + numPlayers) {
+      setNumPlayers(direction + numPlayers);
     }
   };
 
@@ -20,9 +18,9 @@ const Popup = ({ scenario, winner, startNewGame }) => {
         </h1>
       </div>
       <div className="subPopup">
-        <h1><button onClick={() => changeNumPlayers('-')}>{'-'}</button>
+        <h1><button onClick={() => changeNumPlayers(-1)}>{'-'}</button>
           {numPlayers}
-          <button onClick={() => changeNumPlayers('+')}>{'+'}</button>
+          <button onClick={() => changeNumPlayers(1)}>{'+'}</button>
           </h1>
       </div>
       <div className="subPopup">
