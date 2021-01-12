@@ -151,12 +151,6 @@ header {
   z-index: 1;
 }
 
-@media only screen and (min-width: 1200px) {
-  body {
-    background-color: purple;
-  }
-}
-
 .diceBox {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
