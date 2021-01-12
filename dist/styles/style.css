@@ -152,7 +152,7 @@ header {
 }
 
 #portal-node .subPopup {
-  margin: 20px;
+  margin: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -162,6 +162,24 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+#portal-node .subPopup h1 {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+#portal-node .subPopupBlock {
+  margin: 30px;
+  display: block;
+  font-size: 30px;
+}
+
+#portal-node .subPopupBlock input {
+  height: 30px;
 }
 
 #portal-node button {
