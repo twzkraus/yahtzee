@@ -16,7 +16,6 @@ const getNewPlayers = (n = 2) => {
 };
 
 const getPlayersFromNames = (names) => {
-  debugger;
   let result = [];
   for (let i = 0; i < names.length; i++) {
     result.push(new User(names[i]));
