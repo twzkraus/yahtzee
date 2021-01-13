@@ -43,7 +43,7 @@ header {
   position: relative;
   top: 1.5%;
   font-size: 35px;
-  table-layout: auto;
+  table-layout: fixed;
   width: 200%;
 }
 
@@ -52,6 +52,11 @@ header {
   color: black;
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.player-score {
+  min-width: 100px;
+  max-width: 400px;
 }
 
 .td-center {
@@ -69,6 +74,10 @@ header {
 
 .td-empty {
   background-color: lightgray;
+}
+
+.td-label {
+  width: 375px;
 }
 
 #buttonBox {
@@ -212,7 +221,7 @@ header {
 }
 
 #portal-node .subPopupBlock input {
-  height: 30px;
+  font-size: 40px;
 }
 
 #portal-node button {
@@ -360,6 +369,6 @@ header {
   color: gray;
   font-size: 35px;
   border-radius: 5px;
-  width: 75%;
+  width: 125px;
 }
 /*# sourceMappingURL=style.css.map */
