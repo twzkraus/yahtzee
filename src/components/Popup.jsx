@@ -4,7 +4,7 @@ const Popup = ({ scenario, winner, startGameWithNames }) => {
 
   const [numPlayers, setNumPlayers] = useState(2);
   const [numChosen, setNumChosen] = useState(false);
-  const [playerNames, setPlayerNames] = useState(['Player 1', 'Player 2']);
+  const [playerNames, setPlayerNames] = useState([]);
 
   const changeNumPlayers = (direction) => {
     if (direction + numPlayers) {
