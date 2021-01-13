@@ -32,7 +32,7 @@ const Popup = ({ scenario, winner, startGameWithNames }) => {
     <>
       <div className="subPopup">
         <h1>
-          {`Welcome Aboard! How many players are joining us?`}
+          {`Welcome!`}<br></br>{`How many players are joining us?`}
         </h1>
       </div>
       <div className="subPopup">
@@ -56,11 +56,11 @@ const Popup = ({ scenario, winner, startGameWithNames }) => {
       <>
         <div className="subPopup">
           <h1>
-            {`What shall we call you?`}
+            {`What are your names?`}
           </h1>
         </div>
         <form className="subPopupBlock">
-          {names.map((name, i) => <><p>{`Player ${i + 1}:\t`}<input onChange={(e) => handlePlayerNameChange(e, i)}></input></p></>)}
+          {names.map((name, i) => <><p><input placeholder={`Player ${i + 1}`} onChange={(e) => handlePlayerNameChange(e, i)}></input></p></>)}
         </form>
         <div className="subPopup">
           <button onClick={() => submitNames(playerNames)}>{'Play!'}</button>
