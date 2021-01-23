@@ -170,7 +170,7 @@ const scoreHelpers = {
 }
 
 scoreHelpers.includesFullHouse = (hand) => {
-  return scoreHelpers.includes3OfAKind(hand) && hand[0] === hand[1] && hand[3] === hand[4];
+  return scoreHelpers.includes3OfAKind(hand) && (hand[0] === hand[1] && hand[3] === hand[4]) && hand[0] !== hand[4];
 };
 
 module.exports = { display, play };
