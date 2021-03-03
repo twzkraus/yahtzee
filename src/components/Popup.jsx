@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Popup = ({ scenario, winner, startGameWithNames }) => {
+const Popup = ({ scenario, winner, startGameWithNames, startNewGame }) => {
 
   const [numPlayers, setNumPlayers] = useState(2);
   const [numChosen, setNumChosen] = useState(false);
@@ -60,7 +60,7 @@ const Popup = ({ scenario, winner, startGameWithNames }) => {
           </h1>
         </div>
         <form className="subPopupBlock">
-          {names.map((name, i) => <><p><input placeholder={`Player ${i + 1}`} onChange={(e) => handlePlayerNameChange(e, i)}></input></p></>)}
+          {names.map((name, i) => <p key={`player-${i + 1}`}><input placeholder={`Player ${i + 1}`} onChange={(e) => handlePlayerNameChange(e, i)}></input></p>)}
         </form>
         <div className="subPopup">
           <button onClick={() => submitNames(playerNames)}>{'Play!'}</button>
@@ -74,6 +74,7 @@ const Popup = ({ scenario, winner, startGameWithNames }) => {
       <h1>
         {`Game over! The winner is ${winner.name}`}
       </h1>
+      <button id="roll-button" onClick={() => startNewGame(2, true)}>{`Play Again!`}</button>
     </>
   );
 
