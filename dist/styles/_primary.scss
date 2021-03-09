@@ -115,3 +115,38 @@ header {
   font-size: 35px;
   width: 200%;
 }
+
+@media screen and (min-width: 1050px) {
+  // landscape iPad formatting to center dice
+  .diceBox {
+    margin-left: 12.5%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  // desktop browser formatting
+  body {
+    display: flex;
+    justify-content: center;
+  }
+  #app {
+    margin-top: 25px;
+    max-width: 1000px;
+  }
+  .diceBox {
+    margin-left: 0%;
+  }
+  .scoreboard {
+    font-size: 30px;
+  }
+  .clickable {
+    height: 40px;
+  }
+  .scoreboard {
+    .score-option {
+      font-size: 30px;
+      width: 50%;
+    }
+  }
+
+}
