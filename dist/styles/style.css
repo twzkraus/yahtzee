@@ -133,6 +133,40 @@ header {
   width: 200%;
 }
 
+@media screen and (min-width: 1050px) {
+  .diceBox {
+    margin-left: 12.5%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #app {
+    margin-top: 25px;
+    max-width: 1000px;
+  }
+  .diceBox {
+    margin-left: 0%;
+  }
+  .scoreboard {
+    font-size: 30px;
+  }
+  .clickable {
+    height: 40px;
+  }
+  .scoreboard .score-option {
+    font-size: 30px;
+    width: 50%;
+  }
+}
+
 .diceBox {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
