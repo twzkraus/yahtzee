@@ -142,6 +142,76 @@ header {
   width: 200%;
 }
 
+#portal-node {
+  padding-left: 10px;
+  font-size: 30px;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: -50%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: maroon;
+  position: fixed;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+#portal-node .subPopup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#portal-node .subPopup h1 {
+  text-align: center;
+}
+
+#portal-node .subPopupBlock {
+  margin: 30px;
+  display: block;
+  font-size: 30px;
+}
+
+#portal-node .subPopupBlock input {
+  font-size: 40px;
+}
+
+#portal-node button {
+  min-width: 100px;
+  margin: 20px;
+  font-size: 50px;
+  background-color: maroon;
+  color: yellow;
+  border: none;
+  border-radius: 10px;
+}
+
+#portal-node #play-again-button {
+  width: 50%;
+  font-size: 48px;
+  color: black;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Pacifico';
+  font-size: 48px;
+  background-color: yellow;
+  border-radius: 10px;
+  height: 100px;
+  width: 500px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 @media screen and (min-width: 1050px) {
   .diceBox {
     margin-left: 12.5%;
@@ -174,65 +244,12 @@ header {
     font-size: 30px;
     width: 50%;
   }
-}
-
-#portal-node {
-  font-size: 30px;
-  width: 80%;
-  display: block;
-  margin-left: 10%;
-  margin-top: -50%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-color: maroon;
-  position: fixed;
-  z-index: 1;
-  border-radius: 10px;
-}
-
-#portal-node .subPopup {
-  margin: 30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-#portal-node .subPopup h1 {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  -ms-grid-column-align: center;
-      justify-self: center;
-}
-
-#portal-node .subPopupBlock {
-  margin: 30px;
-  display: block;
-  font-size: 30px;
-}
-
-#portal-node .subPopupBlock input {
-  font-size: 40px;
-}
-
-#portal-node button {
-  min-width: 100px;
-  margin: 20px;
-  font-size: 50px;
-  background-color: maroon;
-  color: yellow;
-  border: none;
-  border-radius: 10px;
+  #portal-node {
+    margin-top: 250px;
+    margin-left: 0%;
+    max-width: 800px;
+    max-height: 650px;
+  }
 }
 
 .diceBox {
@@ -372,5 +389,4 @@ header {
   border-radius: 5px;
   width: 125px;
 }
-
 /*# sourceMappingURL=style.css.map */

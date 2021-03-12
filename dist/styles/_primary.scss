@@ -125,6 +125,55 @@ header {
   width: 200%;
 }
 
+#portal-node {
+  padding-left: 10px;
+  font-size: 30px;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: -50%;
+  align-items: center;
+  justify-content: center;
+  background-color: maroon;
+  position: fixed;
+  z-index: 1;
+  border-radius: 10px;
+  .subPopup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+      text-align: center;
+    }
+  }
+  .subPopupBlock {
+    margin: 30px;
+    display: block;
+    font-size: 30px;
+    input {
+      font-size: 40px;
+    }
+  }
+  button {
+    min-width: 100px;
+    margin: 20px;
+    font-size: 50px;
+    background-color: maroon;
+    color: yellow;
+    border: none;
+    border-radius: 10px;
+  }
+  #play-again-button {
+    @include roll-button-basics();
+    font-size: 48px;
+    background-color: yellow;
+    border-radius: 10px;
+    height: 100px;
+    width: 500px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+}
+
 @media screen and (min-width: 1050px) {
   // landscape iPad formatting to center dice
   .diceBox {
@@ -157,50 +206,10 @@ header {
       width: 50%;
     }
   }
-
-#portal-node {
-  font-size: 30px;
-  width: 80%;
-  display: block;
-  margin-left: 10%;
-  margin-top: -50%;
-  align-items: center;
-  justify-content: center;
-  background-color: maroon;
-  position: fixed;
-  z-index: 1;
-  border-radius: 10px;
-  .subPopup {
-    margin: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    h1 {
-      align-self: center;
-      justify-self: center;
-    }
-  }
-  .subPopupBlock {
-    margin: 30px;
-    display: block;
-    font-size: 30px;
-    input {
-      font-size: 40px;
-    }
-  }
-  button {
-    min-width: 100px;
-    margin: 20px;
-    font-size: 50px;
-    background-color: maroon;
-    color: yellow;
-    border: none;
-    border-radius: 10px;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  body {
-    background-color: purple;
+  #portal-node {
+    margin-top: 250px;
+    margin-left: 0%;
+    max-width: 800px;
+    max-height: 650px;
   }
 }
