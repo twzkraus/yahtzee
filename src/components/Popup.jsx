@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Popup = ({ scenario, winner, startGameWithNames, startNewGame }) => {
+const Popup = ({ scenario, winner, startGameWithNames, startNewGame, isOnePlayer }) => {
 
   const [numPlayers, setNumPlayers] = useState(2);
   const [numChosen, setNumChosen] = useState(false);
@@ -73,7 +73,7 @@ const Popup = ({ scenario, winner, startGameWithNames, startNewGame }) => {
     <>
       <div className="subPopup">
         <h1>
-          {`Game over! The winner is ${winner.name}`}
+          {`Game over! The winner is ${winner.name}${isOnePlayer ? ' (Obviously)' : ''}`}
         </h1>
       </div>
       <div className="subPopup">
