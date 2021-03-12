@@ -189,11 +189,14 @@ header {
 #portal-node button {
   min-width: 100px;
   margin: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
   font-size: 50px;
-  background-color: maroon;
-  color: yellow;
+  background-color: yellow;
+  color: black;
   border: none;
   border-radius: 10px;
+  text-align: center;
 }
 
 #portal-node #play-again-button {
