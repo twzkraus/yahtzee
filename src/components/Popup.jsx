@@ -71,9 +71,11 @@ const Popup = ({ scenario, winner, startGameWithNames, startNewGame }) => {
 
   const getEndingPopup = () => (
     <>
-      <h1>
-        {`Game over! The winner is ${winner.name}`}
-      </h1>
+      <div className="subPopup">
+        <h1>
+          {`Game over! The winner is ${winner.name}`}
+        </h1>
+      </div>
       <div className="subPopup">
         <button id="play-again-button" onClick={() => startNewGame(2, true)}>{`Play Again!`}</button>
       </div>
