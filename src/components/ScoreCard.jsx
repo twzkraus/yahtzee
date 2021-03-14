@@ -59,11 +59,11 @@ const ScoreCard = ({ players, currentPlayerIdx, possScores, handleSelect, handle
     }
     return (
       <tr>
-        <td>{prettyNames[arrayEl[0]]}</td>
+        <td className="td-label">{prettyNames[arrayEl[0]]}</td>
         {arrayEl.slice(1).map((el, idx) =>
           idx === currentPlayerIdx && possScores && possScores[arrayEl[0]] !== undefined ?
-          <td className='td-center clickable'><button className="score-option" value={`${arrayEl[0]}-${possScores[arrayEl[0]]}`} onClick={handleSelect}>{possScores[arrayEl[0]]}</button></td>:
-          <td className='td-center clickable'>{el}</td>
+          <td className='td-center player-score clickable'><button className="score-option" value={`${arrayEl[0]}-${possScores[arrayEl[0]]}`} onClick={handleSelect}>{possScores[arrayEl[0]]}</button></td>:
+          <td className='td-center player-score clickable'>{el}</td>
         )}
       </tr>
     )
@@ -73,23 +73,23 @@ const ScoreCard = ({ players, currentPlayerIdx, possScores, handleSelect, handle
       <>
         <tr>
           <td><b>{'Upper Section Total'}</b></td>
-          {players.map(player => <td className='td-center'>{player.getUpperScore()}</td>)}
+          {players.map(player => <td className='td-center player-score'>{player.getUpperScore()}</td>)}
         </tr>
         <tr>
         <td><b>{'Upper Section Bonus'}</b></td>
-        {players.map(player => <td className='td-center'>{player.hasBonus() ? 35 : 0}</td>)}
+        {players.map(player => <td className='td-center player-score'>{player.hasBonus() ? 35 : 0}</td>)}
       </tr>
       <tr>
         <td><b>{'Total With Bonus'}</b></td>
-        {players.map(player => <td className='td-center td-emphasis'>{player.getFullUpperScore()}</td>)}
+        {players.map(player => <td className='td-center td-emphasis player-score'>{player.getFullUpperScore()}</td>)}
       </tr>
       <tr>
         <td>{''}</td>
         {players.map(p => <td>{''}</td> )}
       </tr>
       <tr>
-        <td className='td-emphasis'>{'Lower Section'}</td>
-        {players.map(p => <td className="td-empty">{''}</td> )}
+        <td className='td-emphasis td-label'>{'Lower Section'}</td>
+        {players.map(p => <td className="td-empty player-score">{''}</td> )}
       </tr>
     </>
   );
@@ -98,15 +98,15 @@ const ScoreCard = ({ players, currentPlayerIdx, possScores, handleSelect, handle
     <>
       <tr>
         <td><b>{'Upper Section Total'}</b></td>
-        {players.map(player => <td className='td-center'>{player.getFullUpperScore()}</td>)}
+        {players.map(player => <td className='td-center player-score'>{player.getFullUpperScore()}</td>)}
       </tr>
       <tr>
         <td><b>{'Lower Section Total'}</b></td>
-        {players.map(player => <td className='td-center'>{player.getLowerScore()}</td>)}
+        {players.map(player => <td className='td-center player-score'>{player.getLowerScore()}</td>)}
       </tr>
       <tr>
         <td><b>{'Grand Total'}</b></td>
-        {players.map(player => <td className='td-center td-emphasis'>{player.getTotalScore()}</td>)}
+        {players.map(player => <td className='td-center td-emphasis player-score'>{player.getTotalScore()}</td>)}
       </tr>
     </>
   );
@@ -114,8 +114,8 @@ const ScoreCard = ({ players, currentPlayerIdx, possScores, handleSelect, handle
   const getHead = () => {
     return (
       <>
-        <th>{'Upper Section'}</th>
-        {players.map((player, i) => <th>{player.name}</th>)}
+        <th className="td-label">{'Upper Section'}</th>
+        {players.map((player, i) => <th className="player-score">{player.name}</th>)}
       </>
     );
   }

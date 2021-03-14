@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { display, play } from '../../gameplay/diceMethods.js';
 import Die from './Die.jsx';
 import ScoreCard from './ScoreCard.jsx';
 import User from '../../gameplay/userClass.js';
+import Popup from './Popup.jsx';
 import Confetti from 'react-confetti';
 
-const getNewPlayers = (n) => {
+const getNewPlayers = (n = 2) => {
   let result = [];
   while (result.length < n) {
     result.push(new User(`Player ${result.length + 1}`));
+  }
+  return result;
+};
+
+const getPlayersFromNames = (names) => {
+  let result = [];
+  for (let i = 0; i < names.length; i++) {
+    result.push(new User(names[i]));
   }
   return result;
 };
@@ -18,7 +28,7 @@ const defaults = {
   possScores: null,
   selected: [false, false, false, false, false],
   rollsMade: 0,
-  players: () => getNewPlayers(2),
+  players: (n) => getNewPlayers(n),
   currentPlayerIdx: 0,
   alertMsg: null,
   numTurns: 0,
@@ -36,17 +46,33 @@ const App = (props) => {
   const [alertMsg, setAlertMsg] = useState(defaults.alertMsg);
   const [numTurns, setNumTurns] = useState(defaults.numTurns);
   const [winner, setWinner] = useState(defaults.winner);
+  const [uninitialized, setUninitialized] = useState(true);
 
-  const startNewGame = () => {
+  const startNewGame = (n, reset = false) => {
     setDiceVals(defaults.diceVals);
     setPossScores(defaults.possScores);
     setSelected(defaults.selected);
     setRollsMade(defaults.rollsMade);
-    setPlayers(defaults.players());
+    setPlayers(defaults.players(n));
     setCurrentPlayerIdx(defaults.currentPlayerIdx);
     setAlertMsg(defaults.alertMsg);
     setNumTurns(defaults.numTurns);
     setWinner(defaults.winner);
+    setUninitialized(reset);
+  };
+
+  const startGameWithNames = (names, reset = false) => {
+    // works like startNewGame, BUT we've been provided player names. Handle appropriately.
+    setDiceVals(defaults.diceVals);
+    setPossScores(defaults.possScores);
+    setSelected(defaults.selected);
+    setRollsMade(defaults.rollsMade);
+    setCurrentPlayerIdx(defaults.currentPlayerIdx);
+    setAlertMsg(defaults.alertMsg);
+    setNumTurns(defaults.numTurns);
+    setWinner(defaults.winner);
+    setUninitialized(reset);
+    setPlayers(getPlayersFromNames(names));
   };
 
   const makeNthRoll = () => {
@@ -132,10 +158,6 @@ const App = (props) => {
     setWinner(playerWithMax);
   };
 
-  useEffect(() => {
-    winner ? alert(`${winner.name} is the winner!`) : '';
-  }, [winner]);
-
   const handleNewTurn = () => {
     if (gameIsOver()) {
       changePlayer();
@@ -217,10 +239,12 @@ const App = (props) => {
   return (
     <>
       <header>
-        <div id="logo" onClick={startNewGame}>Yacht-C!</div>
+        <div id="logo" onClick={() => startNewGame(2, true)}>Yacht-C!</div>
+        {uninitialized ? ReactDOM.createPortal(<Popup scenario={'start'} startGameWithNames={startGameWithNames}/>, document.getElementById('portal-node')) : ''}
         <div id="messageBox">
           {(gameIsOver() && !!winner) ?
           <>
+            {ReactDOM.createPortal(<Popup scenario={'end'} isOnePlayer={players.length === 1} winner={winner} startNewGame={startNewGame}/>, document.getElementById('portal-node'))}
             <p>
               {`Game Over! The winner is ${winner.name}`}
             </p>

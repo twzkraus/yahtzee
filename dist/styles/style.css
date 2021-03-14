@@ -43,7 +43,7 @@ header {
   position: relative;
   top: 1.5%;
   font-size: 35px;
-  table-layout: auto;
+  table-layout: fixed;
   width: 200%;
 }
 
@@ -52,6 +52,11 @@ header {
   color: black;
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.player-score {
+  min-width: 100px;
+  max-width: 400px;
 }
 
 .td-center {
@@ -69,6 +74,10 @@ header {
 
 .td-empty {
   background-color: lightgray;
+}
+
+.td-label {
+  width: 375px;
 }
 
 #buttonBox {
@@ -133,6 +142,79 @@ header {
   width: 200%;
 }
 
+#portal-node {
+  padding-left: 10px;
+  font-size: 30px;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: -50%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: maroon;
+  position: fixed;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+#portal-node .subPopup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#portal-node .subPopup h1 {
+  text-align: center;
+}
+
+#portal-node .subPopupBlock {
+  margin: 30px;
+  display: block;
+  font-size: 30px;
+}
+
+#portal-node .subPopupBlock input {
+  font-size: 40px;
+}
+
+#portal-node button {
+  min-width: 100px;
+  margin: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  font-size: 50px;
+  background-color: yellow;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#portal-node #play-again-button {
+  width: 50%;
+  font-size: 48px;
+  color: black;
+  margin: auto;
+  border-radius: 10px;
+  font-family: 'Pacifico';
+  font-size: 48px;
+  background-color: yellow;
+  border-radius: 10px;
+  height: 100px;
+  width: 500px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 @media screen and (min-width: 1050px) {
   .diceBox {
     margin-left: 12.5%;
@@ -164,6 +246,12 @@ header {
   .scoreboard .score-option {
     font-size: 30px;
     width: 50%;
+  }
+  #portal-node {
+    margin-top: 250px;
+    margin-left: 0%;
+    max-width: 800px;
+    max-height: 650px;
   }
 }
 
@@ -302,6 +390,6 @@ header {
   color: gray;
   font-size: 35px;
   border-radius: 5px;
-  width: 75%;
+  width: 125px;
 }
 /*# sourceMappingURL=style.css.map */

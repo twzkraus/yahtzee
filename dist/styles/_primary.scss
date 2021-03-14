@@ -39,7 +39,7 @@ header {
   position: relative;
   top: 1.5%;
   font-size: 35px;
-  table-layout: auto;
+  table-layout: fixed;
   width: 200%;
 }
 
@@ -48,6 +48,11 @@ header {
   color: black;
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.player-score {
+  min-width: 100px;
+  max-width: 400px;
 }
 
 .td-center {
@@ -65,6 +70,10 @@ header {
 
 .td-empty {
   background-color: lightgray;
+}
+
+.td-label {
+  width: 375px;
 }
 
 #buttonBox {
@@ -116,6 +125,58 @@ header {
   width: 200%;
 }
 
+#portal-node {
+  padding-left: 10px;
+  font-size: 30px;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: -50%;
+  align-items: center;
+  justify-content: center;
+  background-color: maroon;
+  position: fixed;
+  z-index: 1;
+  border-radius: 10px;
+  .subPopup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+      text-align: center;
+    }
+  }
+  .subPopupBlock {
+    margin: 30px;
+    display: block;
+    font-size: 30px;
+    input {
+      font-size: 40px;
+    }
+  }
+  button {
+    min-width: 100px;
+    margin: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: 50px;
+    background-color: yellow;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    text-align: center
+  }
+  #play-again-button {
+    @include roll-button-basics();
+    font-size: 48px;
+    background-color: yellow;
+    border-radius: 10px;
+    height: 100px;
+    width: 500px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+}
+
 @media screen and (min-width: 1050px) {
   // landscape iPad formatting to center dice
   .diceBox {
@@ -148,5 +209,10 @@ header {
       width: 50%;
     }
   }
-
+  #portal-node {
+    margin-top: 250px;
+    margin-left: 0%;
+    max-width: 800px;
+    max-height: 650px;
+  }
 }
