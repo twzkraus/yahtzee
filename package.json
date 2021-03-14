@@ -1,12 +1,13 @@
 {
   "name": "yahtzee",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "yahtzee game to be played in the browser",
   "main": "helper_functions.js",
   "scripts": {
     "test": "jest",
     "start": "node server/index.js",
-    "build": "webpack"
+    "build": "webpack",
+    "react-dev": "webpack --mode=development -w"
   },
   "repository": {
     "type": "git",
