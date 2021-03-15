@@ -180,7 +180,7 @@ const App = (props) => {
 
   const getRollButton = () => {
     if (gameIsOver() && !!winner) {
-      return <button id="roll-button" onClick={startNewGame}>{`Play Again!`}</button>
+      return <button id="roll-button" onClick={() => startNewGame(2, true)}>{`Play Again!`}</button>
     } else if (rollsMade < 3) {
       return <button id="roll-button" onClick={makeNthRoll}>{`Roll!`}</button>
     } else {
