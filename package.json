@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/twzkraus/yahtzee#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jquery": "^3.5.1",
     "react": "^16.13.1",
     "react-confetti": "^6.0.0",
